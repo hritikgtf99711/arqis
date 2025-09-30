@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
-
-.container{max-width: 95%;margin:0 auto; padding: 0 15px;}
-
+body{margin:0; padding:0; box-sizing:border-box; font-family: 'Inter', sans-serif; }
+.container{max-width: 90%;margin:0 auto; padding: 0 15px;}
+.custom-container{max-width: 596px;margin:0 auto; padding: 0 15px;}
+.font-inter{font-family: 'Inter', sans-serif;}
+::-webkit-scrollbar {
+    display: none;
+}
 @media (max-width:1600px) {
   .container{max-width: 1400px;padding: 0 15px;}
 }

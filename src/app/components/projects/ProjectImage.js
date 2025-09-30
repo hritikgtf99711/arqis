@@ -1,0 +1,11 @@
+import Image from 'next/image'
+import React from 'react'
+
+export default function ProjectImage() {
+  return (
+    <div>
+      <Image className='w-full h-full object-cover' src={'/assets/projects/project_1.jpg'} width={500} height={500} alt='projectimage'/>
+    </div>
+  )
+}
+

@@ -1,17 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 
-export default function Header() {
-  return (
-     <header className='py-[60px] absolute top-0 w-[100%] '>
+const Header = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null; 
+
+  return ReactDOM.createPortal(
+    <header className='py-[60px] fixed left-0 top-0 w-[100%]'>
       <div className='container mx-[auto]'>
-      <div className='flex justify-end gap-10'>
-        <img src='./assets/sound.svg' width={'25'} alt="logo"/>
-        <div className='flex items-center gap-2'>   
-        <span className='uppercase tracking-[2px]'>Menu</span>
-        <span className='border-[50%] h-[18px] w-[18px] rounded-full block bg-[#000]'></span>
+        <div className='flex justify-end gap-10'>
+          <img src='/assets/sound.svg' width={'25'} alt="logo"/>
+          <div className='flex items-center gap-2'>
+            <span className='uppercase tracking-[2px]'>Menu</span>
+            <span className='border-[50%] h-[18px] w-[18px] rounded-full block bg-[#000]'></span>
+          </div>
         </div>
-        </div>
-        </div>
-    </header>
-  )
-}
+      </div>
+    </header>,
+    document.getElementById('header-portal')
+  );
+};
+
+export default Header;
