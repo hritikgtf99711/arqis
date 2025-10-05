@@ -329,7 +329,7 @@ export const initScrollSmoother = () => {
   }
 
   const navConfig = [
-    { prev: "", next: "Philosophy", footer: "remove" },
+    { prev: "The Arc of Real Estate", next: "Start Journey", footer: "remove" },
     { prev: "Philosophy", next: "Projects", footer: "add" },
     { prev: "Projects", next: "Our Team", footer: "add" },
     { prev: "Our Team", next: "Careers", footer: "add" },
