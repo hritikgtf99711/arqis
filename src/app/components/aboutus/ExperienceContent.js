@@ -4,7 +4,7 @@ import CommonHeading from '@/app/utils/CommonHeading'
 import Paragraph from '@/app/utils/Paragraph'
 export default function ExperienceContent() {
   return (
-    <div className='custom-container'>
+    <div className=' parallax'>
         <CommonHeading customClass="text-[#FFD38F]" heading="9+ Years of experience in development"/>
         <div className='m-[auto] my-[70px]'>
             <Image src={'/assets/about/about_1.jpg'} alt='experience' className='w-[100%]' width={'643'} height={468}/>

@@ -1,41 +1,715 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/dist/ScrollSmoother";
+import { useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
+const SLIDE_NAV = {
+  philosophy: {
+    prev: "Philosophy",
+    next: "Projects",
+  },
+  projects: {
+    prev: "Projects",
+    next: "Our Team",
+  },
+  ourTeam: {
+    prev: "Our Team",
+    next: "Careers",
+  },
+  career: {
+    prev: "Careers",
+    next: "Media",
+  },
+  media: {
+    prev: "Media",
+    next: "Blogs",
+  },
+  blogs: {
+    prev: "Blogs",
+    next: "Contact",
+  },
+  quickLink: {
+    prev: "QuickLink",
+    next: "The End",
+  },
+};
 export const initScrollSmoother = () => {
-  const smoother = ScrollSmoother.create({
+  ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
-    smooth: 1.5,
+    smooth: 2,
     effects: true,
+    smoothTouch: 0.2,
   });
-  const horizontalSection = document.querySelector(".horizontal-section");
-  if (horizontalSection) {
-    const slides = gsap.utils.toArray(".horizontal-section .item");
-    const snapPoints = slides.map((slide, i) => i / (slides.length - 1));
-    gsap.to(slides, {
-      xPercent: -100 * (slides.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: horizontalSection,
-        start: "top top",
-        end: () => "+=" + (horizontalSection.scrollWidth - window.innerWidth),
-        pin: true,
-        scrub: 1,
-        snap: {
-          snapTo: snapPoints,
-          duration: { min: 0.2, max: 0.5 },
-          delay: 10,
-          ease: "power2.inOut",
-        },
-        onUpdate: (self) => {
-          const currentSlide = Math.round(self.progress * (slides.length - 1));
-        },
-      },
+
+  const sections = gsap.utils.toArray(".horizontal-section .item");
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  const WHEEL_THRESHOLD = 50;
+  const COOLDOWN_MS = 800;
+  const ANIM_DURATION = 1.2;
+  const TOUCH_THRESH = 60;
+
+  const inTL = new WeakMap();
+  const outTL = new WeakMap();
+
+  const isDarkSection = (section) => {
+    return (
+      section.classList.contains("dark-bg") ||
+      section.dataset.theme === "dark" ||
+      section.classList.contains("bg-dark")
+    );
+  };
+
+  const updateIconColors = (section) => {
+    const isDark = isDarkSection(section);
+    const icons = section.querySelectorAll(".icon, .nav-icon, svg, img.icon");
+
+    icons.forEach((icon) => {
+      if (isDark) {
+        icon.classList.add("icon-light");
+        icon.classList.remove("icon-dark");
+      } else {
+        icon.classList.add("icon-dark");
+        icon.classList.remove("icon-light");
+      }
     });
+
+    const navElements = document.querySelectorAll(
+      ".nav-indicator, .scroll-hint, .progress-bar"
+    );
+    navElements.forEach((el) => {
+      if (isDark) {
+        el.classList.add("theme-light");
+        el.classList.remove("theme-dark");
+      } else {
+        el.classList.add("theme-dark");
+        el.classList.remove("theme-light");
+      }
+    });
+  };
+
+  const buildInTimeline = (section) => {
+    const tl = gsap.timeline({ paused: true });
+
+    const fadeUps = section.querySelectorAll(".fade-up");
+    const scales = section.querySelectorAll(".scale-in");
+    const staggers = section.querySelectorAll(".stagger > *");
+    const parallax = section.querySelectorAll(".parallax");
+    const slideIns = section.querySelectorAll(".slide-in");
+    const rotateIns = section.querySelectorAll(".rotate-in");
+    const blurIns = section.querySelectorAll(".blur-in");
+
+    if (fadeUps.length) {
+      tl.from(
+        fadeUps,
+        {
+          y: 80,
+          opacity: 0,
+          rotationX: -20,
+          duration: 1.2,
+          ease: "power4.out",
+          stagger: 0.12,
+          clearProps: "all",
+        },
+        0
+      );
+    }
+
+    if (scales.length) {
+      tl.from(
+        scales,
+        {
+          scale: 0.8,
+          opacity: 0,
+          duration: 1.4,
+          ease: "elastic.out(1, 0.5)",
+          stagger: 0.1,
+        },
+        0.2
+      );
+    }
+
+    if (staggers.length) {
+      tl.from(
+        staggers,
+        {
+          opacity: 0,
+          y: 40,
+          x: -20,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.1,
+        },
+        0.25
+      );
+    }
+
+    if (parallax.length) {
+      tl.from(
+        parallax,
+        {
+          x: 120,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power4.out",
+          stagger: 0.15,
+        },
+        0.3
+      );
+    }
+
+    if (slideIns.length) {
+      tl.from(
+        slideIns,
+        {
+          x: -100,
+          opacity: 0,
+          duration: 1.3,
+          ease: "power3.out",
+          stagger: 0.09,
+        },
+        0.2
+      );
+    }
+
+    if (rotateIns.length) {
+      tl.from(
+        rotateIns,
+        {
+          rotation: -200,
+          scale: 0.4,
+          opacity: 0,
+          duration: 1.4,
+          ease: "back.out(1.7)",
+          stagger: 0.12,
+        },
+        0.35
+      );
+    }
+
+    if (blurIns.length) {
+      tl.from(
+        blurIns,
+        {
+          opacity: 0,
+          filter: "blur(25px)",
+          scale: 1.15,
+          duration: 1.2,
+          ease: "power2.out",
+          stagger: 0.1,
+          clearProps: "filter",
+        },
+        0.25
+      );
+    }
+
+    return tl;
+  };
+
+  const buildOutTimeline = (section) => {
+    const tl = gsap.timeline({ paused: true });
+
+    const allElements = section.querySelectorAll(
+      ".fade-up, .scale-in, .parallax, .slide-in, .rotate-in, .blur-in"
+    );
+
+    if (allElements.length) {
+      tl.to(
+        allElements,
+        {
+          opacity: 0,
+          y: 0,
+          scale: 1,
+          filter: "blur(8px)",
+          duration: 0.7,
+          ease: "power3.in",
+          stagger: 0.025,
+          clearProps: "filter",
+        },
+        0
+      );
+    }
+
+    return tl;
+  };
+
+  const emit = (name, detail) => {
+    window.dispatchEvent(new CustomEvent(name, { detail }));
+  };
+
+  sections.forEach((sec, i) => {
+    inTL.set(sec, buildInTimeline(sec));
+    outTL.set(sec, buildOutTimeline(sec));
+    sec.classList.toggle("is-active", i === 0);
+
+    if (i === 0) {
+      inTL.get(sec).restart();
+      updateIconColors(sec);
+    }
+  });
+
+  const first = sections[0];
+  emit("sliderstart", {
+    index: 0,
+    direction: "forward",
+    footerTitle: first?.dataset.footerTitle || "The Arc of real estate",
+    footerCta: first?.dataset.footerCta || "Start Journey",
+  });
+
+  const activateSection = (index) => {
+    sections.forEach((sec, i) => {
+      sec.classList.toggle("is-active", i === index);
+      if (i === index) {
+        const tl = inTL.get(sec);
+        if (tl) tl.restart();
+        updateIconColors(sec);
+      }
+    });
+  };
+
+  const goToSection = (index) => {
+    if (index < 0 || index >= sections.length || isAnimating) return;
+    isAnimating = true;
+
+    const next = sections[index];
+    const prev = sections[currentIndex];
+    const prevIndex = currentIndex;
+    const dir = index > prevIndex ? "forward" : "backward";
+
+    document.documentElement.classList.add(
+      dir === "forward" ? "sliding-forward" : "sliding-backward"
+    );
+
+    const exitTL = outTL.get(prev);
+    if (exitTL) exitTL.restart();
+
+    const parallaxElements = prev.querySelectorAll(".parallax-bg");
+    if (parallaxElements.length) {
+      gsap.to(parallaxElements, {
+        x: dir === "forward" ? -150 : 150,
+        scale: 1.2,
+        opacity: 0.6,
+        duration: ANIM_DURATION,
+        ease: "power3.inOut",
+      });
+    }
+
+    gsap.to(sections, {
+      xPercent: -100 * index,
+      duration: ANIM_DURATION,
+      ease: "power3.inOut",
+      onStart: () => {
+        document.documentElement.classList.add("is-sliding");
+        document.documentElement.style.setProperty("--slide-progress", "0");
+        updateIconColors(next);
+      },
+      onUpdate: function () {
+        const progress = this.progress();
+        document.documentElement.style.setProperty(
+          "--slide-progress",
+          progress
+        );
+        gsap.set(prev, { opacity: 1 - progress * 0.4 });
+        gsap.set(next, { opacity: 0.6 + progress * 0.4 });
+      },
+   onComplete: () => {
+  currentIndex = index;
+  activateSection(index);
+  document.querySelector("body")?.classList?.remove("active");
+
+  switch (index) {
+    case 1:
+    case 4:
+    case 7:
+      document.querySelector("body")?.classList?.add("active");
+      break;
   }
 
-  return smoother;
+  const navConfig = [
+    { prev: "", next: "Philosophy", footer: "remove" },
+    { prev: "Philosophy", next: "Projects", footer: "add" },
+    { prev: "Projects", next: "Our Team", footer: "add" },
+    { prev: "Our Team", next: "Careers", footer: "add" },
+    { prev: "Careers", next: "Media", footer: "add" },
+    { prev: "Media", next: "Blogs", footer: "add" },
+    { prev: "Blogs", next: "Contact", footer: "add" },
+    { prev: "Contact", next: "Quick Links", footer: "add" },
+    { prev: "Quick Links", next: "The End", footer: "add" },
+  ];
+
+  if (navConfig[index]) {
+    document.querySelector(".prev_title").textContent = navConfig[index].prev;
+    document.querySelector(".next_title").textContent = navConfig[index].next;
+    
+    if (navConfig[index].footer === "remove") {
+      document.querySelector("footer")?.classList?.remove("change_style");
+    } else {
+      document.querySelector("footer")?.classList?.add("change_style");
+    }
+  }
+
+  const borderLines = document.querySelectorAll(".border_line");
+  if (borderLines.length) {
+    gsap.fromTo(
+      borderLines,
+      {
+        width: "0%",
+        opacity: 0,
+        // scaleX: 0,
+        transformOrigin: "left center",
+      },
+      {
+        width: "100%",
+        opacity: 1,
+        // scaleX: 1,
+        duration: 1.2,
+        ease: "power2.inOut",
+        stagger: 0.15,
+        // onComplete: function() {
+        //   gsap.to(this.targets(), {
+        //     opacity: 0,
+        //     duration: 0.6,
+        //     delay: 0.3,
+        //     ease: "power2.out",
+        //     clearProps: "all",
+        //   });
+        // },
+      }
+    );
+  }
+
+  const navTitles = document.querySelectorAll(".prev_title, .next_title");
+  gsap.fromTo(
+    navTitles,
+    {
+      y: 100,
+      opacity: 0,
+      scale: 0.9,
+      filter: "blur(5px)",
+    },
+    {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.12,
+      clearProps: "all",
+    }
+  );
+
+  // Enhanced footer animations
+  const footerElements = next.querySelectorAll(".footer-content");
+  if (footerElements.length) {
+    gsap.fromTo(
+      footerElements,
+      {
+        y: 40,
+        opacity: 0,
+        scale: 0.95,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.18,
+        clearProps: "all",
+      }
+    );
+  }
+
+  const activeSectionContent = next.querySelectorAll(".section-content");
+  if (activeSectionContent.length) {
+    gsap.fromTo(
+      activeSectionContent,
+      {
+        scale: 0.96,
+        opacity: 0.8,
+        y: 20,
+      },
+      {
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power2.out",
+        stagger: 0.08,
+        clearProps: "all",
+      }
+    );
+  }
+
+  const navIndicators = document.querySelectorAll(".nav-indicator, .progress-bar");
+  if (navIndicators.length) {
+    gsap.fromTo(
+      navIndicators,
+      {
+        scaleX: 0.7,
+        opacity: 0.5,
+      },
+      {
+        scaleX: 1,
+        opacity: 1,
+        duration: 0.7,
+        ease: "elastic.out(1, 0.5)",
+        clearProps: "all",
+      }
+    );
+  }
+
+  const prevArrow = document.querySelector(".prev_arrow");
+  const nextArrow = document.querySelector(".next_arrow");
+
+  if (prevArrow) {
+    gsap.fromTo(
+      prevArrow,
+      {
+        x: dir === "forward" ? -30 : 30,
+        opacity: 0,
+        scale: 0.8,
+        rotation: dir === "forward" ? -15 : 15,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        clearProps: "all",
+      }
+    );
+  }
+
+  if (nextArrow) {
+    gsap.fromTo(
+      nextArrow,
+      {
+        x: dir === "forward" ? 30 : -30,
+        opacity: 0,
+        scale: 0.8,
+        rotation: dir === "forward" ? 15 : -15,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        clearProps: "all",
+      }
+    );
+  }
+
+  gsap.set(sections, { opacity: 1 });
+
+  emit("slidechange", {
+    index,
+    direction: dir,
+    footerTitle: next?.dataset.footerTitle || "",
+    footerCta: next?.dataset.footerCta || "",
+  });
+
+  setTimeout(() => {
+    isAnimating = false;
+    document.documentElement.classList.remove(
+      "is-sliding",
+      "sliding-forward",
+      "sliding-backward"
+    );
+  }, COOLDOWN_MS);
+},
+    });
+
+    gsap.fromTo(
+      next,
+      { scale: 1.08 },
+      {
+        scale: 1,
+        duration: ANIM_DURATION * 1.1,
+        ease: "power3.out",
+      }
+    );
+  };
+
+  const getScrollableParent = (element) => {
+    let el = element;
+    const maxDepth = 10;
+    let depth = 0;
+
+    while (el && el !== document.body && depth < maxDepth) {
+      const style = window.getComputedStyle(el);
+      const overflowY = style.overflowY;
+      const hasScroll = el.scrollHeight > el.clientHeight + 5;
+
+      if ((overflowY === "auto" || overflowY === "scroll") && hasScroll) {
+        return el;
+      }
+      el = el.parentElement;
+      depth++;
+    }
+    return null;
+  };
+
+  const isAtScrollBoundary = (el, deltaY) => {
+    if (!el) return true;
+
+    const tolerance = 10;
+    const scrollTop = el.scrollTop;
+    const scrollHeight = el.scrollHeight;
+    const clientHeight = el.clientHeight;
+
+    if (deltaY > 0) {
+      return scrollTop + clientHeight >= scrollHeight - tolerance;
+    } else {
+      return scrollTop <= tolerance;
+    }
+  };
+
+  const normalizeDelta = (e) => {
+    const base =
+      e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1;
+    return e.deltaY * base;
+  };
+
+  let accum = 0;
+  let wheelRAF = 0;
+  let lastWheelTime = 0;
+
+  const onWheel = (e) => {
+    if (isAnimating) {
+      e.preventDefault();
+      return;
+    }
+
+    const now = Date.now();
+    const timeSinceLastWheel = now - lastWheelTime;
+    lastWheelTime = now;
+
+    const scrollContainer = getScrollableParent(e.target);
+    const delta = normalizeDelta(e);
+    if (scrollContainer) {
+      const atBoundary = isAtScrollBoundary(scrollContainer, delta);
+
+      if (!atBoundary) {
+        accum = 0;
+        return;
+      }
+    }
+
+    e.preventDefault();
+
+    if (timeSinceLastWheel < 50) {
+      accum += delta;
+    } else {
+      accum = delta;
+    }
+
+    if (!wheelRAF) {
+      wheelRAF = requestAnimationFrame(() => {
+        if (Math.abs(accum) >= WHEEL_THRESHOLD) {
+          const dir = accum > 0 ? 1 : -1;
+          goToSection(currentIndex + dir);
+          accum = 0;
+        }
+        wheelRAF = 0;
+      });
+    }
+  };
+
+  const onKey = (e) => {
+    if (isAnimating) return;
+
+    const activeEl = document.activeElement;
+    const isInput =
+      activeEl.tagName === "INPUT" ||
+      activeEl.tagName === "TEXTAREA" ||
+      activeEl.isContentEditable;
+
+    if (isInput) return;
+
+    const scrollContainer = getScrollableParent(activeEl);
+    if (
+      scrollContainer &&
+      !isAtScrollBoundary(scrollContainer, e.key === "ArrowDown" ? 1 : -1)
+    ) {
+      return;
+    }
+
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      goToSection(currentIndex + 1);
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      goToSection(currentIndex - 1);
+    }
+  };
+
+  let touchStartY = 0;
+  let touchStartX = 0;
+  let touchTarget = null;
+  let hasMoved = false;
+
+  const onTouchStart = (e) => {
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+    touchTarget = e.target;
+    hasMoved = false;
+  };
+
+  const onTouchMove = (e) => {
+    if (isAnimating) {
+      e.preventDefault();
+      return;
+    }
+
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    const isHorizontalGesture = Math.abs(dx) > Math.abs(dy) * 1.5;
+
+    const scrollContainer = getScrollableParent(touchTarget);
+
+    if (!isHorizontalGesture && scrollContainer) {
+      const atBoundary = isAtScrollBoundary(scrollContainer, dy);
+
+      if (!atBoundary) {
+        return;
+      }
+    }
+
+    if (Math.abs(dy) > TOUCH_THRESH && !hasMoved) {
+      e.preventDefault();
+      hasMoved = true;
+      goToSection(currentIndex + (dy < 0 ? 1 : -1));
+    }
+  };
+
+  const onTouchEnd = () => {
+    hasMoved = false;
+  };
+
+  window.addEventListener("wheel", onWheel, { passive: false });
+  window.addEventListener("keydown", onKey, { passive: false });
+  window.addEventListener("touchstart", onTouchStart, { passive: true });
+  window.addEventListener("touchmove", onTouchMove, { passive: false });
+  window.addEventListener("touchend", onTouchEnd, { passive: true });
+
+  return {
+    goTo: goToSection,
+    next: () => goToSection(currentIndex + 1),
+    prev: () => goToSection(currentIndex - 1),
+    getCurrentIndex: () => currentIndex,
+    getSectionsCount: () => sections.length,
+    updateTheme: () => updateIconColors(sections[currentIndex]),
+    getCurrentSection: () => sections[currentIndex],
+    getSectionByIndex: (index) => sections[index],
+    isAnimating: () => isAnimating,
+  };
 };

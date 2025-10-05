@@ -14,7 +14,7 @@ export default function AbsSec() {
       </video>
       <img
         src="./assets/green-leaf.png"
-        className="absolute left-0 top-0"
+        className="absolute w-[20%]  left-0 top-0"
         alt="logo"
       />
     </div>

@@ -11,13 +11,13 @@ const Header = () => {
   if (!isClient) return null; 
 
   return ReactDOM.createPortal(
-    <header className='py-[60px] fixed left-0 top-0 w-[100%]'>
+    <header className='py-[60px] z-[3] fixed left-0 top-0 w-[100%]'>
       <div className='container mx-[auto]'>
         <div className='flex justify-end gap-10'>
-          <img src='/assets/sound.svg' width={'25'} alt="logo"/>
+          <img src='/assets/sound.svg' className='icon' width={'25'} alt="logo"/>
           <div className='flex items-center gap-2'>
-            <span className='uppercase tracking-[2px]'>Menu</span>
-            <span className='border-[50%] h-[18px] w-[18px] rounded-full block bg-[#000]'></span>
+            <span className='uppercase text tracking-[2px]'>Menu</span>
+            <span className='border-[50%]  h-[18px] w-[18px] rounded-full block bg-[#000] circle-pointer'></span>
           </div>
         </div>
       </div>
