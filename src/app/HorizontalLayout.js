@@ -5,7 +5,7 @@ import AbsSec from "./components/common/absSec";
 import Footer from "./components/common/footer";
 import { useLayoutEffect, useState } from "react";
 import ScrollContext from "./context/ScrollContext";
-import { initScrollSmoother } from "./utils/GsapAnimations";
+import { initScrollSmoother } from "./utils/GsapAnimations.js";
 
 
 export default function HorizontalLayout({ children }) {
