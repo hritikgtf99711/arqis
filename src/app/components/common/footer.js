@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import gsap from "gsap";
 import { useContext } from "react";
 import ScrollContext from "@/app/context/ScrollContext";
-
+import Image from "next/image";
 // Defining slide navigation structure
 const SLIDE_NAV = {
   "philosophy": {
@@ -74,7 +74,7 @@ const Footer = () => {
         <h2 className="uppercase cursor-pointer parallax next_title text-[18px] tracking-[6px]" ref={ctaRef}>
           {cta}
         </h2>
-        <img
+        <Image
           ref={arrowRef}
           src="/assets/right_arrow.svg"
           className="ml-3 parallax select-none"

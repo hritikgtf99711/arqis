@@ -3,10 +3,9 @@ import "./globals.css";
 import Header from "./components/common/header";
 import AbsSec from "./components/common/absSec";
 import Footer from "./components/common/footer";
-import { initScrollSmoother } from "./utils/GsapAnimations";
 import { useLayoutEffect, useState } from "react";
 import ScrollContext from "./context/ScrollContext";
-
+import { initScrollSmoother } from "./utils/GsapAnimations";
 
 
 export default function HorizontalLayout({ children }) {

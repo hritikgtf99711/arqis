@@ -1,10 +1,10 @@
 import React from 'react'
-
+import Image from 'next/image'
 export default function LogoSection() {
   return (
     <div className='container'>
     <figure className='m-auto flex justify-center  h-[98vh]'>
-        <img src='./assets/logo.png' className='w-[40%] object-contain' alt='Logo Container'/>
+        <Image src='/assets/logo.png' className='w-[40%] object-contain' width={300} height={300} alt='Logo Container'/>
     </figure>
     </div>
   )

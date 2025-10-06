@@ -1,5 +1,6 @@
 import React from "react";
-
+import CommonHeading from "@/app/utils/CommonHeading";
+import Paragraph from "@/app/utils/Paragraph";
 export default function MediaContent() {
   return (
     <div>
