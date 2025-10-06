@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ProjectImage from "./ProjectImage";
-// import ProjectContent from "./ProjectContent";
+import ProjectContent from "./ProjectContent";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -28,7 +28,7 @@ export default function ProjectContainer() {
                 <ProjectImage />
               </div>
               <div className="col-span-1">
-                {/* <ProjectContent /> */}
+                <ProjectContent />
               </div>
             </div>
           </SwiperSlide>
@@ -38,7 +38,7 @@ export default function ProjectContainer() {
                 <ProjectImage />
               </div>
               <div className="col-span-1">
-                {/* <ProjectContent /> */}
+                <ProjectContent />
               </div>
             </div>
           </SwiperSlide>
@@ -48,7 +48,7 @@ export default function ProjectContainer() {
                 <ProjectImage />
               </div>
               <div className="col-span-1">
-                {/* <ProjectContent /> */}
+                <ProjectContent />
               </div>
             </div>
           </SwiperSlide>
