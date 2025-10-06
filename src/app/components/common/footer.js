@@ -62,7 +62,7 @@ const Footer = () => {
       <h2
         ref={titleRef}
         onClick={()=>prev()}
-        className="uppercase  parallax cursor-pointer prev_title basis-[18%] font-[200] text-[40px] leading-[1.1] pointer-events-auto"
+        className="uppercase  parallax cursor-pointer prev_title basis-[25%] font-[200] text-[40px] leading-[1.1] pointer-events-auto"
       >
         {title}
       </h2>
