@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import ScrollLayout from './ScrollLayout'
 
-export default function Modals() {
+export default function Modals({ MediaContent ,scrollableRef}) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -17,7 +17,8 @@ export default function Modals() {
   return createPortal(
     <div className='fixed bg-[#f7efe19c] top-0 left-0 h-full w-full z-[999]'>
       <ScrollLayout 
-      isShowDrag={true}
+        rightContent={<MediaContent />}
+        scrollableRef={scrollableRef}
       />
     </div>,
     document.body

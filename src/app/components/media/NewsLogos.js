@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -7,12 +7,27 @@ import Modals from "@/app/utils/Modals";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import MediaContainer from "./MediaContainer";
+import MediaContent from "./mediaContainer/MediaContent";
+import DragComponent from "@/app/utils/DragComponent";
+import { useRef } from "react";
 
 export default function NewsLogos() {
+  const scrollableRef = useRef(null);
+  const [hoveredSlide, setHoveredSlide] = useState(null); // Track which slide is hovered
+
+  const handleMouseEnter = (index) => {
+    // alert
+    console.log(index)
+    setHoveredSlide(index); 
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredSlide(null); 
+  };
+
   return (
     <div className="pt-[30px]">
-       <div className="arrow_container flex gap-5 justify-start pb-[30px] fade-up">
+      <div className="arrow_container flex gap-5 justify-start pb-[30px] fade-up">
         <div className="arrow_prev cursor-pointer">
           <img src="/assets/icons/arrow_right.png" alt="Previous" width={25} />
         </div>
@@ -20,8 +35,7 @@ export default function NewsLogos() {
           <img src="/assets/icons/arrow_left.png" alt="Next" width={25} />
         </div>
       </div>
-      <div className="bg-[#fff] fade-up news_container py-[30px]  ">
-         
+      <div className="bg-[#fff] fade-up news_container py-[30px]">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           spaceBetween={30}
@@ -47,107 +61,59 @@ export default function NewsLogos() {
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
+            pauseOnMouseEnter: true,
           }}
           loop={true}
-          // pagination={{ clickable: true }}
           navigation={{
             prevEl: ".arrow_prev",
             nextEl: ".arrow_next",
           }}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">
-              <Image
-                src="/assets/media-center/news/logo_1.png"
-                alt="Logo 1"
-                height={120}
-                width={120}
-                className="w-[150px] object-contain"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">
-              <Image
-                src="/assets/media-center/news/logo_2.png"
-                alt="Logo 2"
-                height={120}
-                width={120}
-                className="w-[400px] m-[auto] object-contain"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">f
-              <Image
-                src="/assets/media-center/news/logo_4.png"
-                alt="Logo 4"
-                height={120}
-                width={120}
-                className="w-[60%] object-contain"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">
-              <Image
-                src="/assets/media-center/news/logo_3.png"
-                alt="Logo 3"
-                height={120}
-                width={120}
-                className="w-[60%] object-contain"
-              />
-            </div>
-          </SwiperSlide>
-               <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">
-              <Image
-                src="/assets/media-center/news/logo_1.png"
-                alt="Logo 1"
-                height={120}
-                width={120}
-                className="w-[150px] object-contain"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">
-              <Image
-                src="/assets/media-center/news/logo_2.png"
-                alt="Logo 2"
-                height={120}
-                width={120}
-                className="w-[400px] m-[auto] object-contain"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">f
-              <Image
-                src="/assets/media-center/news/logo_4.png"
-                alt="Logo 4"
-                height={120}
-                width={120}
-                className="w-[60%] object-contain"
-              />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="flex justify-center items-center fade-up">
-              <Image
-                src="/assets/media-center/news/logo_3.png"
-                alt="Logo 3"
-                height={120}
-                width={120}
-                className="w-[60%] object-contain"
-              />
-            </div>
-          </SwiperSlide>
+          {[
+            "/assets/media-center/news/logo_1.png",
+            "/assets/media-center/news/logo_2.png",
+            "/assets/media-center/news/logo_4.png",
+            "/assets/media-center/news/logo_3.png",
+            "/assets/media-center/news/logo_1.png",
+            "/assets/media-center/news/logo_2.png",
+            "/assets/media-center/news/logo_4.png",
+            "/assets/media-center/news/logo_3.png",
+          ].map((src, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="flex justify-center items-center fade-up relative"
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {src.includes("logo_4.png") && "f"}
+                <Image
+                  src={src}
+                  alt={`Logo ${index + 1}`}
+                  height={120}
+                  width={120}
+                  className={
+                    src.includes("logo_1.png")
+                      ? "w-[150px] object-contain z-10"
+                      : src.includes("logo_2.png")
+                      ? "w-[400px] m-[auto] object-contain z-10"
+                      : "w-[60%] object-contain z-10"
+                  }
+                />
+                {/* <DragComponent scrollableRef={scrollableRef} className="z-10" /> */}
+                {hoveredSlide === index && (
+                  <div className="absolute z-20 top-full left-1/2 transform -translate-x-1/2">
+                    <Modals
+                      scrollableRef={scrollableRef}
+                      MediaContent={MediaContent}
+                    />
+                  </div>
+                )}
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
-      {/* <Modals/> */}
-    
     </div>
   );
 }
