@@ -3,11 +3,11 @@ import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
-// Import Swiper styles
+import Modals from "@/app/utils/Modals";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import MediaContainer from "./MediaContainer";
 
 export default function NewsLogos() {
   return (
@@ -146,6 +146,7 @@ export default function NewsLogos() {
           </SwiperSlide>
         </Swiper>
       </div>
+      {/* <Modals/> */}
     
     </div>
   );
