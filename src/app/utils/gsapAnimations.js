@@ -1,7 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/dist/ScrollSmoother";
-import { useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 const SLIDE_NAV = {
@@ -34,7 +33,7 @@ const SLIDE_NAV = {
     next: "The End",
   },
 };
-export const initScrollSmoother = () => {
+export default function  InitScrollSmoother  (){
   ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",

@@ -5,8 +5,7 @@ import AbsSec from "./components/common/absSec";
 import Footer from "./components/common/footer";
 import { useLayoutEffect, useState } from "react";
 import ScrollContext from "./context/ScrollContext";
-import { initScrollSmoother } from "./utils/GsapAnimations.js";
-
+import InitScrollSmoother from "./utils/GsapAnimations";
 
 export default function HorizontalLayout({ children }) {
   const [gotoFn, setgoTofn] = useState(0);
@@ -14,7 +13,7 @@ export default function HorizontalLayout({ children }) {
   const [prev,setPrev]=useState();
 
   useLayoutEffect(() => {
-    const { goTo ,next,prev} = initScrollSmoother();
+    const { goTo ,next,prev} = InitScrollSmoother();
    setgoTofn(()=>goTo)
    setnext(()=>next)
    setPrev(()=>prev)
