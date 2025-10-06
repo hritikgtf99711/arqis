@@ -28,7 +28,7 @@ export default function ProjectContainer() {
                 <ProjectImage />
               </div>
               <div className="col-span-1">
-                <ProjectContent />
+                {/* <ProjectContent /> */}
               </div>
             </div>
           </SwiperSlide>
@@ -38,7 +38,7 @@ export default function ProjectContainer() {
                 <ProjectImage />
               </div>
               <div className="col-span-1">
-                <ProjectContent />
+                {/* <ProjectContent /> */}
               </div>
             </div>
           </SwiperSlide>
@@ -48,7 +48,7 @@ export default function ProjectContainer() {
                 <ProjectImage />
               </div>
               <div className="col-span-1">
-                <ProjectContent />
+                {/* <ProjectContent /> */}
               </div>
             </div>
           </SwiperSlide>
