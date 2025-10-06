@@ -1,7 +1,7 @@
 import React from 'react'
 import CommonHeading from '../../utils/CommonHeading'
 import Redirect_Link from '@/app/utils/Redirect_txt'
-export default function projectContent() {
+export default function ProjectContent() {
   return (
     <div className='flex flex-col h-[100%] justify-between'>
         <CommonHeading heading="Where Shopping Meets Lifestyle" customClass="mb-5"/>

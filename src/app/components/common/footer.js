@@ -2,6 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import gsap from "gsap";
+import { useContext } from "react";
+import ScrollContext from "@/app/context/ScrollContext";
 
 // Defining slide navigation structure
 const SLIDE_NAV = {
@@ -39,7 +41,7 @@ const Footer = () => {
   const [isClient, setIsClient] = useState(false);
   const [title, setTitle] = useState("The Arc of Real Estate");
   const [cta, setCta] = useState("Start Journey");
-
+  const {next,prev}=useContext(ScrollContext)
   const footerRef = useRef(null);
   const arrowRef = useRef(null);
   const titleRef = useRef(null);
@@ -47,9 +49,6 @@ const Footer = () => {
   const lineRef = useRef(null);
 
   useEffect(() => setIsClient(true), []);
-
-
-
   if (!isClient) return null;
 
   const portalEl = typeof document !== "undefined" ? document.getElementById("footer-portal") : null;
@@ -62,24 +61,23 @@ const Footer = () => {
     >
       <h2
         ref={titleRef}
-        className="uppercase  prev_title basis-[18%] font-[200] text-[40px] leading-[1.1] pointer-events-auto"
+        onClick={()=>prev()}
+        className="uppercase  parallax cursor-pointer prev_title basis-[18%] font-[200] text-[40px] leading-[1.1] pointer-events-auto"
       >
         {title}
       </h2>
-
       <div
         ref={lineRef}
-        className="border_line flex-1 mb-[20px] h-[1px]"
+        className="border_line parallax flex-1 mb-[20px] h-[1px]"
       />
-
-      <div className="flex next_text gap-3 mb-[10px] items-center pointer-events-auto">
-        <h2 className="uppercase next_title text-[18px] tracking-[6px]" ref={ctaRef}>
+      <div onClick={()=>next()} className="flex  next_text gap-3 mb-[10px] items-center pointer-events-auto">
+        <h2 className="uppercase cursor-pointer parallax next_title text-[18px] tracking-[6px]" ref={ctaRef}>
           {cta}
         </h2>
         <img
           ref={arrowRef}
           src="/assets/right_arrow.svg"
-          className="ml-3 select-none"
+          className="ml-3 parallax select-none"
           width="25"
           height="25"
           alt="arrow"

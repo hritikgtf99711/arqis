@@ -10,16 +10,19 @@ import ScrollContext from "./context/ScrollContext";
 
 
 export default function HorizontalLayout({ children }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [gotoFn, setgoTofn] = useState(0);
+  const [next, setnext] = useState();
+  const [prev,setPrev]=useState();
 
   useLayoutEffect(() => {
-    const { getSectionByIndex } = initScrollSmoother();
-    console.log(getSectionByIndex())
-    // setCurrentIndex(getCurrentIndex());
+    const { goTo ,next,prev} = initScrollSmoother();
+   setgoTofn(()=>goTo)
+   setnext(()=>next)
+   setPrev(()=>prev)
   }, []);
 
   return (
-    <ScrollContext.Provider value={{ currentIndex }}>
+    <ScrollContext.Provider value={{ gotoFn,next,prev }}>
       <div className="">
         <AbsSec />
         <div id="smooth-wrapper">

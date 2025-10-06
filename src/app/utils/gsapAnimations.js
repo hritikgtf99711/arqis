@@ -315,7 +315,7 @@ export const initScrollSmoother = () => {
         gsap.set(prev, { opacity: 1 - progress * 0.4 });
         gsap.set(next, { opacity: 0.6 + progress * 0.4 });
       },
-   onComplete: () => {
+ onComplete: () => {
   currentIndex = index;
   activateSection(index);
   document.querySelector("body")?.classList?.remove("active");
@@ -358,25 +358,35 @@ export const initScrollSmoother = () => {
       {
         width: "0%",
         opacity: 0,
-        // scaleX: 0,
         transformOrigin: "left center",
       },
       {
         width: "100%",
         opacity: 1,
-        // scaleX: 1,
-        duration: 1.2,
+        duration: 3,
         ease: "power2.inOut",
         stagger: 0.15,
-        // onComplete: function() {
-        //   gsap.to(this.targets(), {
-        //     opacity: 0,
-        //     duration: 0.6,
-        //     delay: 0.3,
-        //     ease: "power2.out",
-        //     clearProps: "all",
-        //   });
-        // },
+      }
+    );
+  }
+
+  // Border button animation
+  const borderButtons = document.querySelectorAll(".border_button");
+  if (borderButtons.length) {
+    gsap.fromTo(
+      borderButtons,
+      {
+        width: "0%",
+        opacity: 0,
+        transformOrigin: "center center",
+      },
+      {
+        width: "100%",
+        opacity: 1,
+        duration: 3,
+        ease: "power3.inOut",
+        stagger: 0.2,
+        delay: 1,
       }
     );
   }
@@ -385,13 +395,11 @@ export const initScrollSmoother = () => {
   gsap.fromTo(
     navTitles,
     {
-      y: 100,
       opacity: 0,
       scale: 0.9,
       filter: "blur(5px)",
     },
     {
-      y: 0,
       opacity: 1,
       scale: 1,
       filter: "blur(0px)",
@@ -408,12 +416,10 @@ export const initScrollSmoother = () => {
     gsap.fromTo(
       footerElements,
       {
-        y: 40,
         opacity: 0,
         scale: 0.95,
       },
       {
-        y: 0,
         opacity: 1,
         scale: 1,
         duration: 1,
@@ -525,7 +531,7 @@ export const initScrollSmoother = () => {
       "sliding-backward"
     );
   }, COOLDOWN_MS);
-},
+}
     });
 
     gsap.fromTo(
