@@ -2,7 +2,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ProjectImage from "./ProjectImage";
-import ProjectContent from "./ProjectContent";
+// import ProjectContent from "./ProjectContent";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
