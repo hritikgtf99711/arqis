@@ -79,7 +79,7 @@ export const initScrollSmoother = () => {
 
     const navElements = document.querySelectorAll(
       ".nav-indicator, .scroll-hint, .progress-bar"
-    );
+    ); 
     navElements.forEach((el) => {
       if (isDark) {
         el.classList.add("theme-light");
