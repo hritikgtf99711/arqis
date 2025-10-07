@@ -6,6 +6,7 @@ import Footer from "./components/common/footer";
 import { useLayoutEffect, useState } from "react";
 import ScrollContext from "./context/ScrollContext";
 import InitScrollSmoother from "./utils/gsapAnimations";
+import CursorAnimation from "./utils/Cursor";
 export default function HorizontalLayout({ children }) {
   const [gotoFn, setgoTofn] = useState(0);
   const [next, setnext] = useState();
@@ -21,6 +22,7 @@ export default function HorizontalLayout({ children }) {
   return (
     <ScrollContext.Provider value={{ gotoFn,next,prev }}>
       <div className="">
+        <CursorAnimation/>
         <AbsSec />
         <div id="smooth-wrapper">
           <div id="smooth-content">

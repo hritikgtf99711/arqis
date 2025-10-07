@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const DragComponent = ({ scrollableRef }) => {
+const DragComponent = ({ scrollableRef,centerDragVia }) => {
   const progRef = useRef(null);
   const dragButtonRef = useRef(null);
 
@@ -46,7 +46,7 @@ const DragComponent = ({ scrollableRef }) => {
   }, [scrollableRef]);
 
   return (
-    <div ref={dragButtonRef} className="drage_button flex mt-[100px] gap-[8px] items-center relative w-[100%] mx-auto">
+    <div ref={dragButtonRef} className={`drage_button  ${centerDragVia && 'justify-center'}  flex mt-[100px] gap-[8px] items-center relative w-[100%] mx-auto`}>
       <div className='h-[1px] bg-[#00000069] w-[60%]'>
         <div ref={progRef} className="prog top-1/2 transform -translate-y-1/2 h-[3px] bg-[#525252] transition-all duration-100" style={{ width: '0%' }}></div>
       </div>

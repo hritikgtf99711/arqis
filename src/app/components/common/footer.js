@@ -57,7 +57,7 @@ const Footer = () => {
   return ReactDOM.createPortal(
     <footer
       ref={footerRef}
-      className="fixed  z-[3] w-[90%] left-1/2 -translate-x-1/2 flex gap-5 items-end justify-between bottom-10 pointer-events-none"
+      className="fixed  z-[3] w-[90%] left-1/2 -translate-x-1/2 flex gap-5 items-end justify-between bottom-10"
     >
       <h2
         ref={titleRef}

@@ -8,23 +8,29 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import MediaContent from "./mediaContainer/MediaContent";
-import DragComponent from "@/app/utils/DragComponent";
+import MediaLogo from "./mediaContainer/MediaImage";
 import { useRef } from "react";
 
 export default function NewsLogos() {
   const scrollableRef = useRef(null);
-  const [hoveredSlide, setHoveredSlide] = useState(null); // Track which slide is hovered
-
+  const [hoveredSlide, setHoveredSlide] = useState(null);
+  const logosArr = [
+    "/assets/media-center/news/logo_1.png",
+    "/assets/media-center/news/logo_2.png",
+    "/assets/media-center/news/logo_4.png",
+    "/assets/media-center/news/logo_3.png",
+    "/assets/media-center/news/logo_1.png",
+    "/assets/media-center/news/logo_2.png",
+    "/assets/media-center/news/logo_4.png",
+    "/assets/media-center/news/logo_3.png",
+  ];
   const handleMouseEnter = (index) => {
-    // alert
-    console.log(index)
-    setHoveredSlide(index); 
+    setHoveredSlide(index);
   };
 
-  const handleMouseLeave = () => {
-    setHoveredSlide(null); 
+  const close = () => {
+    setHoveredSlide(null);
   };
-
   return (
     <div className="pt-[30px]">
       <div className="arrow_container flex gap-5 justify-start pb-[30px] fade-up">
@@ -35,7 +41,7 @@ export default function NewsLogos() {
           <img src="/assets/icons/arrow_left.png" alt="Next" width={25} />
         </div>
       </div>
-      <div className="bg-[#fff] fade-up news_container py-[30px]">
+      <div className="bg-[#fff] fade-up news_container ">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           spaceBetween={30}
@@ -70,21 +76,13 @@ export default function NewsLogos() {
           }}
           className="mySwiper"
         >
-          {[
-            "/assets/media-center/news/logo_1.png",
-            "/assets/media-center/news/logo_2.png",
-            "/assets/media-center/news/logo_4.png",
-            "/assets/media-center/news/logo_3.png",
-            "/assets/media-center/news/logo_1.png",
-            "/assets/media-center/news/logo_2.png",
-            "/assets/media-center/news/logo_4.png",
-            "/assets/media-center/news/logo_3.png",
-          ].map((src, index) => (
-            <SwiperSlide key={index}>
+          {logosArr.map((src, index) => (
+            <SwiperSlide                 onMouseEnter={() => handleMouseEnter(index)} key={index}>
               <div
-                className="flex justify-center items-center fade-up relative"
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
+                className={`flex ${
+                  hoveredSlide === index ? "z-[99999]" : ""
+                }  justify-center items-center cursor-pointer fade-up py-[30px] relative`}
+                // onMouseLeave={handleMouseLeave}
               >
                 {src.includes("logo_4.png") && "f"}
                 <Image
@@ -94,26 +92,27 @@ export default function NewsLogos() {
                   width={120}
                   className={
                     src.includes("logo_1.png")
-                      ? "w-[150px] object-contain z-10"
+                      ? "w-[100px] object-contain z-10"
                       : src.includes("logo_2.png")
                       ? "w-[400px] m-[auto] object-contain z-10"
-                      : "w-[60%] object-contain z-10"
+                      : "w-[50%] object-contain z-10"
                   }
                 />
                 {/* <DragComponent scrollableRef={scrollableRef} className="z-10" /> */}
-                {hoveredSlide === index && (
-                  <div className="absolute z-20 top-full left-1/2 transform -translate-x-1/2">
-                    <Modals
-                      scrollableRef={scrollableRef}
-                      MediaContent={MediaContent}
-                    />
-                  </div>
-                )}
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+        <Modals
+          scrollableRef={scrollableRef}
+          SelectedLogo={<MediaLogo selectedImage={logosArr[hoveredSlide]}  />}
+          MediaContent={<MediaContent />}
+          hoveredSlide={hoveredSlide}
+          animation={'opacity'}
+          onClose={close}
+        />
+  
     </div>
   );
 }

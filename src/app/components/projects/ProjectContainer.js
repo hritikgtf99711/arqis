@@ -58,14 +58,14 @@ export default function ProjectContainer() {
               alt="Next slide"
               width={25}
               height={25}
-              className="cursor-pointer  custom-prev rotate-[180deg]"
+              className="cursor-pointer arrow custom-prev rotate-[180deg]"
             />
             <Image
               src="/assets/icons/arrow_right.png"
               alt="Previous slide"
               width={25}
                height={25}
-              className="cursor-pointer  custom-next rotate-[180deg]"
+              className="cursor-pointer arrow custom-next rotate-[180deg]"
             />
            
           </div>

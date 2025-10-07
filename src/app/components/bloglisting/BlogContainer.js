@@ -1,21 +1,64 @@
-import React from 'react'
-import CommonHeading from '@/app/utils/CommonHeading'
-import BlogCard from './BlogCard'
+import React, { useState, useRef } from "react";
+import CommonHeading from "@/app/utils/CommonHeading";
+import BlogCard from "./BlogCard";
+import Modals from "@/app/utils/Modals";
+import BlogContent from "./blogDetail/BlogContent";
+import BlogImage from "./blogDetail/BlogImage";
+const blogData = [
+  {
+    image: "/assets/blog/blog_1.jpg",
+    heading: "How Modern Flats in Noida Are Adopting Sustainable Living?",
+  },
+  {
+    image: "/assets/blog/blog_2.jpg",
+    heading: "Top Tips for First-Time Home Buyers in 2025",
+  },
+  {
+    image: "/assets/blog/blog_3.jpg",
+    heading: "The Future of Urban Living: Smart Homes",
+  },
+];
+
 export default function BlogContainer() {
+  const [hoveredSlide, setHoveredSlide] = useState(null);
+
+  const scrollableRef = useRef(null);
+
+  const close = () => setHoveredSlide(null);
+
   return (
-    <div className='container'>
-        <CommonHeading customClass={'fade-up'} heading={`Discover insights. Ignite imagination.`}/>
-        <div className='grid grid-cols-3 gap-20 mt-[35px]'>
-        <div className='col-span-1'>
-        <BlogCard/>
-        </div>
-        <div className='col-span-1'>
-        <BlogCard/>
-        </div>
-        <div className='col-span-1'>
-        <BlogCard/>
-        </div>
-        </div>
+    <div className="container">
+      <CommonHeading
+        customClass="fade-up"
+        heading="Discover insights. Ignite imagination."
+      />
+      <div className="grid grid-cols-3 gap-20 mt-[35px]">
+        {blogData.map((blog, index) => (
+          <div key={index} className="col-span-1 cursor-pointer">
+            <BlogCard
+              image={blog.image}
+              heading={blog.heading}
+              index={index}
+              setHoveredSlide={setHoveredSlide}
+              // onClick={() => {
+              //   setHoveredSlide(index);
+              //   console.log(index);
+              // }}
+            />
+          </div>
+        ))}
+      </div>
+
+          <Modals
+            scrollableRef={scrollableRef}
+            SelectedLogo={<BlogImage selectedImage={blogData[hoveredSlide]?.image} />}
+            MediaContent={<BlogContent />}
+            hoveredSlide={hoveredSlide}
+            onClose={close}
+            
+            centerDragVia={true}
+          />
+     
     </div>
-  )
+  );
 }

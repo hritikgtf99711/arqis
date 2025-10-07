@@ -3,44 +3,50 @@ import TeamCard from "./TeamCard";
 import TeamContent from "./TeamContent";
 import TeamDetailContainer from "./TeamsDetail/TeamDetailContainer";
 import gsap from "gsap";
+
 export default function TeamContainer() {
   const [openModal, setOpenModal] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
   const modalRef = useRef(null);
 
   const openTeamsModal = () => {
     document.querySelector("header").classList.add("hidden");
     document.querySelector("body").classList.add("active");
+    setShouldRender(true);
     setOpenModal(true);
   };
 
-  const closeTeamsModal = () => {
-    document.querySelector("header").classList.remove("hidden");
-    document.querySelector("body").classList.remove("active");
-    setOpenModal(false);
-  };
+const closeTeamsModal = () => {
+  setOpenModal(false);
+  // Remove setShouldRender(false) from here
+  // Let the animation complete first, then unmount in the useEffect's onComplete callback
+};
 
   useEffect(() => {
-    if (openModal && modalRef.current) {
+    if (openModal && shouldRender && modalRef.current) {
       gsap.fromTo(
         modalRef.current,
-        { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, duration: 0.5, ease: "ease.in" }
+        { opacity: 0, x: "100%" },
+        { opacity: 1, x: 0, duration: 1, ease: "ease.out" }
       );
-    } else if (!openModal && modalRef.current) {
+    } else if (!openModal && shouldRender && modalRef.current) {
       gsap.to(modalRef.current, {
         opacity: 0,
-        y: 50,
+        x: "100%",
         duration: 0.5,
-        ease: "power2.in",
+        ease: "ease.in",
         onComplete: () => {
-          modalRef.current.style.display = "none";
+          document.querySelector("header").classList.remove("hidden");
+          document.querySelector("body").classList.remove("active");
+          setShouldRender(false);
         },
       });
     }
-  }, [openModal]);
+  }, [openModal, shouldRender]);
 
-  return !openModal ? (
-    <div className="container h-full">
+ return (
+  <>
+    <div className="container h-full transition-all" style={{ display: shouldRender ? 'none' : 'block' }}>
       <div className="grid gap-10 grid-cols-4">
         <div className="col-span-3">
           <div className="grid gap-15 grid-cols-3">
@@ -69,13 +75,16 @@ export default function TeamContainer() {
         </div>
       </div>
     </div>
-  ) : (
-    <div ref={modalRef}>
-      <TeamDetailContainer
-        isOpen={openModal}
-        setOpenModal={setOpenModal}
-        onClose={closeTeamsModal}
-      />
-    </div>
-  );
+    
+    {shouldRender && (
+      <div ref={modalRef}>
+        <TeamDetailContainer
+          isOpen={openModal}
+          setOpenModal={setOpenModal}
+          onClose={closeTeamsModal}
+        />
+      </div>
+    )}
+  </>
+);
 }

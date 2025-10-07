@@ -12,6 +12,7 @@ export default function TeamDetailContent({onClose}) {
           alt="cross"
           height={40}
           width={40}
+          className="cross"
         />
       </div>
       <div className="max-w-[80%]">
