@@ -3,7 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollSmoother from "gsap/dist/ScrollSmoother";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother,ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
 
 const SLIDE_NAV = {
   philosophy: {
@@ -54,7 +54,7 @@ export default function InitScrollSmoother(router) {
   const ANIM_DURATION = 1.2;
   const TOUCH_THRESH = 60;
   const DEBOUNCE_MS = 100; // Added for debouncing rapid inputs
- const SCROLL_SPEED = 0.5;
+  const SCROLL_SPEED = 0.5;
   const inTL = new WeakMap();
   const outTL = new WeakMap();
 
@@ -274,7 +274,10 @@ export default function InitScrollSmoother(router) {
 
   const scrollToBoundary = (container, direction) => {
     if (!container) return;
-    const targetScroll = direction === "forward" ? container.scrollHeight - container.clientHeight : 0;
+    const targetScroll =
+      direction === "forward"
+        ? container.scrollHeight - container.clientHeight
+        : 0;
     gsap.to(container, {
       scrollTop: targetScroll,
       duration: 0.5,
@@ -287,15 +290,20 @@ export default function InitScrollSmoother(router) {
     isAnimating = true;
 
     const activeSection = sections[currentIndex];
-    const verticalScrollable = activeSection.querySelector(".scrollable-container");
+    const verticalScrollable = activeSection.querySelector(
+      ".scrollable-container"
+    );
 
     if (verticalScrollable && scrollDirection) {
-      const atBoundary = isAtScrollBoundary(verticalScrollable, scrollDirection === "forward" ? 1 : -1);
+      const atBoundary = isAtScrollBoundary(
+        verticalScrollable,
+        scrollDirection === "forward" ? 1 : -1
+      );
       if (!atBoundary) {
         scrollToBoundary(verticalScrollable, scrollDirection);
         setTimeout(() => {
           isAnimating = false;
-        }, 500); 
+        }, 500);
         return;
       }
     }
@@ -355,7 +363,11 @@ export default function InitScrollSmoother(router) {
         }
 
         const navConfig = [
-          { prev: "Reshaping Real Estate", next: "Start Journey", footer: "remove" },
+          {
+            prev: "Reshaping Real Estate",
+            next: "Start Journey",
+            footer: "remove",
+          },
           { prev: "Philosophy", next: "Projects", footer: "add" },
           { prev: "Projects", next: "Our Team", footer: "add" },
           { prev: "Our Team", next: "Careers", footer: "add" },
@@ -367,8 +379,10 @@ export default function InitScrollSmoother(router) {
         ];
 
         if (navConfig[index]) {
-          document.querySelector(".prev_title").textContent = navConfig[index].prev;
-          document.querySelector(".next_title").textContent = navConfig[index].next;
+          document.querySelector(".prev_title").textContent =
+            navConfig[index].prev;
+          document.querySelector(".next_title").textContent =
+            navConfig[index].next;
           if (navConfig[index].footer === "remove") {
             document.querySelector("footer")?.classList?.remove("change_style");
           } else {
@@ -474,7 +488,9 @@ export default function InitScrollSmoother(router) {
           );
         }
 
-        const navIndicators = document.querySelectorAll(".nav-indicator, .progress-bar");
+        const navIndicators = document.querySelectorAll(
+          ".nav-indicator, .progress-bar"
+        );
         if (navIndicators.length) {
           gsap.fromTo(
             navIndicators,
@@ -554,8 +570,7 @@ export default function InitScrollSmoother(router) {
             "sliding-backward"
           );
         }, COOLDOWN_MS);
-                  router.push('/about')
-
+        router.push("/about");
       },
     });
 
@@ -588,33 +603,33 @@ export default function InitScrollSmoother(router) {
     }
     return null;
   };
-const isAtScrollBoundary = (el, deltaY, isHorizontal = false) => {
-  if (!el) return true;
+  const isAtScrollBoundary = (el, deltaY, isHorizontal = false) => {
+    if (!el) return true;
 
-  const tolerance = 10;
+    const tolerance = 10;
 
-  if (isHorizontal) {
-    const scrollLeft = el.scrollLeft;
-    const scrollWidth = el.scrollWidth;
-    const clientWidth = el.clientWidth;
+    if (isHorizontal) {
+      const scrollLeft = el.scrollLeft;
+      const scrollWidth = el.scrollWidth;
+      const clientWidth = el.clientWidth;
 
-    if (deltaY > 0) {
-      return scrollLeft + clientWidth >= scrollWidth - tolerance; // At right edge
+      if (deltaY > 0) {
+        return scrollLeft + clientWidth >= scrollWidth - tolerance; // At right edge
+      } else {
+        return scrollLeft <= tolerance; // At left edge
+      }
     } else {
-      return scrollLeft <= tolerance; // At left edge
-    }
-  } else {
-    const scrollTop = el.scrollTop;
-    const scrollHeight = el.scrollHeight;
-    const clientHeight = el.clientHeight;
+      const scrollTop = el.scrollTop;
+      const scrollHeight = el.scrollHeight;
+      const clientHeight = el.clientHeight;
 
-    if (deltaY > 0) {
-      return scrollTop + clientHeight >= scrollHeight - tolerance; // At bottom edge
-    } else {
-      return scrollTop <= tolerance; // At top edge
+      if (deltaY > 0) {
+        return scrollTop + clientHeight >= scrollHeight - tolerance; // At bottom edge
+      } else {
+        return scrollTop <= tolerance; // At top edge
+      }
     }
-  }
-};
+  };
 
   const normalizeDelta = (e) => {
     const base =
@@ -626,88 +641,102 @@ const isAtScrollBoundary = (el, deltaY, isHorizontal = false) => {
   let wheelRAF = 0;
   let lastWheelTime = 0;
   let lastInputTime = 0;
-const onWheel = (e) => {
-  e.preventDefault(); // Prevent native scrolling to avoid conflicts
+  const onWheel = (e) => {
+    e.preventDefault(); // Prevent native scrolling to avoid conflicts
 
-  if (isAnimating) {
-    return; // Skip if animation is in progress
-  }
+    if (isAnimating) {
+      return; // Skip if animation is in progress
+    }
 
-  const now = Date.now();
-  if (now - lastInputTime < 50) { // Reduced debounce to 50ms
-    return;
-  }
-  lastInputTime = now;
-  lastWheelTime = now;
+    const now = Date.now();
+    if (now - lastInputTime < 50) {
+      // Reduced debounce to 50ms
+      return;
+    }
+    lastInputTime = now;
+    lastWheelTime = now;
 
-  const activeSection = sections[currentIndex];
-  const verticalScrollable = activeSection?.querySelector(".scrollable-container[data-scroll='vertical']");
-  const horizontalScrollable = activeSection?.querySelector(".scrollable-container[data-scroll='horizontal']");
-  const scrollContainer = verticalScrollable || horizontalScrollable || getScrollableParent(e.target);
-  const delta = normalizeDelta(e);
+    const activeSection = sections[currentIndex];
+    const verticalScrollable = activeSection?.querySelector(
+      ".scrollable-container[data-scroll='vertical']"
+    );
+    const horizontalScrollable = activeSection?.querySelector(
+      ".scrollable-container[data-scroll='horizontal']"
+    );
+    const scrollContainer =
+      verticalScrollable ||
+      horizontalScrollable ||
+      getScrollableParent(e.target);
+    const delta = normalizeDelta(e);
 
-  if (scrollContainer) {
-    const isHorizontal = horizontalScrollable && scrollContainer === horizontalScrollable;
+    if (scrollContainer) {
+      const isHorizontal =
+        horizontalScrollable && scrollContainer === horizontalScrollable;
 
-    if (isHorizontal) {
-      // Handle horizontal scrolling
-      const currentScroll = scrollContainer.scrollLeft;
-      const scrollAmount = delta > 0 ? currentScroll + 200 : currentScroll - 200; // Adjusted for smoother steps
-      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
-      const clampedScroll = Math.max(0, Math.min(scrollAmount, maxScroll));
+      if (isHorizontal) {
+        // Handle horizontal scrolling
+        const currentScroll = scrollContainer.scrollLeft;
+        const scrollAmount =
+          delta > 0 ? currentScroll + 200 : currentScroll - 200; // Adjusted for smoother steps
+        const maxScroll =
+          scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        const clampedScroll = Math.max(0, Math.min(scrollAmount, maxScroll));
 
-      gsap.to(scrollContainer, {
-        scrollTo: { x: clampedScroll },
-        duration: 1, 
-        ease: "power2.out",
-      });
-      const atBoundary = isAtScrollBoundary(scrollContainer, delta, true);
+        gsap.to(scrollContainer, {
+          scrollTo: { x: clampedScroll },
+          duration: 1,
+          ease: "power2.out",
+        });
+        const atBoundary = isAtScrollBoundary(scrollContainer, delta, true);
 
-      // Do NOT trigger section transition for horizontal scroll
-     if (!atBoundary) {
-        accum = 0;
-        return; // Stop if not at boundary
-      }
-    } else {
-      // Handle vertical scrolling
-      const currentScroll = scrollContainer.scrollTop;
-      const scrollAmount = delta > 0 ? currentScroll + 200 : currentScroll - 200; // Adjusted for smoother steps
-      const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
-      const clampedScroll = Math.max(0, Math.min(scrollAmount, maxScroll));
+        // Do NOT trigger section transition for horizontal scroll
+        if (!atBoundary) {
+          accum = 0;
+          return; // Stop if not at boundary
+        }
+      } else {
+        // Handle vertical scrolling
+        const currentScroll = scrollContainer.scrollTop;
+        const scrollAmount =
+          delta > 0 ? currentScroll + 200 : currentScroll - 200; // Adjusted for smoother steps
+        const maxScroll =
+          scrollContainer.scrollHeight - scrollContainer.clientHeight;
+        const clampedScroll = Math.max(0, Math.min(scrollAmount, maxScroll));
 
-      gsap.to(scrollContainer, {
-        scrollTo: { y: clampedScroll },
-        duration:1,
-        ease: "power2.out",
-      });
+        gsap.to(scrollContainer, {
+          scrollTo: { y: clampedScroll },
+          duration: 1,
+          ease: "power2.out",
+        });
 
-      const atBoundary = isAtScrollBoundary(scrollContainer, delta, false);
-      if (!atBoundary) {
-        accum = 0;
-        return; // Stop if not at boundary
+        const atBoundary = isAtScrollBoundary(scrollContainer, delta, false);
+        if (!atBoundary) {
+          accum = 0;
+          return; // Stop if not at boundary
+        }
       }
     }
-  }
 
-  // Handle section transitions (only for vertical or non-scrollable sections)
-  if (now - lastWheelTime < 50) {
-    accum += delta;
-  } else {
-    accum = delta;
-  }
+    // Handle section transitions (only for vertical or non-scrollable sections)
+    if (now - lastWheelTime < 50) {
+      accum += delta;
+    } else {
+      accum = delta;
+    }
 
-  if (!wheelRAF) {
-    wheelRAF = requestAnimationFrame(() => {
-      if (Math.abs(accum) >= 50) { // Lowered threshold for responsiveness
-        const dir = accum > 0 ? 1 : -1;
+    if (!wheelRAF) {
+      wheelRAF = requestAnimationFrame(() => {
+        if (Math.abs(accum) >= 50) {
+          // Lowered threshold for responsiveness
+          const dir = accum > 0 ? 1 : -1;
 
-        goToSection(currentIndex + dir, dir > 0 ? "forward" : "backward");
-        accum = 0;
-      }
-      wheelRAF = 0;
-    });
-  }
-};
+          goToSection(currentIndex + dir, dir > 0 ? "forward" : "backward");
+          accum = 0;
+        }
+        wheelRAF = 0;
+      });
+    }
+  };
   const onKey = (e) => {
     if (isAnimating) return;
 
@@ -724,12 +753,17 @@ const onWheel = (e) => {
     if (isInput) return;
 
     const activeSection = sections[currentIndex];
-    const verticalScrollable = activeSection.querySelector(".scrollable-container");
+    const verticalScrollable = activeSection.querySelector(
+      ".scrollable-container"
+    );
     const scrollContainer = verticalScrollable || getScrollableParent(activeEl);
 
     if (
       scrollContainer &&
-      !isAtScrollBoundary(scrollContainer, e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1)
+      !isAtScrollBoundary(
+        scrollContainer,
+        e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1
+      )
     ) {
       return;
     }
@@ -773,8 +807,11 @@ const onWheel = (e) => {
     const isHorizontalGesture = Math.abs(dx) > Math.abs(dy) * 1.5;
 
     const activeSection = sections[currentIndex];
-    const verticalScrollable = activeSection.querySelector(".scrollable-container");
-    const scrollContainer = verticalScrollable || getScrollableParent(touchTarget);
+    const verticalScrollable = activeSection.querySelector(
+      ".scrollable-container"
+    );
+    const scrollContainer =
+      verticalScrollable || getScrollableParent(touchTarget);
 
     if (!isHorizontalGesture && scrollContainer) {
       const atBoundary = isAtScrollBoundary(scrollContainer, dy);
@@ -786,7 +823,10 @@ const onWheel = (e) => {
     if (Math.abs(dy) > TOUCH_THRESH && !hasMoved) {
       e.preventDefault();
       hasMoved = true;
-      goToSection(currentIndex + (dy < 0 ? 1 : -1), dy < 0 ? "forward" : "backward");
+      goToSection(
+        currentIndex + (dy < 0 ? 1 : -1),
+        dy < 0 ? "forward" : "backward"
+      );
     }
   };
 
@@ -811,4 +851,4 @@ const onWheel = (e) => {
     getSectionByIndex: (index) => sections[index],
     isAnimating: () => isAnimating,
   };
-};
+}
