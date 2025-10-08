@@ -102,3 +102,8 @@ body.active .next_text img {
 }
 
 .swiper-button-disabled{opacity: 0.5;}
+.scrollable-container {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  overscroll-behavior: contain; /* Prevent parent scrolling */
+}

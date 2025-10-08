@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const CursorAnimation = () => {
   const [cursorState, setCursorState] = useState({
     isHovering: false,
-    message: 'Scroll',
+    message: 'Scroll Up',
     type: 'default',
   });
   const cursorRef = useRef(null);
