@@ -10,19 +10,8 @@ import "swiper/css/pagination";
 
 export default function ProjectContainer() {
   return (
-    <div className="container parallax projects_container h-[90%] mx-auto">
-      <div className="flex justify-center horizontal-scroll overflow-x-scroll h-full">
-        {/* <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={50}
-          slidesPerView="auto"
-          navigation={{
-          prevEl: ".custom-prev",
-            nextEl: ".custom-next",
-          }}
-          className="w-full"
-        >
-          <SwiperSlide> */}
+    <div className="pl-[80px] parallax projects_container h-[90%] mx-auto">
+      <div  data-scroll='horizontal' className="flex scrollable-container overflow-x-scroll h-full">
             <div className="grid grid-cols-4 grow-0 shrink-0 basis-[90%] pr-[50px] gap-10">
               <div className="col-span-3">
                 <ProjectImage />
@@ -31,8 +20,6 @@ export default function ProjectContainer() {
                 <ProjectContent />
               </div>
             </div>
-          {/* </SwiperSlide>
-          <SwiperSlide> */}
             <div className="grid grid-cols-4 grow-0 shrink-0 basis-[90%] pr-[50px] gap-10">
               <div className="col-span-3">
                 <ProjectImage />
@@ -41,8 +28,6 @@ export default function ProjectContainer() {
                 <ProjectContent />
               </div>
             </div>
-          {/* </SwiperSlide>
-          <SwiperSlide> */}
             <div className="grid grid-cols-4 grow-0 shrink-0 basis-[90%] pr-[50px] gap-10">
               <div className="col-span-3">
                 <ProjectImage />
@@ -51,25 +36,6 @@ export default function ProjectContainer() {
                 <ProjectContent />
               </div>
             </div>
-          {/* </SwiperSlide> */}
-          {/* <div className="flex justify-end py-[30px] gap-[20px] items-center">
-             <Image
-              src="/assets/icons/arrow_left.png"
-              alt="Next slide"
-              width={25}
-              height={25}
-              className="cursor-pointer arrow custom-prev rotate-[180deg]"
-            />
-            <Image
-              src="/assets/icons/arrow_right.png"
-              alt="Previous slide"
-              width={25}
-               height={25}
-              className="cursor-pointer arrow custom-next rotate-[180deg]"
-            />
-           
-          </div> */}
-        {/* </Swiper> */}
       </div>
     </div>
   );
