@@ -27,7 +27,7 @@ export default function BlogContainer() {
   const close = () => setHoveredSlide(null);
 
   return (
-    <div className="container">
+    <>
       <CommonHeading
         customClass="fade-up"
         heading="The Arqis Edit"
@@ -59,6 +59,6 @@ export default function BlogContainer() {
             centerDragVia={true}
           />
      
-    </div>
+    </>
   );
 }
