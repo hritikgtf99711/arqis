@@ -15,33 +15,33 @@ export default function Home() {
     <>
       <HorizontalLayout>
         <div className="flex items-center horizontal-section">
-          <div className="basis-[100%] item grow-0  shrink-0">
+          <div className="basis-[100%] item grow-0  h-[100%]  shrink-0">
             <LogoSection />
           </div>
             <div className="basis-[100%] item grow-0 h-[100%]  shrink-0">
               <About />
             </div>
-          <div className="basis-[100%] item grow-0  shrink-0">
+          <div className="basis-[100%] item grow-0 h-[100%]  shrink-0">
             <ProjectContainer />
           </div>
-          <div className="basis-[100%] item grow-0  shrink-0">
+          <div className="basis-[100%] item grow-0 h-[100%]  shrink-0">
             <TeamContainer />
           </div>
-          <div className="basis-[100%] item grow-0   h-[100%]  shrink-0">
+          <div className="basis-[100%] item grow-0   h-[100%]   shrink-0">
             <CareerContainer />
           </div>
           
-          <div className="basis-[100%] flex justify-center items-center item grow-0 shrink-0">
+          <div className="basis-[100%]  item  h-[100%]   grow-0 shrink-0">
             <MediaContainer />
           </div>
-          <div className="basis-[100%] flex justify-center items-center item grow-0 shrink-0">
+          <div className="basis-[100%]   item  h-[100%]  grow-0 shrink-0">
             <BlogContainer />
           </div>
-           <div className="basis-[100%] h-[100%]  item grow-0 shrink-0">
+           <div className="basis-[100%]  item h-[100%]  grow-0 shrink-0">
             <ContactformContainer />
           </div>
           
-          <div className="basis-[100%] flex justify-center items-center item grow-0 shrink-0">
+          <div className="basis-[100%]  item  h-[100%]  grow-0 shrink-0">
             <FooterContainer />
           </div>
         </div>

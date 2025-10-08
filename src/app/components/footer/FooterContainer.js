@@ -6,7 +6,7 @@ import { useContext } from "react";
 export default function FooterContainer() {
   const {gotoFn}=useContext(ScrollContext)
   return (
-    <div className="container  parallax">
+    <div className="  parallax">
       <figure>
         <Image
           src={`/assets/logo-black.png`}
