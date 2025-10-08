@@ -10,11 +10,11 @@ const blogData = [
     heading: "How Modern Flats in Noida Are Adopting Sustainable Living?",
   },
   {
-    image: "/assets/blog/blog_2.jpg",
+    image: "/assets/blog/blog_1.jpg",
     heading: "Top Tips for First-Time Home Buyers in 2025",
   },
   {
-    image: "/assets/blog/blog_3.jpg",
+    image: "/assets/blog/blog_1.jpg",
     heading: "The Future of Urban Living: Smart Homes",
   },
 ];
@@ -27,7 +27,7 @@ export default function BlogContainer() {
   const close = () => setHoveredSlide(null);
 
   return (
-    <>
+    <div className="container parallax" >
       <CommonHeading
         customClass="fade-up"
         heading="The Arqis Edit"
@@ -40,10 +40,7 @@ export default function BlogContainer() {
               heading={blog.heading}
               index={index}
               setHoveredSlide={setHoveredSlide}
-              // onClick={() => {
-              //   setHoveredSlide(index);
-              //   console.log(index);
-              // }}
+         
             />
           </div>
         ))}
@@ -59,6 +56,6 @@ export default function BlogContainer() {
             centerDragVia={true}
           />
      
-    </>
+    </div>
   );
 }

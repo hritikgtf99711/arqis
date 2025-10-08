@@ -39,7 +39,7 @@ export default function ProjectContainer() {
       <div
         ref={scrollRef}
         data-scroll="horizontal"
-        className="flex pl-[80px]  items-center scrollable-container overflow-x-scroll h-full snap-x snap-mandatory"
+        className="flex pl-[80px]   items-center scrollable-container overflow-x-scroll h-full snap-x snap-mandatory"
       >
         {projects.map((project) => (
           <div
