@@ -1,6 +1,7 @@
 "use client";
 import HorizontalLayout from "../HorizontalLayout";
 import About from "../components/aboutus/About";
+import InitScrollSmoother from "../utils/gsapAnimations";
 export default function Projects() {
   return (
     <>

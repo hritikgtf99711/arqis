@@ -36,7 +36,7 @@ const SLIDE_NAV = {
   },
 };
 
-export default function InitScrollSmoother() {
+export default function InitScrollSmoother(router) {
   const smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
@@ -554,6 +554,8 @@ export default function InitScrollSmoother() {
             "sliding-backward"
           );
         }, COOLDOWN_MS);
+                  router.push('/about')
+
       },
     });
 
@@ -656,8 +658,8 @@ const onWheel = (e) => {
 
       gsap.to(scrollContainer, {
         scrollTo: { x: clampedScroll },
-        duration: 1, // Short duration for responsiveness
-        ease: "power2.out", // Smooth easing
+        duration: 1, 
+        ease: "power2.out",
       });
       const atBoundary = isAtScrollBoundary(scrollContainer, delta, true);
 
@@ -698,6 +700,7 @@ const onWheel = (e) => {
     wheelRAF = requestAnimationFrame(() => {
       if (Math.abs(accum) >= 50) { // Lowered threshold for responsiveness
         const dir = accum > 0 ? 1 : -1;
+
         goToSection(currentIndex + dir, dir > 0 ? "forward" : "backward");
         accum = 0;
       }

@@ -7,13 +7,14 @@ import { useLayoutEffect, useState } from "react";
 import ScrollContext from "./context/ScrollContext";
 import InitScrollSmoother from "./utils/gsapAnimations";
 import CursorAnimation from "./utils/Cursor";
+import { useRouter } from "next/navigation";
 export default function HorizontalLayout({ children }) {
   const [gotoFn, setgoTofn] = useState(0);
   const [next, setnext] = useState();
   const [prev,setPrev]=useState();
-
+  const  router=useRouter();
   useLayoutEffect(() => {
-    const { goTo ,next,prev} = InitScrollSmoother();
+    const { goTo ,next,prev} = InitScrollSmoother(router);
    setgoTofn(()=>goTo)
    setnext(()=>next)
    setPrev(()=>prev)
