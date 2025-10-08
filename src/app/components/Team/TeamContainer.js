@@ -77,7 +77,7 @@ const closeTeamsModal = () => {
     </div>
     
     {shouldRender && (
-      <div ref={modalRef}>
+      <div ref={modalRef} className="w-[100%]">
         <TeamDetailContainer
           isOpen={openModal}
           setOpenModal={setOpenModal}
