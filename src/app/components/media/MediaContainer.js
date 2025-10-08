@@ -5,9 +5,9 @@ import NewsLogos from './NewsLogos'
 export default function MediaContainer() {
   
   return (
-    <>
+    <div className='media container '>
         <HeadingLogo/>
         <NewsLogos/>
-    </>
+    </div>
   )
 }

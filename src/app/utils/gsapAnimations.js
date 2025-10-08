@@ -639,8 +639,8 @@ const onWheel = (e) => {
   lastWheelTime = now;
 
   const activeSection = sections[currentIndex];
-  const verticalScrollable = activeSection.querySelector(".scrollable-container[data-scroll='vertical']");
-  const horizontalScrollable = activeSection.querySelector(".scrollable-container[data-scroll='horizontal']");
+  const verticalScrollable = activeSection?.querySelector(".scrollable-container[data-scroll='vertical']");
+  const horizontalScrollable = activeSection?.querySelector(".scrollable-container[data-scroll='horizontal']");
   const scrollContainer = verticalScrollable || horizontalScrollable || getScrollableParent(e.target);
   const delta = normalizeDelta(e);
 

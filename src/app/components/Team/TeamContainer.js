@@ -46,7 +46,7 @@ const closeTeamsModal = () => {
 
  return (
   <>
-    <div className="container h-full transition-all" style={{ display: shouldRender ? 'none' : 'block' }}>
+    <div className="container flex items-center  transition-all" style={{ display: shouldRender ? 'none' : 'block' }}>
       <div className="grid gap-10 grid-cols-4">
         <div className="col-span-3">
           <div className="grid gap-15 grid-cols-3">

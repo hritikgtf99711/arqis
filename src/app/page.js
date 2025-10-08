@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <HorizontalLayout>
-        <div className="flex items-center horizontal-section">
+        <div className="flex h-[100vh] horizontal-section">
           <div className="basis-[100%] item grow-0  h-[100%]  shrink-0">
             <LogoSection />
           </div>
@@ -24,24 +24,24 @@ export default function Home() {
           <div className="basis-[100%] item grow-0 h-[100%]  shrink-0">
             <ProjectContainer />
           </div>
-          <div className="basis-[100%] item grow-0 h-[100%]  shrink-0">
+          <div className="basis-[100%] items-center  flex item grow-0 h-[100%]  shrink-0">
             <TeamContainer />
           </div>
-          <div className="basis-[100%] item grow-0   h-[100%]   shrink-0">
+          <div className="basis-[100%]  item grow-0    h-[100%]   shrink-0">
             <CareerContainer />
           </div>
           
-          <div className="basis-[100%]  item  h-[100%]   grow-0 shrink-0">
+          <div className="basis-[100%] items-center flex  item h-[100%] grow-0 shrink-0">
             <MediaContainer />
           </div>
-          <div className="basis-[100%]   item  h-[100%]  grow-0 shrink-0">
+          <div className="basis-[100%] items-center flex  item   h-[100%]  grow-0 shrink-0">
             <BlogContainer />
           </div>
            <div className="basis-[100%]  item h-[100%]  grow-0 shrink-0">
             <ContactformContainer />
           </div>
           
-          <div className="basis-[100%]  item  h-[100%]  grow-0 shrink-0">
+          <div className="basis-[100%] items-center flex  item  h-[100%]  grow-0 shrink-0">
             <FooterContainer />
           </div>
         </div>

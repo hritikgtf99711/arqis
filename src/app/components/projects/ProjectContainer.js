@@ -10,8 +10,8 @@ import "swiper/css/pagination";
 
 export default function ProjectContainer() {
   return (
-    <div className="pl-[80px] parallax projects_container h-[90%] mx-auto">
-      <div  data-scroll='horizontal' className="flex scrollable-container overflow-x-scroll h-full">
+  <div className="pl-[80px] parallax  projects_container h-[100%] mx-auto">
+      <div  data-scroll='horizontal' className="flex  items-center scrollable-container overflow-x-scroll h-full">
             <div className="grid grid-cols-4 grow-0 shrink-0 basis-[90%] pr-[50px] gap-10">
               <div className="col-span-3">
                 <ProjectImage />

@@ -19,7 +19,7 @@ const ScrollLayout = ({ leftContent, rightContent, isShowDrag ,scrollableRef,cen
     };
   }, []);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 h-screen gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen gap-4 w-[100%]">
       <div className="col-span-1 fade-up my-auto">
         <div className='custom-container'>
           {leftContent}
