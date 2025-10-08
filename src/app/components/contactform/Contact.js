@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function contact() {
   return (
     <div className="custom-container m-auto h-[100%] flex flex-col justify-center">
-      <CommonHeading customClass={`text-[#113120] uppercase`} heading={`Get in touch!`} />
+      <CommonHeading customClass={`text-[#113120] uppercase`} heading={`Get in touch`} />
       <ul className="mt-[80px]">
         <li className="mb-[30px]">
           <a className="uppercase flex gap-[20px]" href="mailto:mkt@ARQIS GROUP.in">

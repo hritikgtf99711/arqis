@@ -30,7 +30,7 @@ export default function BlogContainer() {
     <div className="container">
       <CommonHeading
         customClass="fade-up"
-        heading="Discover insights. Ignite imagination."
+        heading="The Arqis Edit"
       />
       <div className="grid grid-cols-3 gap-20 mt-[35px]">
         {blogData.map((blog, index) => (

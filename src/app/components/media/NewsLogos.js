@@ -77,7 +77,7 @@ export default function NewsLogos() {
           className="mySwiper"
         >
           {logosArr.map((src, index) => (
-            <SwiperSlide                 onMouseEnter={() => handleMouseEnter(index)} key={index}>
+            <SwiperSlide                 onClick={() => handleMouseEnter(index)} key={index}>
               <div
                 className={`flex ${
                   hoveredSlide === index ? "z-[99999]" : ""

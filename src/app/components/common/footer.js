@@ -39,7 +39,7 @@ const SLIDE_NAV = {
 
 const Footer = () => {
   const [isClient, setIsClient] = useState(false);
-  const [title, setTitle] = useState("The Arc of Real Estate");
+const [title, setTitle] = useState("Reshaping Real Estate");
   const [cta, setCta] = useState("Start Journey");
   const {next,prev}=useContext(ScrollContext)
   const footerRef = useRef(null);

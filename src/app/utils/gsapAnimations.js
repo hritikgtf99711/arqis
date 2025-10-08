@@ -254,7 +254,7 @@ export default function  InitScrollSmoother  (){
   emit("sliderstart", {
     index: 0,
     direction: "forward",
-    footerTitle: first?.dataset.footerTitle || "The Arc of real estate",
+    footerTitle: first?.dataset.footerTitle || "Reshaping Real Estate",
     footerCta: first?.dataset.footerCta || "Start Journey",
   });
 
@@ -328,7 +328,7 @@ export default function  InitScrollSmoother  (){
   }
 
   const navConfig = [
-    { prev: "The Arc of Real Estate", next: "Start Journey", footer: "remove" },
+    { prev: "Reshaping Real Estate", next: "Start Journey", footer: "remove" },
     { prev: "Philosophy", next: "Projects", footer: "add" },
     { prev: "Projects", next: "Our Team", footer: "add" },
     { prev: "Our Team", next: "Careers", footer: "add" },
