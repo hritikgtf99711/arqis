@@ -18,8 +18,6 @@ export default function TeamContainer() {
 
 const closeTeamsModal = () => {
   setOpenModal(false);
-  // Remove setShouldRender(false) from here
-  // Let the animation complete first, then unmount in the useEffect's onComplete callback
 };
 
   useEffect(() => {
@@ -75,7 +73,6 @@ const closeTeamsModal = () => {
         </div>
       </div>
     </div>
-    
     {shouldRender && (
       <div ref={modalRef} className="w-[100%]">
         <TeamDetailContainer

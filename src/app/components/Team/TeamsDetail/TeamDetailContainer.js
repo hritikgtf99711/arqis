@@ -5,7 +5,7 @@ import TeamDetailContent from './TeamDetailContent'
 import { useRef } from 'react'
 
 export default function TeamDetailContainer({onClose}) {
-       const scrollableRef = useRef(null);
+  const scrollableRef = useRef(null);
   return (
     <ScrollLayout
     leftContent={<TeamImage/>}

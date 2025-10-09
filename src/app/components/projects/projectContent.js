@@ -1,13 +1,17 @@
-import React from 'react'
-import CommonHeading from '../../utils/CommonHeading'
-import Redirect_Link from '@/app/utils/Redirect_txt'
+import React from "react";
+import CommonHeading from "../../utils/CommonHeading";
+import Redirect_Link from "@/app/utils/Redirect_txt";
 export default function ProjectContent() {
   return (
-    <div className='flex flex-col h-[100%] justify-between'>
-        <CommonHeading heading="The Arc of Retail and Recreation" customClass="mb-5"/>
-        <p className='font-[400] tracking-[2px]  text-[25px] uppercase'>Arqis Mall 
-</p>
-        <Redirect_Link text="Explore More" link=""/>
+    <div className="flex flex-col h-[100%] justify-between">
+      <CommonHeading
+        heading="The Arc of Retail and Recreation"
+        customClass="mb-5"
+      />
+      <p className="font-[400] tracking-[2px]  text-[25px] uppercase">
+        Arqis Mall
+      </p>
+      <Redirect_Link text="Explore More" link="" />
     </div>
-  )
+  );
 }

@@ -31,7 +31,7 @@ export default function Modals({
           },
           {
             opacity: 1,
-            duration: 1, // Increased for slower effect
+            duration: 1,
             ease: "power3.out",
           }
         );
@@ -61,9 +61,9 @@ export default function Modals({
       if (animation === 'opacity') {
         gsap.to(modalRef.current, {
           opacity: 0,
-          duration: 1, // Increased for slower effect
+          duration: 1,
           ease: "power3.in",
-          onComplete: () => {
+          onComplete: () => { 
             isClosing.current = false;
             onClose();
           },
