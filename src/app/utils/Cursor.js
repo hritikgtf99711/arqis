@@ -63,8 +63,8 @@ const CursorAnimation = () => {
           width: '80px',
           height: '40px',
           borderRadius: '20px',
-            bg: 'rgb(17 49 32 / 60%)',
-            textColor: 'white',
+          bg: 'rgb(17 49 32 / 60%)',
+        textColor: 'white',
           border: 'none',
         };
       case 'scale':

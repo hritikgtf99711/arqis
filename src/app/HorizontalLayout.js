@@ -23,7 +23,6 @@ export default function HorizontalLayout({ children }) {
     <ScrollContext.Provider value={{ gotoFn,next,prev }}>
       <div className="">
         <CursorAnimation/>
-        
         <AbsSec />
         <div id="smooth-wrapper">
           <div id="smooth-content">
