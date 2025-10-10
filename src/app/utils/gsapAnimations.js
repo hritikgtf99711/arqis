@@ -483,7 +483,7 @@ export default function InitScrollSmoother(router) {
         const clampedScroll = Math.max(0, Math.min(scrollAmount, maxScroll));
         gsap.to(scrollContainer, {
           scrollTo: { x: clampedScroll },
-          duration: 1,
+          duration: 0.5,
           ease: "power2.out",
         });
         const atBoundary = isAtScrollBoundary(scrollContainer, delta, true);
@@ -498,7 +498,7 @@ export default function InitScrollSmoother(router) {
         const clampedScroll = Math.max(0, Math.min(scrollAmount, maxScroll));
         gsap.to(scrollContainer, {
           scrollTo: { y: clampedScroll },
-          duration: 1,
+          duration: 0.5,
           ease: "power2.out",
         });
         const atBoundary = isAtScrollBoundary(scrollContainer, delta, false);

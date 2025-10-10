@@ -33,12 +33,12 @@ export default function initScrollSmoother(router) {
   const outTL = new WeakMap();
 
   const CONFIG = {
-    WHEEL_THRESHOLD: 50,
-    COOLDOWN_MS: 800,
+    WHEEL_THRESHOLD:20,
+    COOLDOWN_MS: 50,
     ANIM_DURATION: 1,
     TOUCH_THRESH: 50,
-    DEBOUNCE_MS: 80,
-    SCROLL_SPEED: 0.4,
+    DEBOUNCE_MS: 40,
+    SCROLL_SPEED: 1,
   };
 
   const isDarkSection = (section) => section?.dataset.theme === "dark" || section?.classList.contains("dark-bg", "bg-dark");
@@ -165,7 +165,7 @@ export default function initScrollSmoother(router) {
     await gsap.to(scrollContainer, {
       scrollTo: { x: targetScroll },
       duration: CONFIG.ANIM_DURATION,
-      // ease: "power3.inOut",
+      ease: "power3.inOut",
       onStart: () => {
         document.documentElement.classList.add("is-sliding");
         // updateTheme(next);
@@ -179,6 +179,12 @@ export default function initScrollSmoother(router) {
         inTL.get(next)?.play();
 
         document.body.classList.toggle("active", [1, 4, 7].includes(index));
+        document.querySelector('header').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        document.querySelector('.span_1').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        document.querySelector('.span_2').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+                document.querySelector('.span_3').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+
+     document.querySelector('.nextcontent').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
 
         const navConfig = [
           { prev: "Reshaping Real Estate", next: "Start Journey", footer: "remove" },

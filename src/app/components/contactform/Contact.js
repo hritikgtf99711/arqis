@@ -8,7 +8,7 @@ export default function contact() {
       <CommonHeading customClass={`text-[#113120] uppercase`} heading={`Get in touch`} />
       <ul className="mt-[80px]">
         <li className="mb-[30px]">
-          <a className="uppercase flex gap-[20px]" href="mailto:mkt@ARQIS GROUP.in">
+          <a className="uppercase inline-flex gap-[20px]" href="mailto:mkt@ARQIS GROUP.in">
             <Image
               src={`/assets/icons/mail.svg`}
               alt="youtube"
@@ -19,7 +19,7 @@ export default function contact() {
           </a>
         </li>
         <li className="mb-[30px]">
-          <a className="uppercase flex gap-[20px]" href="+91999999999">
+          <a className="uppercase inline-flex gap-[20px]" href="+91999999999">
             <Image
               src={`/assets/icons/telephone.svg`}
               alt="telephone"
@@ -30,7 +30,7 @@ export default function contact() {
           </a>
         </li>
         <li>
-          <a className="uppercase flex gap-[20px]" href="#">
+          <a className="uppercase inline-flex gap-[20px]" href="#">
             <Image
               src={`/assets/icons/location.svg`}
               alt="telephone"

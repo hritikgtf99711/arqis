@@ -6,8 +6,7 @@ export default function HeadingLogo() {
     <div className="grid grid-cols-2">
       <div className="col-span-1 my-auto">
         <div className="w-[70%] fade-up">
-        <CommonHeading heading={`Across Pages and Places.
-Headlines. Stories. Impacts`} />
+        <CommonHeading heading={`Across Pages and Places. Headlines. Stories. Impacts`} />
         </div>
       </div>
       <div className="col-span-1">

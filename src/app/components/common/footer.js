@@ -70,14 +70,14 @@ const [title, setTitle] = useState("Reshaping Real Estate");
         ref={lineRef}
         className="border_line parallax flex-1 mb-[20px] h-[1px]"
       />
-      <div onClick={()=>next()} className="flex  next_text gap-3 mb-[10px] items-center pointer-events-auto">
-        <h2 className="uppercase cursor-pointer parallax next_title text-[18px] tracking-[6px]" ref={ctaRef}>
+      <div onClick={()=>next()} className="flex   next_text gap-3 mb-[10px] items-center pointer-events-auto">
+        <h2 className="uppercase   cursor-pointer  nextcontent parallax next_title text-[18px] tracking-[6px]" ref={ctaRef}>
           {cta}
         </h2>
         <Image
           ref={arrowRef}
           src="/assets/right_arrow.svg"
-          className="ml-3 parallax select-none"
+          className="ml-3 nextcontent parallax select-none"
           width="25"
           height="25"
           alt="arrow"

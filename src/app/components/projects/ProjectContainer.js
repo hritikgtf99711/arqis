@@ -35,7 +35,7 @@ export default function ProjectContainer() {
   };
 
   return (
-    <div className="parallax projects_container h-[100%] mx-auto">
+    <div className="parallax relative projects_container h-[100%] mx-auto">
       <div
         ref={scrollRef}
         data-scroll="horizontal"

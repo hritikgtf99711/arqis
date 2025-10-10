@@ -34,11 +34,11 @@ export default function NewsLogos() {
   return (
     <div className="pt-[30px]">
       <div className="arrow_container flex gap-5 justify-start pb-[30px] fade-up">
-        <div className="arrow_prev cursor-pointer">
-          <img src="/assets/icons/arrow_right.png" alt="Previous" width={25} />
+        <div className=" arrow_prev cursor-pointer">
+          <img src="/assets/icons/arrow_right.png" className="arrow cursor-pointer" alt="Previous" width={25} />
         </div>
-        <div className="arrow_next cursor-pointer">
-          <img src="/assets/icons/arrow_left.png" alt="Next" width={25} />
+        <div className="arrow arrow_next cursor-pointer">
+          <img src="/assets/icons/arrow_left.png" className="arrow cursor-pointer "  alt="Next" width={25} />
         </div>
       </div>
       <div className="bg-[#fff] fade-up news_container ">
