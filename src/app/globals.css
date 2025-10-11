@@ -93,7 +93,7 @@ body.active .next_text img {
   align-items: center;
 }
 .change_style .prev_title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
   flex: 0 0 auto;
   letter-spacing: 4px;
@@ -111,3 +111,4 @@ body.active .next_text img {
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   overscroll-behavior: contain; /* Prevent parent scrolling */
 }
+.overlay_gradient{background: linear-gradient(rgb(17 49 32 / 0%) 0%, #113120 100%);}

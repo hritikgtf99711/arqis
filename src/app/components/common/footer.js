@@ -71,7 +71,7 @@ const [title, setTitle] = useState("Reshaping Real Estate");
         className="border_line parallax flex-1 mb-[20px] h-[1px]"
       />
       <div onClick={()=>next()} className="flex   next_text gap-3 mb-[10px] items-center pointer-events-auto">
-        <h2 className="uppercase   cursor-pointer  nextcontent parallax next_title text-[18px] tracking-[6px]" ref={ctaRef}>
+        <h2 className="uppercase   cursor-pointer   nextcontent parallax next_title text-[18px] tracking-[2px]" ref={ctaRef}>
           {cta}
         </h2>
         <Image

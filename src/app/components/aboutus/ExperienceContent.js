@@ -13,7 +13,7 @@ export default function ExperienceContent() {
         <Image
           src={"/assets/about/about_1.jpg"}
           alt="experience"
-          className="w-[100%]"
+          className="w-[100%] arrow"
           width={"643"}
           height={468}
         />
