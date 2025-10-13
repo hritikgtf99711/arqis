@@ -2,6 +2,9 @@ import Image from "next/image";
 import React from "react";
 import CommonHeading from "@/app/utils/CommonHeading";
 import Paragraph from "@/app/utils/Paragraph";
+import OurMission from "./OurMission";
+import OurVission from "./OurVission";
+import Redirect_Link from "@/app/utils/Redirect_txt";
 export default function ExperienceContent() {
   return (
     <div className=" parallax">
@@ -9,6 +12,7 @@ export default function ExperienceContent() {
         customClass="text-[#FFD38F]"
         heading="Reshaping Real Estate with Clarity, Calm, and Conviction "
       />
+    <div>
       <div className="m-[auto] my-[70px]">
         <Image
           src={"/assets/about/about_1.jpg"}
@@ -45,6 +49,11 @@ export default function ExperienceContent() {
           paragraph="Because true architecture doesn’t shout; it stands."
         />
       </div>
+    </div>
+    <OurMission/>
+    <OurVission/>
+                <Redirect_Link  customClass={`mt-[50px] change_icon_clr text-white`} text={`explore about us`} link={``}/>
+    
     </div>
   );
 }

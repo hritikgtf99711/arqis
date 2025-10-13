@@ -112,3 +112,61 @@ body.active .next_text img {
   overscroll-behavior: contain; /* Prevent parent scrolling */
 }
 .overlay_gradient{background: linear-gradient(rgb(17 49 32 / 0%) 0%, #113120 100%);}
+
+
+input[type="file"] {
+    background-color: #f9f9f9;
+    padding: 0;
+    height: 51px;
+    text-transform: uppercase;
+    letter-spacing: 1.2;
+    font-size: 14px;
+}
+
+input[type="file"]::file-selector-button {
+    color:#000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+  height: 100%;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #FFE0AF;
+}
+
+/* Browser-specific fallbacks */
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #FFE0AF;
+    color:#000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+  height: 100%;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #FFE0AF;
+}
+
+input[type="file"]::-ms-browse {
+    background-color: #FFE0AF;
+    color:#000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+  height: 100%;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
