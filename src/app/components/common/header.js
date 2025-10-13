@@ -11,7 +11,7 @@ const Header = () => {
   if (!isClient) return null; 
 
   return ReactDOM.createPortal(
-    <header className='py-[60px] z-[3] fixed left-0 top-0 w-[100%]'>
+    <header className='lg:py-[60px] py-[30px] z-[3] fixed left-0 top-0 w-[100%]'>
       <div className='container mx-[auto]'>
         <div className='flex cursor-pointer  justify-end gap-10'>
           <Image src='/assets/sound.svg' className='icon span_3 arrow cursor-pointer ' width={'25'} height={25} alt="logo"/>

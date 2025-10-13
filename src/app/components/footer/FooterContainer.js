@@ -17,7 +17,7 @@ export default function FooterContainer() {
         />
       </figure>
       <div className=" border-y-[#00000033] border-y-[1px] my-[50px] py-[60px]">
-        <ul className="grid gap-[35px] grid-cols-2 max-w-[50%] mx-[auto]">
+        <ul className="grid gap-[35px] grid-cols-2 lg:max-w-[50%] mx-[auto]">
           <li className="col-span text-center">
             <Link onClick={()=>gotoFn(0)} className="uppercase tracking-[1.8]" href={"#"}>
               Home

@@ -6,12 +6,12 @@ export default function ProjectContent() {
     <div className="flex flex-col h-[100%] justify-between">
       <CommonHeading
         heading="The Arc of Retail and Recreation"
-        customClass="mb-5"
+        customClass="mb-5 lg:block hidden"
       />
-      <p className="font-[400] tracking-[2px]  text-[25px] uppercase">
+      <p className="font-[400] tracking-[2px] text-[16px] lg:text-[25px] uppercase">
         Arqis Mall
       </p>
-      <Redirect_Link text="Explore More" link="" />
+      <Redirect_Link customClass={`lg:block hidden`} text="Explore More" link="" />
     </div>
   );
 }

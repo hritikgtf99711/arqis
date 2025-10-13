@@ -35,24 +35,24 @@ export default function ProjectContainer() {
   };
 
   return (
-    <div className="parallax relative projects_container h-[100%] mx-auto">
+    <div className="parallax relative projects_container h-[100%] py-[80px] mx-auto">
       <div
         ref={scrollRef}
         data-scroll="horizontal"
-        className="flex pl-[80px]   items-center scrollable-container overflow-x-scroll h-full snap-x snap-mandatory"
+        className="flex pl-[15px] lg:pl-[80px]   items-center scrollable-container overflow-x-scroll h-full snap-x snap-mandatory"
       >
         {projects.map((project) => (
           <div
             key={project.id}
-            className="grid grid-cols-4 grow-0 shrink-0 basis-[80%] pr-[50px] gap-10"
+            className="grid  grid-col-1 lg:grid-cols-4 grow-0 shrink-0 basis-[80%] pr-[50px] gap-[10px] lg:gap-10"
           >
-            <div className="col-span-3">{project.image}</div>
-            <div className="col-span-1">{project.content}</div>
+            <div className="col-span lg:col-span-3">{project.image}</div>
+            <div className="col-span lg:col-span-1">{project.content}</div>
           </div>
         ))}
           
       </div>
-    <div className="flex justify-end absolute right-[72px] !bottom-[80px] py-[30px] gap-[20px] items-center">
+    <div className="flex justify-end lg:absolute lg:pr-0 pr-[30px] right-[72px] !bottom-[80px] py-[30px] gap-[20px] items-center">
         
   
         <Image

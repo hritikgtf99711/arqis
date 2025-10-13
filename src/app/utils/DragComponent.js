@@ -14,7 +14,7 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
     if (!prog || !scrollable || !dragButton) return;
 
     const updateProgress = () => {
-      if (isDraggingRef.current) return; // Skip updates during drag for performance
+      if (isDraggingRef.current) return;
       const scrollTop = scrollable.scrollTop;
       const scrollHeight = scrollable.scrollHeight - scrollable.clientHeight;
       const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
@@ -47,7 +47,7 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
       cancelAnimationFrame(rafRef.current);
     };
 
-    prog.style.width = '4%'; // Initial width
+    prog.style.width = '4%';
     dragButton.addEventListener('mousedown', onMouseDown);
     scrollable.addEventListener('scroll', updateProgress);
 
@@ -63,7 +63,7 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
   return (
     <div
       ref={dragButtonRef}
-      className={`drag_button cursor-pointer ${centerDragVia ? 'justify-center' : ''} flex mt-[100px] gap-[8px] items-center relative w-[100%] mx-auto`}
+      className={`drag_button lg:flex hidden cursor-pointer ${centerDragVia ? 'justify-center' : ''} flex mt-[100px] gap-[8px] items-center relative w-[100%] mx-auto`}
     >
       <div className="h-[1px] bg-[#00000069] w-[60%]">
         <div
