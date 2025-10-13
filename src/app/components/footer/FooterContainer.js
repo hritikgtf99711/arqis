@@ -24,7 +24,7 @@ export default function FooterContainer() {
             </Link>
           </li>
           <li className="col-span text-center">
-            <Link  onClick={()=>gotoFn(4)} className="uppercase tracking-[1.8]" href={"#"}>
+            <Link  onClick={()=>gotoFn(3)} className="uppercase tracking-[1.8]" href={"#"}>
               Our Team 
             </Link>
           </li>
@@ -44,7 +44,7 @@ export default function FooterContainer() {
             </Link>
           </li>
           <li className="col-span text-center">
-            <Link  onClick={()=>gotoFn(7)}  className="uppercase tracking-[1.8]" href={"#"}>
+            <Link  onClick={()=>gotoFn(5)}  className="uppercase tracking-[1.8]" href={"#"}>
               Media Centre
             </Link>
           </li>
