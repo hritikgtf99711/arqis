@@ -12,8 +12,7 @@ export default function CareerContainer() {
       leftContent={<ContentSec />}
       rightContent={<Jobs />}
       scrollableRef={scrollableRef}
-            isShowDrag={true}
-
+      isShowDrag={true}
     />
   )
 }

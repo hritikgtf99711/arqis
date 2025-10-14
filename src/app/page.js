@@ -4,8 +4,7 @@ import DesktopLayout from "./DesktopLayout";
 import MobileLayout from "./MobileLayout";
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(null); 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -15,13 +14,11 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  if (isMobile === null) return null;
+
   return (
     <>
-      {isMobile ? (
-        <MobileLayout customClass="block" />
-      ) : (
-        <DesktopLayout customClass="block" />
-      )}
+      {isMobile ? <MobileLayout /> : <DesktopLayout />}
     </>
   );
 }
