@@ -36,9 +36,9 @@ export default function initScrollSmoother(router) {
     WHEEL_THRESHOLD: 20,
     COOLDOWN_MS: 50,
     ANIM_DURATION: 1,
-    TOUCH_THRESH: 80, // Lower threshold for better mobile responsiveness
-    DEBOUNCE_MS: 60, // Reduced debounce for faster touch response
-    SCROLL_SPEED: 1,
+    TOUCH_THRESH: 30, 
+    DEBOUNCE_MS: 65, 
+    SCROLL_SPEED: 2,
   };
 
   const isDarkSection = (section) => section?.dataset.theme === "dark" || section?.classList.contains("dark-bg", "bg-dark");
