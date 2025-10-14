@@ -34,11 +34,11 @@ export default function initScrollSmoother(router) {
 
   const CONFIG = {
     WHEEL_THRESHOLD: 20,
-    COOLDOWN_MS: 50,
+    COOLDOWN_MS: 80,
     ANIM_DURATION: 1,
-    TOUCH_THRESH: 30, 
-    DEBOUNCE_MS: 65, 
-    SCROLL_SPEED: 2,
+    TOUCH_THRESH: 120, 
+    DEBOUNCE_MS: 80, 
+    SCROLL_SPEED: 1,
   };
 
   const isDarkSection = (section) => section?.dataset.theme === "dark" || section?.classList.contains("dark-bg", "bg-dark");
