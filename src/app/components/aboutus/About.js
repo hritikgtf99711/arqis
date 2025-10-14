@@ -19,7 +19,7 @@ export default function About({ mobVia }) {
         scrollableRef={scrollableRef}
       />
       {mobVia && (
-        <div className="custom-container  !pb-[30px]">
+        <div className="custom-container  !pb-[80px]">
           <OurMission mobVia={mobVia} />
           <OurVission mobVia={mobVia} />
           <Redirect_Link

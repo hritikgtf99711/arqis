@@ -8,6 +8,7 @@ export default function projects() {
         <CommonHeading heading={`Where Shopping Meets Lifestyle`}/>
         </div>
       <ProjectContainer/>
+       
     </div>
   )
 }

@@ -25,7 +25,7 @@ const ScrollLayout = ({ leftContent, rightContent, isShowDrag ,scrollableRef,cen
           {isShowDrag && <DragComponent  centerDragVia={centerDragVia} scrollableRef={scrollableRef} />}
         </div>
       </div>
-      <div ref={scrollableRef} data-scroll='vertical' className="col-span-1  lg:pb-0 pb-[30px]  lg:pt-40 pt-[60px] relative  dark-section scrollable-container lg:max-h-screen parallax lg:h-screen  lg:overflow-y-scroll overflow-hidden bg-[#113120]">
+      <div ref={scrollableRef} data-scroll='vertical' className="col-span-1  lg:pb-0 pb-[60px]  lg:pt-40 pt-[60px] relative  dark-section scrollable-container lg:max-h-screen parallax lg:h-screen  lg:overflow-y-scroll overflow-hidden bg-[#113120]">
         <div className='custom-container lg:py-40  '>
           {rightContent}
         </div>

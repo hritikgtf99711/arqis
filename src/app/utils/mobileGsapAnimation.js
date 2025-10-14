@@ -36,8 +36,8 @@ export default function initScrollSmoother(router) {
     WHEEL_THRESHOLD: 20,
     COOLDOWN_MS: 80,
     ANIM_DURATION: 1,
-    TOUCH_THRESH: 120, 
-    DEBOUNCE_MS: 80, 
+    TOUCH_THRESH: 80, // Reduced for better responsiveness
+    DEBOUNCE_MS: 150,
     SCROLL_SPEED: 1,
   };
 
@@ -237,12 +237,12 @@ export default function initScrollSmoother(router) {
   };
 
   let touchStartY = 0;
-  let touchStartX = 0; // Added to handle horizontal swipes
+  let touchStartX = 0;
   let hasMoved = false;
 
   const onTouchStart = (e) => {
     touchStartY = e.touches[0].clientY;
-    touchStartX = e.touches[0].clientX; // Track X for horizontal swipes
+    touchStartX = e.touches[0].clientX;
     hasMoved = false;
   };
 
@@ -254,35 +254,41 @@ export default function initScrollSmoother(router) {
     lastInputTime = now;
 
     const dy = e.touches[0].clientY - touchStartY;
-    const dx = e.touches[0].clientX - touchStartX; // Calculate horizontal movement
-    const isVerticalSwipe = Math.abs(dy) > Math.abs(dx); // Prioritize vertical swipes
+    const dx = e.touches[0].clientX - touchStartX;
+    const isVerticalSwipe = Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > CONFIG.TOUCH_THRESH;
 
     const activeSection = sections[currentIndex];
     const scrollContainer = activeSection.querySelector(".scrollable-container");
 
     // Allow native scrolling in scrollable containers for vertical swipes
-    if (scrollContainer && isVerticalSwipe && !isAtScrollBoundary(scrollContainer, dy)) {
+    if (scrollContainer && Math.abs(dy) > 10 && !isAtScrollBoundary(scrollContainer, dy)) {
       return; // Let native scrolling handle it
     }
 
     // Handle section transitions for vertical swipes
-    if (isVerticalSwipe && Math.abs(dy) > CONFIG.TOUCH_THRESH && !hasMoved) {
+    if (isVerticalSwipe && !hasMoved) {
       e.preventDefault(); // Prevent default only for section transitions
       hasMoved = true;
       goToSection(currentIndex + (dy < 0 ? 1 : -1), dy < 0 ? "forward" : "backward");
     }
   };
 
+  const onTouchEnd = () => {
+    hasMoved = false; // Reset hasMoved on touch end
+  };
+
   window.addEventListener("wheel", onWheel, { passive: false });
   window.addEventListener("keydown", onKey, { passive: false });
   window.addEventListener("touchstart", onTouchStart, { passive: true });
   window.addEventListener("touchmove", onTouchMove, { passive: false });
+  window.addEventListener("touchend", onTouchEnd, { passive: true });
 
   const cleanup = () => {
     window.removeEventListener("wheel", onWheel);
     window.removeEventListener("keydown", onKey);
     window.removeEventListener("touchstart", onTouchStart);
     window.removeEventListener("touchmove", onTouchMove);
+    window.removeEventListener("touchend", onTouchEnd);
     gsap.killTweensOf(sections);
     smoother.kill();
   };

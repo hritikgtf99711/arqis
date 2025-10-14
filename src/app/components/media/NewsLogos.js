@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
@@ -9,60 +10,62 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import MediaContent from "./mediaContainer/MediaContent";
 import MediaLogo from "./mediaContainer/MediaImage";
-import { useRef } from "react";
 
 export default function NewsLogos() {
   const scrollableRef = useRef(null);
   const [hoveredSlide, setHoveredSlide] = useState(null);
+
   const logosArr = [
     "/assets/media-center/news/logo_1.png",
     "/assets/media-center/news/logo_2.png",
     "/assets/media-center/news/logo_4.png",
     "/assets/media-center/news/logo_3.png",
-    "/assets/media-center/news/logo_1.png",
-    "/assets/media-center/news/logo_2.png",
-    "/assets/media-center/news/logo_4.png",
-    "/assets/media-center/news/logo_3.png",
+   
   ];
+
   const handleMouseEnter = (index) => {
     setHoveredSlide(index);
   };
 
-  const close = () => {
+  const handleClose = () => {
     setHoveredSlide(null);
   };
+
   return (
-    <div className=" lg:pb-0 pb-[30px] pt-[30px]">
-      <div className="arrow_container flex gap-5 justify-start pb-[30px] fade-up">
-        <div className=" arrow_prev cursor-pointer">
-          <img src="/assets/icons/arrow_right.png" className="arrow cursor-pointer" alt="Previous" width={25} />
+    <div className="lg:pb-0 pb-[30px] pt-[30px]">
+      {/* Navigation Arrows */}
+      <div className="arrow_container  lg:block hidden flex gap-5 justify-start pb-[30px] fade-up">
+        <div className="arrow_prev cursor-pointer">
+          <Image
+            src="/assets/icons/arrow_right.png"
+            alt="Previous"
+            width={25}
+            height={25}
+            className="arrow"
+          />
         </div>
-        <div className="arrow arrow_next cursor-pointer">
-          <img src="/assets/icons/arrow_left.png" className="arrow cursor-pointer "  alt="Next" width={25} />
+        <div className="arrow_next cursor-pointer">
+          <Image
+            src="/assets/icons/arrow_left.png"
+            alt="Next"
+            width={25}
+            height={25}
+            className="arrow"
+          />
         </div>
       </div>
-      <div className="bg-[#fff] fade-up news_container ">
+
+      {/* Swiper Carousel */}
+      <div className="bg-[#fff]  lg:block hidden fade-up news_container">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           spaceBetween={30}
           slidesPerView="auto"
           breakpoints={{
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 30,
-            },
-            1280: {
-              slidesPerView: 4,
-              spaceBetween: 30,
-            },
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
+            1280: { slidesPerView: 4, spaceBetween: 30 },
           }}
           autoplay={{
             delay: 2500,
@@ -77,14 +80,12 @@ export default function NewsLogos() {
           className="mySwiper"
         >
           {logosArr.map((src, index) => (
-            <SwiperSlide                 onClick={() => handleMouseEnter(index)} key={index}>
+            <SwiperSlide key={index} onClick={() => handleMouseEnter(index)}>
               <div
-                className={`flex ${
+                className={`flex justify-center items-center cursor-pointer fade-up py-[30px] relative ${
                   hoveredSlide === index ? "z-[99999]" : ""
-                }  justify-center items-center cursor-pointer fade-up py-[30px] relative`}
-                // onMouseLeave={handleMouseLeave}
+                }`}
               >
-                {src.includes("logo_4.png") && "f"}
                 <Image
                   src={src}
                   alt={`Logo ${index + 1}`}
@@ -98,21 +99,46 @@ export default function NewsLogos() {
                       : "w-[50%] object-contain z-10"
                   }
                 />
-                {/* <DragComponent scrollableRef={scrollableRef} className="z-10" /> */}
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-        <Modals
-          scrollableRef={scrollableRef}
-          SelectedLogo={<MediaLogo selectedImage={logosArr[hoveredSlide]}  />}
-          MediaContent={<MediaContent />}
-          hoveredSlide={hoveredSlide}
-          animation={'opacity'}
-          onClose={close}
-        />
-  
+
+      {/* Static Images Outside Swiper Loop */}
+      <div className="static-logos-container border-t-[1px] border-[#000]  py-[50px] lg:hidden block mt-[50px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[60px] lg:gap-4 fade-up">
+        {logosArr.map((src, index) => (
+          <div
+            key={`static-${index}`}
+            className="flex items-center cursor-pointer "
+            onClick={() => handleMouseEnter(index)}
+          >
+            <Image
+              src={src}
+              alt={`Static Logo ${index + 1}`}
+              height={100}
+              width={100}
+              className={
+                src.includes("logo_1.png")
+                  ? "w-[80px] object-contain"
+                  : src.includes("logo_2.png")
+                  ? "w-[200px] m-[auto] object-contain"
+                  : "w-[80%] object-contain"
+              }
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Modal */}
+      <Modals
+        scrollableRef={scrollableRef}
+        SelectedLogo={<MediaLogo selectedImage={logosArr[hoveredSlide]} />}
+        MediaContent={<MediaContent />}
+        hoveredSlide={hoveredSlide}
+        animation="opacity"
+        onClose={handleClose}
+      />
     </div>
   );
 }

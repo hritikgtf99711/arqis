@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-export default function AbsSec() {
+export default function AbsSec({abs_footer}) {
   return (
-    <div className="fixed z-[-1]  h-[100vh] w-[100vw] left-0 top-0">
+    <div className={`${abs_footer=="abs_footer"?'absolute':'fixed'}  z-[-1]  h-[100vh] w-[100vw] left-0 top-0`}>
       <video
         autoPlay
         muted
@@ -14,7 +14,7 @@ export default function AbsSec() {
       </video>
       <Image
         src="/assets/green-leaf.png"
-        className="absolute w-[40%] lg:w-[20%]  left-0 lg:top-0 top-[0px]"
+        className={`${abs_footer=='abs_footer'?'w-[60%]':'w-[40%]'} absolute w-[40%] lg:w-[20%]  left-0 lg:top-0 top-[0px]`}
         alt="logo"
         width={288} height={208}
       />

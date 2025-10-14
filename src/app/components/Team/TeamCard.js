@@ -11,7 +11,7 @@ export default function TeamCard({ image,onClick }) {
         <p className="uppercase text-center max-w-[70%] mx-[auto] text-[20px]">
           Director Manish sharma
         </p>
-        <Image src={image} alt="" className="h-[400px] object-cover mt-[50px]" height={200} width={300} />
+        <Image src={image} alt="" className="h-[400px] m-[auto] object-cover mt-[50px]" height={200} width={300} />
       </div>
     </div>
     </>

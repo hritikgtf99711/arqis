@@ -5,6 +5,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Image from "next/image";
 import ProjectImage from "./ProjectImage";
 import ProjectContent from "./projectContent";
+import Redirect_Link from "@/app/utils/Redirect_txt";
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -19,7 +20,7 @@ export default function ProjectContainer() {
 
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = scrollRef.current.offsetWidth * 0.9; 
+      const scrollAmount = scrollRef.current.offsetWidth * 0.9;
       const currentScroll = scrollRef.current.scrollLeft;
       const targetScroll =
         direction === "next"
@@ -35,7 +36,7 @@ export default function ProjectContainer() {
   };
 
   return (
-    <div className="parallax relative projects_container h-[100%] py-[80px] mx-auto">
+    <div className="parallax relative projects_container h-[100%] py-[60px] mx-auto">
       <div
         ref={scrollRef}
         data-scroll="horizontal"
@@ -44,17 +45,21 @@ export default function ProjectContainer() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="grid  grid-col-1 lg:grid-cols-4 grow-0 shrink-0 basis-[80%] pr-[50px] gap-[10px] lg:gap-10"
+            className="grid  grid-col-1 lg:grid-cols-4 grow-0 shrink-0 basis-[90%] lg:basis-[80%] pr-[50px] gap-[10px] lg:gap-10"
           >
             <div className="col-span lg:col-span-3">{project.image}</div>
             <div className="col-span lg:col-span-1">{project.content}</div>
           </div>
         ))}
-          
       </div>
-    <div className="flex justify-end lg:absolute lg:pr-0 pr-[30px] right-[72px] !bottom-[80px] py-[30px] gap-[20px] items-center">
-        
-  
+      <div className="container">
+        <Redirect_Link
+          customClass={`mt-[50px]  lg:hidden flex text-black `}
+          text={`Explore  Project`}
+          link={``}
+        />
+      </div>
+      <div className="flex justify-end lg:flex hidden lg:absolute lg:pr-0 pr-[30px] right-[72px] !bottom-[80px] py-[30px] gap-[20px] items-center">
         <Image
           src="/assets/icons/arrow_right.png"
           alt="Previous slide"
@@ -62,8 +67,8 @@ export default function ProjectContainer() {
           height={25}
           className="cursor-pointer arrow"
           onClick={() => scroll("prev")}
-        /> 
-              <Image
+        />
+        <Image
           src="/assets/icons/arrow_left.png"
           alt="Next slide"
           width={25}

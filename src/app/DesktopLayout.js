@@ -9,7 +9,7 @@ import BlogContainer from "./components/bloglisting/BlogContainer";
 import FooterContainer from "./components/footer/FooterContainer";
 import CareerContainer from "./components/career/CareerContainer";
 import ContactformContainer from "./components/contactform/ContactformContainer"
-export default function DesktopLayout({customClass}) {
+export default function DesktopLayout() {
   return (
 
     <HorizontalLayout>
