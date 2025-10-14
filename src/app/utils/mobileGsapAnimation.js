@@ -37,7 +37,7 @@ export default function initScrollSmoother(router) {
     COOLDOWN_MS: 50,
     ANIM_DURATION: 1,
     TOUCH_THRESH: 50,
-    DEBOUNCE_MS: 40,
+    DEBOUNCE_MS: 100,
     SCROLL_SPEED: 1,
   };
 
@@ -300,27 +300,30 @@ export default function initScrollSmoother(router) {
     touchStartY = e.touches[0].clientY;
     hasMoved = false;
   };
+const onTouchMove = (e) => {
+  if (isAnimating) return; // Prevent handling during animation
 
-  const onTouchMove = (e) => {
-    if (isAnimating) {
-      e.preventDefault();
-      return;
-    }
-    const now = Date.now();
-    if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
-    lastInputTime = now;
+  const now = Date.now();
+  if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
+  lastInputTime = now;
 
-    const dy = e.touches[0].clientY - touchStartY;
-    const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(".scrollable-container");
-    if (scrollContainer && !isAtScrollBoundary(scrollContainer, dy)) return;
+  const dy = e.touches[0].clientY - touchStartY;
+  const activeSection = sections[currentIndex];
+  const scrollContainer = activeSection.querySelector(".scrollable-container");
 
-    if (Math.abs(dy) > CONFIG.TOUCH_THRESH && !hasMoved) {
-      e.preventDefault();
-      hasMoved = true;
-      goToSection(currentIndex + (dy < 0 ? 1 : -1), dy < 0 ? "forward" : "backward");
-    }
-  };
+  // Check if we're in a vertically scrollable container
+  if (scrollContainer && !isAtScrollBoundary(scrollContainer, dy)) {
+    // Allow native scrolling within the container
+    return;
+  }
+
+  // Only prevent default if we're handling a section transition
+  if (Math.abs(dy) > CONFIG.TOUCH_THRESH && !hasMoved) {
+    e.preventDefault(); // Prevent default only for section transitions
+    hasMoved = true;
+    goToSection(currentIndex + (dy < 0 ? 1 : -1), dy < 0 ? "forward" : "backward");
+  }
+};
 
   window.addEventListener("wheel", onWheel, { passive: false });
   window.addEventListener("keydown", onKey, { passive: false });
