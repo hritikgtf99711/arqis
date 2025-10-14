@@ -8,7 +8,7 @@ export default function ContentSec() {
       <CommonHeading heading={`Join the Arc of Growth`}/>
       </div>    
       <figure className='mt-[30px]'>
-        <Image src={`/assets/career/career.jpg`} alt='career' width={450} height={340}/>
+        <Image src={`/assets/career/career.jpg`} className='lg:h-[auto] h-[318px]' alt='career' width={450} height={340}/>
       </figure>
     </div>
   )

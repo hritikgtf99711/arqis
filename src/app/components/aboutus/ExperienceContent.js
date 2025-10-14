@@ -5,7 +5,7 @@ import Paragraph from "@/app/utils/Paragraph";
 import OurMission from "./OurMission";
 import OurVission from "./OurVission";
 import Redirect_Link from "@/app/utils/Redirect_txt";
-export default function ExperienceContent() {
+export default function ExperienceContent({mobVia}) {
   return (
     <div className=" parallax">
       <CommonHeading
@@ -50,10 +50,10 @@ export default function ExperienceContent() {
         />
       </div>
     </div>
-    <OurMission/>
+    {!mobVia && <><OurMission/>
     <OurVission/>
-                <Redirect_Link  customClass={`mt-[50px] change_icon_clr text-white`} text={`explore about us`} link={``}/>
-    
+    <Redirect_Link  customClass={`mt-[50px] change_icon_clr  text-white`} text={`explore about us`} link={``}/>
+    </>}
     </div>
   );
 }

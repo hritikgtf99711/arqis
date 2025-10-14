@@ -62,7 +62,7 @@ export default function Form() {
   };
 
   return (
-    <div className="custom-container">
+    <div className="lg:pt-0 pt-[50px]">
       <CommonHeading
         customClass={`text-[#FFD38F]`}
         heading={`Step Into Your Future`}

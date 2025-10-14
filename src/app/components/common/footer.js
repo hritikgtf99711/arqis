@@ -51,10 +51,8 @@ const [title, setTitle] = useState("Reshaping Real Estate");
 
   useEffect(() => setIsClient(true), []);
   if (!isClient) return null;
-
   const portalEl = typeof document !== "undefined" ? document.getElementById("footer-portal") : null;
   if (!portalEl) return null;
-
   return ReactDOM.createPortal(
     <>
     <footer

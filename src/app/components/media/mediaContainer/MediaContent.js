@@ -7,7 +7,7 @@ export default function MediaContent() {
   return (
     <div>
       <CommonHeading
-        customClass={"pb-[40px] text-[#FFD38F]"}
+        customClass={"pb-[40px] lg:pt-0 pt-[40pxs] text-[#FFD38F]"}
         heading="Arqis Group affirms Luxury as the New Standard with the launch of its bold new campaign"
       />
       <span className="text-white">25-09-2025</span>

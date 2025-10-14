@@ -32,7 +32,7 @@ export default function NewsLogos() {
     setHoveredSlide(null);
   };
   return (
-    <div className="pt-[30px]">
+    <div className=" lg:pb-0 pb-[30px] pt-[30px]">
       <div className="arrow_container flex gap-5 justify-start pb-[30px] fade-up">
         <div className=" arrow_prev cursor-pointer">
           <img src="/assets/icons/arrow_right.png" className="arrow cursor-pointer" alt="Previous" width={25} />

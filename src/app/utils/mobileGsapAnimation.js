@@ -178,13 +178,12 @@ export default function initScrollSmoother(router) {
         sections.forEach((sec, i) => sec.classList.toggle("is-active", i === index));
         inTL.get(next)?.play();
 
-        document.body.classList.toggle("active", [1, 4, 7].includes(index));
-        document.querySelector('header').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
-        document.querySelector('.span_1').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
-        document.querySelector('.span_2').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
-        document.querySelector('.span_3').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
-
-     document.querySelector('.nextcontent').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        // document.body.classList.toggle("active", [1, 4, 7].includes(index));
+        // document.querySelector('header').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        // document.querySelector('.span_1').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        // document.querySelector('.span_2').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        // document.querySelector('.span_3').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        //  document.querySelector('.nextcontent').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
 
         const navConfig = [
           { prev: "Reshaping Real Estate", next: "Start Journey", footer: "remove" },
@@ -201,7 +200,7 @@ export default function initScrollSmoother(router) {
         if (navConfig[index]) {
           document.querySelector(".prev_title").textContent = navConfig[index].prev;
           document.querySelector(".next_title").textContent = navConfig[index].next;
-          document.querySelector("footer")?.classList.toggle("change_style", navConfig[index].footer === "add");
+          // document.querySelector("footer")?.classList.toggle("change_style", navConfig[index].footer === "add");
         }
 
         // gsap.fromTo(".border_line", { width: "0%", opacity: 0 }, { width: "100%", opacity: 1, duration: 2, ease: "power2.inOut", stagger: 0.1 });
@@ -255,8 +254,7 @@ export default function initScrollSmoother(router) {
 
     const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
     const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(".scrollable-container") || document.querySelector(".horizontal-section");
-
+    const scrollContainer = sections[currentIndex]|| document.querySelector(".horizontal-section");
     if (scrollContainer) {
       const isHorizontal = scrollContainer.dataset.scroll === "horizontal";
       if (!isAtScrollBoundary(scrollContainer, delta, isHorizontal)) {

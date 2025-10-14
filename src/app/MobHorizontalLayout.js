@@ -6,18 +6,18 @@ import Footer from "./components/common/footer";
 import { useLayoutEffect, useState } from "react";
 import ScrollContext from "./context/ScrollContext";
 import CursorAnimation from "./utils/Cursor";
-import InitScrollSmoother from "./utils/GsapAnimations1";
 import FooterContainer from "./components/footer/FooterContainer";
+import initScrollSmoother from "./utils/mobileGsapAnimation";
 export default function MobHorizontalLayout({ children }) {
   const [gotoFn, setgoTofn] = useState(0);
   const [next, setnext] = useState();
   const [prev,setPrev]=useState();
 
   useLayoutEffect(() => {
-  //   const { goTo ,next,prev} = InitScrollSmoother();
-  //  setgoTofn(()=>goTo)
-  //  setnext(()=>next)
-  //  setPrev(()=>prev)
+    const { goTo ,next,prev} = initScrollSmoother();
+   setgoTofn(()=>goTo)
+   setnext(()=>next)
+   setPrev(()=>prev)
   }, []);
 
   return (
@@ -30,7 +30,7 @@ export default function MobHorizontalLayout({ children }) {
             <Header />
             {children}
             {/* <Footer /> */}
-            <FooterContainer/>
+            {/* <FooterContainer/> */}
           </div>
         </div>
       </div>

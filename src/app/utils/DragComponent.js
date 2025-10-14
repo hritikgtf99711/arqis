@@ -65,10 +65,10 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
       ref={dragButtonRef}
       className={`drag_button lg:flex hidden cursor-pointer ${centerDragVia ? 'justify-center' : ''} flex mt-[100px] gap-[8px] items-center relative w-[100%] mx-auto`}
     >
-      <div className="h-[1px] bg-[#00000069] w-[60%]">
+      <div className="h-[1px]  bg-[#00000069] w-[60%]">
         <div
           ref={progRef}
-          className="prog top-1/2 transform -translate-y-1/2 h-[3px] bg-[#525252] transition-all duration-100"
+          className="prog top-1/2 transform flex justify-end items-center -translate-y-1/2 h-[3px] bg-[#525252] transition-all duration-100"
           style={{ width: '4%' }}
         ></div>
       </div>

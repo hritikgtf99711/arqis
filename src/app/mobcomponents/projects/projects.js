@@ -4,7 +4,7 @@ import CommonHeading from '@/app/utils/CommonHeading'
 export default function projects() {
   return (
     <div className=''>
-        <div className='container'>
+        <div className='container !pt-[40px]'>
         <CommonHeading heading={`Where Shopping Meets Lifestyle`}/>
         </div>
       <ProjectContainer/>

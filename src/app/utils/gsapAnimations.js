@@ -470,10 +470,10 @@ export default function InitScrollSmoother(router) {
 
     const activeSection = sections[currentIndex];
     const verticalScrollable =window.innerWidth>991? activeSection?.querySelector(".scrollable-container[data-scroll='vertical']") :activeSection?.querySelector(".mob_scroll[data-scroll='vertical']");
-        // const verticalMobScrollable = ;
+        // const verticalMobScrollable = ;s
 
     const horizontalScrollable = activeSection?.querySelector(".scrollable-container[data-scroll='horizontal']");
-    const scrollContainer = verticalScrollable || horizontalScrollable || getScrollableParent(e.target);
+    const scrollContainer = verticalScrollable || horizontalScrollable || getScrollableParent(e.targset);
     const delta = normalizeDelta(e);
 
     if (scrollContainer) {
