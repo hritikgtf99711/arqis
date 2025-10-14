@@ -179,7 +179,7 @@ input[type="file"]::-ms-browse {
     margin-right: 10px;
 }
 
-
+/* 
 .swiper-slide.swiper-slide-next{
   background-color: #8dc19d;
   border-radius: 200px;
@@ -238,4 +238,4 @@ input[type="file"]::-ms-browse {
 
 .swiper-slide:nth-child(10n) {
   background-color: rgb(54, 94, 77);
-}
+} */
