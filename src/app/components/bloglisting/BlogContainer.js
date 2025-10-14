@@ -40,7 +40,7 @@ export default function BlogContainer() {
             />
           </div>
         ))}
-         <ul className="flex justify-end gap-2">
+         <ul className="lg:hidden flex justify-end gap-2">
         <li>
           <a href="">1 |</a>
         </li>
