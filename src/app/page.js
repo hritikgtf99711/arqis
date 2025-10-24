@@ -9,7 +9,6 @@ export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Set isMounted to true after component mounts on the client
     setIsMounted(true);
 
     // Function to check screen size

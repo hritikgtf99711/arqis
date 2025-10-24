@@ -239,3 +239,10 @@ input[type="file"]::-ms-browse {
 .swiper-slide:nth-child(10n) {
   background-color: rgb(54, 94, 77);
 } */
+
+
+.swiper-3d .swiper-slide-shadow{box-shadow: none;background-color: transparent!important;}
+.custom-progress .swiper-progressbar-fill {
+  background-color: #22c55e; /* Tailwind's green-500 */
+}
+.swiper-pagination-progressbar.swiper-pagination-horizontal{position: relative;height:1px}
