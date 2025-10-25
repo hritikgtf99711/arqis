@@ -7,7 +7,7 @@ export default function TeamCard({ image,onClick,bg}) {
   return (
      <>
     <div className="col-span fade-up" onClick={onClick}>
-      <div className={`h-[100%] cursor-pointer  ${bg?bg:'bg-[#c6f5dc]'} lg:bg-[#c6f5dc52] pt-[80px] relative overflow-hidden rounded-[200px]`}>
+      <div className={`h-[100%] cursor-pointer teams_card ${bg?bg:'bg-[#c6f5dc]'} lg:bg-[#c6f5dc52] pt-[80px] relative overflow-hidden rounded-[200px]`}>
         <p className="uppercase text-center max-w-[70%] mx-[auto] text-[20px]">
           Director Manish sharma
         </p>

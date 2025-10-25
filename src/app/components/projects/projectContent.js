@@ -11,7 +11,7 @@ export default function ProjectContent() {
       <p className="font-[400] tracking-[2px] text-[16px] lg:text-[25px] uppercase">
         Arqis Mall
       </p>
-      <Redirect_Link customClass={`lg:block hidden`} text="Explore More" link="" />
+      <Redirect_Link customClass={`lg:flex hidden`} text="Explore More" link="" />
     </div>
   );
 }

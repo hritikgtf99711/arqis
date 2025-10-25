@@ -45,7 +45,7 @@ export default function ProjectContainer() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="grid  grid-col-1 lg:grid-cols-4 grow-0 shrink-0 basis-[90%] lg:basis-[80%] pr-[50px] gap-[10px] lg:gap-10"
+            className="grid  project_card grid-col-1 lg:grid-cols-4 grow-0 shrink-0 basis-[90%] lg:basis-[80%] pr-[50px] gap-[10px] lg:gap-10"
           >
             <div className="col-span lg:col-span-3">{project.image}</div>
             <div className="col-span lg:col-span-1">{project.content}</div>
@@ -59,7 +59,7 @@ export default function ProjectContainer() {
           link={``}
         />
       </div>
-      <div className="flex justify-end lg:flex hidden lg:absolute lg:pr-0 pr-[30px] right-[72px] !bottom-[80px] py-[30px] gap-[20px] items-center">
+      <div className="flex justify-end lg:flex hidden lg:absolute lg:pr-0 pr-[30px] right-[72px] !bottom-[70px] py-[30px] gap-[20px] items-center">
         <Image
           src="/assets/icons/arrow_right.png"
           alt="Previous slide"

@@ -246,3 +246,14 @@ input[type="file"]::-ms-browse {
   background-color: #22c55e; /* Tailwind's green-500 */
 }
 .swiper-pagination-progressbar.swiper-pagination-horizontal{position: relative;height:1px}
+
+@media (max-width: 1580px) {
+.projects_container .project_card{flex:0 0 70%}
+.projects_container .project_card h2{font-size: 30px;}
+.teams_card {padding-top: 50px;}
+.teams_card img{margin-top: 20px;}
+.leaf_icon {width: 15%;}
+.drag_button {margin-top: 50px;}
+.parallax h2{font-size: 34px;}
+.custom-container{max-width: 660px;}
+}
