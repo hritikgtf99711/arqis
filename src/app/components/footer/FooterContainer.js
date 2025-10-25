@@ -13,14 +13,14 @@ export default function FooterContainer() {
       </div>
       <figure>
         <Image
-          src={`/assets/logo-black.png`}
+          src={`/assets/logo.png`}
           alt=""
           className="m-auto"
-          height={133}
-          width={415}
+          height={80}
+          width={300}
         />
       </figure>
-      <div className=" border-y-[#00000033] border-y-[1px] my-[50px] py-[30px]  lg:py-[60px]">
+      <div className="py_sm border-y-[#00000033] border-y-[1px] my-[50px] py-[30px]  lg:py-[60px]">
         <ul className="grid gap-[25px] lg:gap-[35px] grid-cols-2 lg:max-w-[50%] mx-[auto]">
           <li className="col-span text-center">
             <Link onClick={()=>gotoFn(0)} className="uppercase lg:text-[16px] text-[14px] tracking-[1.8]" href={"#"}>

@@ -256,4 +256,5 @@ input[type="file"]::-ms-browse {
 .drag_button {margin-top: 50px;}
 .parallax h2{font-size: 34px;}
 .custom-container{max-width: 660px;}
+.py_sm{padding: 30px 0;margin: 30px 0;}
 }
