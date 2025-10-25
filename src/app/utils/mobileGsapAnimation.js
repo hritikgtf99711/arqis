@@ -21,7 +21,7 @@ export default function initScrollSmoother(router) {
     content: "#smooth-content",
     smooth: 1.8,
     effects: true,
-    smoothTouch: false, // Disable smoothTouch to avoid conflicts with native scrolling
+    smoothTouch: false,
   });
 
   const sections = gsap.utils.toArray(".horizontal-section .item");
@@ -33,30 +33,34 @@ export default function initScrollSmoother(router) {
   const outTL = new WeakMap();
 
   const CONFIG = {
-    WHEEL_THRESHOLD: 20,
+    WHEEL_THRESHOLD: 50,
     COOLDOWN_MS: 80,
     ANIM_DURATION: 1,
-    TOUCH_THRESH: 80, // Reduced for better responsiveness
-    DEBOUNCE_MS: 150,
+    TOUCH_THRESH: 80,
+    DEBOUNCE_MS: 80,
     SCROLL_SPEED: 1,
   };
 
-  const isDarkSection = (section) => section?.dataset.theme === "dark" || section?.classList.contains("dark-bg", "bg-dark");
+  const isDarkSection = (section) =>
+    section?.dataset.theme === "dark" ||
+    section?.classList.contains("dark-bg", "bg-dark");
 
   const updateTheme = (section) => {
     if (!section) return;
     const isDark = isDarkSection(section);
     const elements = {
       icons: section.querySelectorAll(".icon, .nav-icon, svg, img.icon"),
-      nav: document.querySelectorAll(".nav-indicator, .scroll-hint, .progress-bar"),
+      nav: document.querySelectorAll(
+        ".nav-indicator, .scroll-hint, .progress-bar"
+      ),
     };
 
-    elements.icons.forEach(icon => {
+    elements.icons.forEach((icon) => {
       icon.classList.toggle("icon-light", isDark);
       icon.classList.toggle("icon-dark", !isDark);
     });
 
-    elements.nav.forEach(el => {
+    elements.nav.forEach((el) => {
       el.classList.toggle("theme-light", isDark);
       el.classList.toggle("theme-dark", !isDark);
     });
@@ -72,7 +76,8 @@ export default function initScrollSmoother(router) {
     return tl;
   };
 
-  const emit = (name, detail) => window.dispatchEvent(new CustomEvent(name, { detail }));
+  const emit = (name, detail) =>
+    window.dispatchEvent(new CustomEvent(name, { detail }));
 
   sections.forEach((sec, i) => {
     inTL.set(sec, buildInTimeline(sec));
@@ -94,8 +99,17 @@ export default function initScrollSmoother(router) {
 
   const scrollToBoundary = (container, direction) => {
     if (!container) return;
-    const targetScroll = direction === "forward" ? container.scrollHeight - container.clientHeight : 0;
-    gsap.to(container, { scrollTop: targetScroll, duration: CONFIG.SCROLL_SPEED, ease: "power2.out" });
+    const targetScroll =
+      direction === "forward"
+        ? container.scrollHeight - container.clientHeight
+        : 0;
+    gsap.to(container, {
+      scrollTop: targetScroll,
+      duration: CONFIG.SCROLL_SPEED,
+      ease: "power2.out",
+      onComplete: () =>
+        setTimeout(() => (isAnimating = false), CONFIG.COOLDOWN_MS),
+    });
   };
 
   const goToSection = async (index, scrollDirection = null) => {
@@ -103,12 +117,16 @@ export default function initScrollSmoother(router) {
     isAnimating = true;
 
     const activeSection = sections[currentIndex];
-    const verticalScrollable = activeSection.querySelector(".scrollable-container");
+    const verticalScrollable = activeSection.querySelector(
+      ".scrollable-container"
+    );
     if (verticalScrollable && scrollDirection) {
-      const atBoundary = isAtScrollBoundary(verticalScrollable, scrollDirection === "forward" ? 1 : -1);
+      const atBoundary = isAtScrollBoundary(
+        verticalScrollable,
+        scrollDirection === "forward" ? 1 : -1
+      );
       if (!atBoundary) {
         scrollToBoundary(verticalScrollable, scrollDirection);
-        setTimeout(() => (isAnimating = false), CONFIG.COOLDOWN_MS);
         return;
       }
     }
@@ -135,15 +153,25 @@ export default function initScrollSmoother(router) {
         document.documentElement.classList.add("is-sliding");
       },
       onUpdate: function () {
-        document.documentElement.style.setProperty("--slide-progress", this.progress());
+        document.documentElement.style.setProperty(
+          "--slide-progress",
+          this.progress()
+        );
       },
       onComplete: () => {
         currentIndex = index;
-        sections.forEach((sec, i) => sec.classList.toggle("is-active", i === index));
+        sections.forEach((sec, i) =>
+          sec.classList.toggle("is-active", i === index)
+        );
         inTL.get(next)?.play();
+        updateTheme(next);
 
         const navConfig = [
-          { prev: "Reshaping Real Estate", next: "Start Journey", footer: "remove" },
+          {
+            prev: "Reshaping Real Estate",
+            next: "Start Journey",
+            footer: "remove",
+          },
           { prev: "Philosophy", next: "Projects", footer: "add" },
           { prev: "Projects", next: "Our Team", footer: "add" },
           { prev: "Our Team", next: "Careers", footer: "add" },
@@ -155,8 +183,10 @@ export default function initScrollSmoother(router) {
         ];
 
         if (navConfig[index]) {
-          document.querySelector(".prev_title").textContent = navConfig[index].prev;
-          document.querySelector(".next_title").textContent = navConfig[index].next;
+          document.querySelector(".prev_title").textContent =
+            navConfig[index].prev;
+          document.querySelector(".next_title").textContent =
+            navConfig[index].next;
         }
 
         emit("slidechange", {
@@ -170,7 +200,10 @@ export default function initScrollSmoother(router) {
 
         setTimeout(() => {
           isAnimating = false;
-          document.documentElement.classList.remove("is-sliding", `sliding-${dir}`);
+          document.documentElement.classList.remove(
+            "is-sliding",
+            `sliding-${dir}`
+          );
         }, CONFIG.COOLDOWN_MS);
       },
     });
@@ -179,53 +212,85 @@ export default function initScrollSmoother(router) {
   const isAtScrollBoundary = (el, deltaY, isHorizontal = false) => {
     if (!el) return true;
     const tolerance = 5;
-    const { scrollLeft, scrollTop, scrollWidth, scrollHeight, clientWidth, clientHeight } = el;
-    if (isHorizontal) return deltaY > 0 ? scrollLeft + clientWidth >= scrollWidth - tolerance : scrollLeft <= tolerance;
-    return deltaY > 0 ? scrollTop + clientHeight >= scrollHeight - tolerance : scrollTop <= tolerance;
+    const {
+      scrollLeft,
+      scrollTop,
+      scrollWidth,
+      scrollHeight,
+      clientWidth,
+      clientHeight,
+    } = el;
+    if (isHorizontal)
+      return deltaY > 0
+        ? scrollLeft + clientWidth >= scrollWidth - tolerance
+        : scrollLeft <= tolerance;
+    return deltaY > 0
+      ? scrollTop + clientHeight >= scrollHeight - tolerance
+      : scrollTop <= tolerance;
   };
 
   let accum = 0;
   let lastInputTime = 0;
 
   const onWheel = (e) => {
-    e.preventDefault();
     if (isAnimating) return;
 
     const now = Date.now();
     if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
     lastInputTime = now;
 
-    const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
+    const delta =
+      e.deltaY *
+      (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
     const activeSection = sections[currentIndex];
-    const scrollContainer = sections[currentIndex] || document.querySelector(".horizontal-section");
-    if (scrollContainer) {
-      const isHorizontal = scrollContainer.dataset.scroll === "horizontal";
-      if (!isAtScrollBoundary(scrollContainer, delta, isHorizontal)) {
-        const scrollProp = isHorizontal ? "scrollLeft" : "scrollTop";
-        const maxScroll = isHorizontal ? scrollContainer.scrollWidth - scrollContainer.clientWidth : scrollContainer.scrollHeight - scrollContainer.clientHeight;
-        const scrollAmount = scrollContainer[scrollProp] + (delta > 0 ? 150 : -150);
-        gsap.to(scrollContainer, { [scrollProp]: Math.max(0, Math.min(scrollAmount, maxScroll)), duration: CONFIG.SCROLL_SPEED, ease: "power2.out" });
-        accum = 0;
-        return;
-      }
+    const scrollContainer = activeSection.querySelector(
+      ".scrollable-container"
+    );
+    const isHorizontal =
+      scrollContainer?.dataset.scroll === "horizontal" || false;
+
+    if (
+      scrollContainer &&
+      e.target.closest(".scrollable-container") &&
+      !isAtScrollBoundary(scrollContainer, delta, isHorizontal)
+    ) {
+      return;
     }
+
+    e.preventDefault();
 
     accum += delta;
     if (Math.abs(accum) >= CONFIG.WHEEL_THRESHOLD) {
-      goToSection(currentIndex + (accum > 0 ? 1 : -1), accum > 0 ? "forward" : "backward");
+      goToSection(
+        currentIndex + (accum > 0 ? 1 : -1),
+        accum > 0 ? "forward" : "backward"
+      );
       accum = 0;
     }
   };
 
   const onKey = (e) => {
-    if (isAnimating || ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+    if (
+      isAnimating ||
+      ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+    )
+      return;
     const now = Date.now();
     if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
     lastInputTime = now;
 
     const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(".scrollable-container");
-    if (scrollContainer && !isAtScrollBoundary(scrollContainer, e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1)) return;
+    const scrollContainer = activeSection.querySelector(
+      ".scrollable-container"
+    );
+    if (
+      scrollContainer &&
+      !isAtScrollBoundary(
+        scrollContainer,
+        e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1
+      )
+    )
+      return;
 
     if (["ArrowRight", "ArrowDown"].includes(e.key)) {
       e.preventDefault();
@@ -255,13 +320,19 @@ export default function initScrollSmoother(router) {
 
     const dy = e.touches[0].clientY - touchStartY;
     const dx = e.touches[0].clientX - touchStartX;
-    const isVerticalSwipe = Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > CONFIG.TOUCH_THRESH;
+    const isVerticalSwipe =
+      Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > CONFIG.TOUCH_THRESH;
 
     const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(".scrollable-container");
+    const scrollContainer = activeSection.querySelector(
+      ".scrollable-container"
+    );
 
-    // Allow native scrolling in scrollable containers for vertical swipes
-    if (scrollContainer && Math.abs(dy) > 10 && !isAtScrollBoundary(scrollContainer, dy)) {
+    if (
+      scrollContainer &&
+      Math.abs(dy) > 10 &&
+      !isAtScrollBoundary(scrollContainer, dy)
+    ) {
       return; // Let native scrolling handle it
     }
 
@@ -269,7 +340,10 @@ export default function initScrollSmoother(router) {
     if (isVerticalSwipe && !hasMoved) {
       e.preventDefault(); // Prevent default only for section transitions
       hasMoved = true;
-      goToSection(currentIndex + (dy < 0 ? 1 : -1), dy < 0 ? "forward" : "backward");
+      goToSection(
+        currentIndex + (dy < 0 ? 1 : -1),
+        dy < 0 ? "forward" : "backward"
+      );
     }
   };
 
