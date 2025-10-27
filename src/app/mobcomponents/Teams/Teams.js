@@ -176,7 +176,7 @@ export default function App() {
       <style>{styles}</style>
       <div className="container relative">
         <CommonHeading heading="Driven By Passion, United by Purpose" />
-        <div className="flex items-center gap-4 mt-4">
+        <div className="flex items-center gap-4 mt-4 mb-20">
           {/* Default drag icon on progress bar */}
           <div className="relative flex-1">
             <div className="custom-progress mt-0" ref={progressBarRef}>

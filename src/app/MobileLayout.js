@@ -28,11 +28,12 @@ export default function MobileLayout() {
         </div>
         <div className="basis-[100%]  item grow-0 mob_scroll  overflow-y-scroll overflow-x-hidden  shrink-0 h-full">
           <ProjectContainer />
-           <Pagination  navVal={'Careers'}/>
+           <Pagination  navVal={'Our Team'}/>
           <FooterContainer />
         </div>
         <div className="basis-[100%]  item grow-0  ov erflow-y-scroll overflow-x-hidden  shrink-0 h-full  items-center">
           <TeamContainer />
+          <Pagination  navVal={'Career'}/>
           <FooterContainer />
         </div>
         <div className="basis-[100%]  overflow-y-scroll overflow-x-hidden mob_scroll item grow-0 shrink-0 h-full">

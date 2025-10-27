@@ -37,7 +37,7 @@ export default function initScrollSmoother(router) {
     COOLDOWN_MS: 80,
     ANIM_DURATION: 1,
     TOUCH_THRESH: 80,
-    DEBOUNCE_MS: 80,
+    DEBOUNCE_MS: 100,
     SCROLL_SPEED: 1,
   };
 
