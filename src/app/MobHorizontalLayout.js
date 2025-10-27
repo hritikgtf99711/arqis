@@ -26,7 +26,7 @@ export default function MobHorizontalLayout({ children }) {
         <AbsSec />
         <div id="smooth-wrapper">
           <div id="smooth-content">
-            <Header />
+            <Header /> 
             {children}
             {/* <Footer /> */}
             {/* <FooterContainer/> */}
