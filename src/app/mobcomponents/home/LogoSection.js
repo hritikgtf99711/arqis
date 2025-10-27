@@ -6,7 +6,7 @@ export default function LogoSection() {
       <figure className="mt-auto">
         <Image
           src="/assets/logo.png"
-          className="w-[100%] lg:w-[40%] no-view   logo-section object-contain"
+          className="w-[75%] lg:w-[40%] no-view mx-[auto]  logo-section object-contain"
           width={300}
           height={300}
           alt="Reshaping Real Estate"

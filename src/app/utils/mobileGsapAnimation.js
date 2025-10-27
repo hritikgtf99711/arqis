@@ -10,7 +10,7 @@ const SLIDE_NAV = {
   projects: { prev: "Projects", next: "Our Team", route: "/projects" },
   ourTeam: { prev: "Our Team", next: "Careers", route: "/our-team" },
   career: { prev: "Careers", next: "Media", route: "/career" },
-  media: { prev: "Media", next: "Blogs", route: "/media" },
+  media: { prev: "Media", next: "Blogs", route: "/blogs" },
   blogs: { prev: "Blogs", next: "Contact", route: "/blogs" },
   quickLink: { prev: "QuickLink", next: "The End", route: "/quick-link" },
 };
@@ -21,7 +21,7 @@ export default function initScrollSmoother(router) {
     content: "#smooth-content",
     smooth: 1.8,
     effects: true,
-    smoothTouch: false,
+    smoothTouch: 0.5, // Enabled for smoother mobile scrolling
   });
 
   const sections = gsap.utils.toArray(".horizontal-section .item");
@@ -36,8 +36,8 @@ export default function initScrollSmoother(router) {
     WHEEL_THRESHOLD: 50,
     COOLDOWN_MS: 80,
     ANIM_DURATION: 1,
-    TOUCH_THRESH: 80,
-    DEBOUNCE_MS: 80,
+    TOUCH_THRESH: 200, // Increased to 200 for more deliberate swipes
+    DEBOUNCE_MS: 200, // Increased for touch events
     SCROLL_SPEED: 1,
   };
 
@@ -125,6 +125,7 @@ export default function initScrollSmoother(router) {
         verticalScrollable,
         scrollDirection === "forward" ? 1 : -1
       );
+      console.log("At Boundary:", atBoundary, "Direction:", scrollDirection, "ScrollTop:", verticalScrollable.scrollTop); // Debug log
       if (!atBoundary) {
         scrollToBoundary(verticalScrollable, scrollDirection);
         return;
@@ -211,7 +212,7 @@ export default function initScrollSmoother(router) {
 
   const isAtScrollBoundary = (el, deltaY, isHorizontal = false) => {
     if (!el) return true;
-    const tolerance = 5;
+    const tolerance = 30; // Increased for stricter boundary detection
     const {
       scrollLeft,
       scrollTop,
@@ -320,6 +321,7 @@ export default function initScrollSmoother(router) {
 
     const dy = e.touches[0].clientY - touchStartY;
     const dx = e.touches[0].clientX - touchStartX;
+    console.log("Touch Move: dy =", dy, "dx =", dx, "Threshold:", CONFIG.TOUCH_THRESH); // Debug log
     const isVerticalSwipe =
       Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > CONFIG.TOUCH_THRESH;
 
@@ -330,15 +332,16 @@ export default function initScrollSmoother(router) {
 
     if (
       scrollContainer &&
-      Math.abs(dy) > 10 &&
+      Math.abs(dy) > 30 && // Stricter minimum movement
       !isAtScrollBoundary(scrollContainer, dy)
     ) {
-      return; // Let native scrolling handle it
+      console.log("Native scrolling: scrollTop =", scrollContainer.scrollTop, "scrollHeight =", scrollContainer.scrollHeight, "clientHeight =", scrollContainer.clientHeight); // Debug log
+      return; // Prioritize native scrolling
     }
 
-    // Handle section transitions for vertical swipes
     if (isVerticalSwipe && !hasMoved) {
-      e.preventDefault(); // Prevent default only for section transitions
+      console.log("Triggering section change: dy =", dy); // Debug log
+      e.preventDefault();
       hasMoved = true;
       goToSection(
         currentIndex + (dy < 0 ? 1 : -1),
@@ -348,7 +351,7 @@ export default function initScrollSmoother(router) {
   };
 
   const onTouchEnd = () => {
-    hasMoved = false; // Reset hasMoved on touch end
+    hasMoved = false;
   };
 
   window.addEventListener("wheel", onWheel, { passive: false });
