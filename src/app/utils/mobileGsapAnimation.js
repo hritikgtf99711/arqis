@@ -33,9 +33,9 @@ export default function initScrollSmoother(router) {
   const outTL = new WeakMap();
 
   const CONFIG = {
-    WHEEL_THRESHOLD: 50,
-    COOLDOWN_MS: 80,
-    ANIM_DURATION: 1,
+    WHEEL_THRESHOLD: 100,
+    COOLDOWN_MS: 1800,
+    ANIM_DURATION: 2,
     TOUCH_THRESH: 80,
     DEBOUNCE_MS: 100,
     SCROLL_SPEED: 1,
