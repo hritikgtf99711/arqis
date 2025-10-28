@@ -224,12 +224,6 @@ body {
   --theme1: #263a7f
 }
 
-body {
-  font-family: "Lato", sans-serif;
-  overflow-x: hidden;
-  margin: 0;
-  position: relative;
-}
 
 body.admin-body {
   margin: 0;

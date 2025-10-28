@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 // import { useParams } from "react-router";
 import { useParams } from "next/navigation";
 import { useApi } from "@/admin/hooks/useApi";
-import { BASE_ADMIN } from "@/config";
 import { useCrud } from "@/admin/hooks/useCrud";
 import DynamicForm from "@/admin/components/form/DynamicForm";
 import Card from "@/admin/components/card/Card";
@@ -12,7 +11,7 @@ import TableContainer from "@/admin/components/table/TableContainer";
 import { formatFormData } from "@/admin/utils/formatFormData";
 import { toast } from "react-toastify";
 import SearchInput from "@/admin/components/table/SearchInput";
-
+import { BASE_ADMIN } from "../../../../../config";
 const sectionConfigs = {
   platter: {
     fields: [
