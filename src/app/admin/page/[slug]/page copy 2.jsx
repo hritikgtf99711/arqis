@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
-import Card from "@/src/admin/components/card/Card";
-import CardHeading from "@/src/admin/components/card/CardHeading";
-import DynamicForm from "@/src/admin/components/form/DynamicForm";
+import Card from "@/admin/components/card/Card";
+import CardHeading from "@/admin/components/card/CardHeading";
+import DynamicForm from "@/admin/components/form/DynamicForm";
 
 // Page section configuration
 export const pageSectionConfigs = {

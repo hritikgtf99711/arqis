@@ -1,17 +1,17 @@
 "use client";
 import { BASE_ADMIN } from "../../../../../config";
-import Card from "@/src/admin/components/card/Card";
-import CardHeading from "@/src/admin/components/card/CardHeading";
-import CustomTable from "@/src/admin/components/table/CustomTable";
-import Pagination from "@/src/admin/components/table/Pagination";
-import TableBody from "@/src/admin/components/table/TableBody";
-import TableContainer from "@/src/admin/components/table/TableContainer";
-import TableData from "@/src/admin/components/table/TableData";
-import TableHead from "@/src/admin/components/table/TableHead";
-import TableHeading from "@/src/admin/components/table/TableHeading";
-import TableRow from "@/src/admin/components/table/TableRow";
+import Card from "@/admin/components/card/Card";
+import CardHeading from "@/admin/components/card/CardHeading";
+import CustomTable from "@/admin/components/table/CustomTable";
+import Pagination from "@/admin/components/table/Pagination";
+import TableBody from "@/admin/components/table/TableBody";
+import TableContainer from "@/admin/components/table/TableContainer";
+import TableData from "@/admin/components/table/TableData";
+import TableHead from "@/admin/components/table/TableHead";
+import TableHeading from "@/admin/components/table/TableHeading";
+import TableRow from "@/admin/components/table/TableRow";
 import { useApi } from "@/admin/hooks/useApi";
-import { useCrud } from "@/src/admin/hooks/useCrud";
+import { useCrud } from "@/admin/hooks/useCrud";
 import { useParams } from "next/navigation";
 import React from "react";
 

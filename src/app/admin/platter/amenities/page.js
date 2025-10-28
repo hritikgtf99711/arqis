@@ -3,19 +3,18 @@
 import React, { useMemo } from "react";
 import { useApi } from "@/admin/hooks/useApi";
 import { BASE_ADMIN } from "../../../../../config";
-import { useCrud } from "@/src/admin/hooks/useCrud";
-import DynamicForm from "@/src/admin/components/form/DynamicForm";
-import Card from "@/src/admin/components/card/Card";
-import CardHeading from "@/src/admin/components/card/CardHeading";
-import TableContainer from "@/src/admin/components/table/TableContainer";
-import { formatFormData } from "@/src/admin/utils/formatFormData";
-import SearchInput from "@/src/admin/components/table/SearchInput";
+import { useCrud } from "@/admin/hooks/useCrud";
+import DynamicForm from "@/admin/components/form/DynamicForm";
+import Card from "@/admin/components/card/Card";
+import CardHeading from "@/admin/components/card/CardHeading";
+import TableContainer from "@/admin/components/table/TableContainer";
+import { formatFormData } from "@/admin/utils/formatFormData";
+import SearchInput from "@/admin/components/table/SearchInput";
 import { toast } from "react-toastify";
 
 const AmenitiesPage = () => {
   const api = useApi(BASE_ADMIN);
 
-  // Fetch dropdown data (amenities logos)
   const { tableData: amenitiesLogo } = useCrud(api, "amenities-logo");
 
   // Amenities configuration

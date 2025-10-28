@@ -27,7 +27,7 @@ export default function AdminLayout({ children }) {
   }, [isLoginPage, router]);
 
   // ⚠️ Prevent rendering until login check completes
-  if (!isLoginPage && isChecking) return null;
+  // if (!isLoginPage && isChecking) return null;
 
   return (
     <>
@@ -53,6 +53,7 @@ export default function AdminLayout({ children }) {
             : ""
         }
       >
+        
         {children}
       </main>
     </>

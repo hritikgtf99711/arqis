@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { BASE_ADMIN } from "../../../../config";
-import DynamicForm from "@/src/admin/components/form/DynamicForm";
 import { useApi } from "@/admin/hooks/useApi";
-import { useCrud } from "@/src/admin/hooks/useCrud";
 import { useParams } from "next/navigation";
-
+import DynamicForm from "@/admin/components/form/DynamicForm";
+import { useCrud } from "@/admin/hooks/useCrud";
 const Project = () => {
   const { id } = useParams();
   const api = useApi(BASE_ADMIN);

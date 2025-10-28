@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import DynamicForm from "./DynamicForm";
-import { useCrud } from "@/src/admin/hooks/useCrud";
 import { formatFormData } from "../../utils/formatFormData";
-// import { formatFormData } from "@/src/admin/utils/formatFormData";
+import { useCrud } from "@/admin/hooks/useCrud";
+// import { formatFormData } from "@/admin/utils/formatFormData";
 
 // normalize helper
 const normalizeApiResponse = (apiData, fields) => {

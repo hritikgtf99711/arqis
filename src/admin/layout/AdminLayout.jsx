@@ -1,8 +1,8 @@
 "use client";
 
-import Header from "@/src/admin/components/header/Header";
-import LeftSidebar from "@/src/admin/components/header/LeftSidebar";
-import RightSidebar from "@/src/admin/components/header/RightSidebar";
+import Header from "@/admin/components/header/Header";
+import LeftSidebar from "@/admin/components/header/LeftSidebar";
+import RightSidebar from "@/admin/components/header/RightSidebar";
 import { ToastContainer } from "react-toastify";
 import { usePathname, useParams } from "next/navigation";
 import { useEffect } from "react";

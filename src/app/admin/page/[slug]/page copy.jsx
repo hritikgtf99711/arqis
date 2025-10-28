@@ -5,10 +5,10 @@ import { FaUpload } from "react-icons/fa";
 import { useParams } from "next/navigation";
 import { useApi } from "@/admin/hooks/useApi";
 import { BASE_ADMIN, BASE_URL } from "../../../../../config";
-import Card from "@/src/admin/components/card/Card";
-import CardHeading from "@/src/admin/components/card/CardHeading";
-import Label from "@/src/admin/components/form/Label";
-import TextInput from "@/src/admin/components/form/TextInput";
+import Card from "@/admin/components/card/Card";
+import CardHeading from "@/admin/components/card/CardHeading";
+import Label from "@/admin/components/form/Label";
+import TextInput from "@/admin/components/form/TextInput";
 import { toast } from "react-toastify";
 
 const Homepage = () => {

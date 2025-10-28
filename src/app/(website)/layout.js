@@ -17,12 +17,12 @@ export const dynamic = "force-static";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.variable}>
-        <div id="header-portal" />
+       <div>       
+     <div id="header-portal" />
         <div id="footer-portal" />
         {children}
-      </body>
-    </html>
+        </div>
+
+    
   );
 }

@@ -1,12 +1,12 @@
 "use client";
 import { BASE_ADMIN } from "../../../../../config";
-import Card from "@/src/admin/components/card/Card";
-import CardHeading from "@/src/admin/components/card/CardHeading";
-import DynamicForm from "@/src/admin/components/form/DynamicForm";
-import TableContainer from "@/src/admin/components/table/TableContainer";
+import Card from "@/admin/components/card/Card";
+import CardHeading from "@/admin/components/card/CardHeading";
+import DynamicForm from "@/admin/components/form/DynamicForm";
+import TableContainer from "@/admin/components/table/TableContainer";
 import { useApi } from "@/admin/hooks/useApi";
 import { useCrud } from "@/admin/hooks/useCrud";
-import { formatFormData } from "@/src/admin/utils/formatFormData";
+import { formatFormData } from "@/admin/utils/formatFormData";
 import { useParams, useRouter } from "next/navigation";
 import React, { useState } from "react";
 

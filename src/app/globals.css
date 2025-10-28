@@ -204,3 +204,492 @@ input[type="file"]::-ms-browse {
   .leaf_icon {width: 40%;}
 
 }
+@import "tailwindcss";
+
+html,
+body {
+  scroll-behavior: smooth;
+  /* Ensures smooth scrolling in browsers like Firefox */
+}
+
+#smooth-content {
+  will-change: transform;
+  -webkit-will-change: transform;
+}
+
+:root {
+  --admin-primary: #53c5cf;
+  --admin-secondary: #d74e34;
+  --admin-yellow: #f7ab5d;
+  --theme1: #263a7f
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  position: relative;
+}
+
+body.admin-body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden !important;
+  background-image: linear-gradient(#181a26 1px, transparent 1px), linear-gradient(to right, #181a26 1px, #292b37 1px);
+  background-size: 3px 3px;
+}
+
+.ck.ck-editor__editable_inline {
+  background: transparent !important;
+  color: #fff !important;
+  min-height: 250px;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+a,
+select {
+  cursor: pointer;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-container {
+  overflow-x: hidden;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #1e40af;
+  width: 30px;
+  height: 30px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+}
+
+.font-lato {
+  font-family: "Lato", sans-serif;
+}
+
+@font-face {
+  font-family: "SangBleuSans";
+  src: url("/assets/fonts/sangbleu-sans-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "StringFree";
+  src: url("/assets/fonts/stringfree.otf") format("truetype");
+}
+
+.font-sangbleu {
+  font-family: "SangBleuSans", sans-serif;
+}
+
+.font-stringfree {
+  font-family: "StringFree";
+}
+
+@keyframes expandFadeIn {
+  0% {
+    opacity: 0;
+    width: 0px;
+  }
+
+  100% {
+    opacity: 1;
+    width: 512px;
+  }
+}
+
+.animate-expand {
+  animation: expandFadeIn 1.2s ease-in-out forwards;
+}
+
+.wrapper {
+  padding-inline: 20px;
+  padding-block: 40px;
+}
+
+.wrapper2 {
+  padding-inline: 20px;
+  padding-top: 40px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.72) 1.05%,
+      rgba(148, 147, 147, 0) 35.82%);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.text-primaryred {
+  color: #b3162f;
+}
+
+.text-primaryblue {
+  color: #263a7f;
+}
+
+.bg-primaryblue {
+  background-color: #263a7f;
+}
+
+.platter_slider .swiper-slide {
+  width: 76% !important
+}
+
+
+.carousel-control .swiper-button-next,
+.carousel-control .swiper-button-prev {
+  position: relative;
+  bottom: 80px;
+  margin-bottom: 0 !important;
+  right: 0;
+  left: inherit !important;
+  margin: 0 auto;
+  margin-right: 0;
+  width: 50px;
+  z-index: 2;
+  background: url('/assets/next.png') no-repeat;
+  background-size: 26px;
+}
+
+.carousel-control .swiper-button-prev {
+  bottom: 36px;
+  right: 50px;
+  background: url('/assets/prev.png') no-repeat;
+  background-size: 26px;
+}
+
+/* .carousel-control .swiper-button-next:hover,
+.carousel-control .swiper-button-prev:hover {
+  background: lab(43.11% -0.13 -1.96);
+} */
+
+.carousel-control .swiper-button-prev:after,
+.carousel-control .swiper-button-next:after {
+  display: none;
+}
+
+.myCareerlider .swiper-button-next {
+  bottom: 15px;
+}
+
+.myCareerlider .swiper-button-prev {
+  bottom: -30px;
+}
+
+.common_font {
+  font-size: 14px;
+}
+
+#other-blogs .swiper-button-prev {
+  bottom: 0;
+}
+
+#other-blogs .swiper-button-next {
+  bottom: 44px;
+}
+
+.an_btn1 {
+  position: relative;
+}
+
+.an_btn1:before {
+  position: absolute;
+  content: "";
+  transition: 0.3s ease-out;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0%;
+  width: 100%;
+  background: var(--theme1);
+  z-index: -1;
+}
+
+.an_btn1:hover span {
+  color: #fff;
+}
+
+.an_btn1:hover::before {
+  height: 100%;
+}
+
+
+
+/* button animation 2 */
+
+/* Default state (before hover) */
+.btn_an2 {
+  position: relative;
+  display: inline-block;
+}
+
+.btn_an2::before,
+.btn_an2::after {
+  content: "";
+  position: absolute;
+  height: 0;
+  width: 1px;
+  background-color: var(--theme1);
+  transition: height 0.3s ease-in-out;
+}
+
+.btn_an2::before {
+  top: 0;
+  left: 0;
+  transition: height 0.3s ease-in-out;
+}
+
+.btn_an2::after {
+  bottom: 0;
+  right: 0;
+  transition: height 0.3s ease-in-out;
+}
+
+/* Left and Right Lines animation */
+.btn_an2:hover::before {
+  height: 50%;
+  /* Adjust the width based on your preference */
+}
+
+.btn_an2:hover::after {
+  height: 50%;
+}
+
+/* Top to Bottom animation for left line */
+.btn_an2:hover::before {
+  top: 0;
+  left: 0;
+  height: 100%;
+  transition: 0.3s ease-out;
+}
+
+/* Bottom to Top animation for right line */
+.btn_an2:hover::after {
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  transition: 0.3s ease-out;
+}
+
+
+.popup-scroll {
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  max-height: 60vh;
+  /* or as per your design */
+  overflow-y: auto;
+}
+
+.styled-btn {
+  display: flex;
+  align-items: center;
+  height: 40px !important;
+  width: 40px !important;
+  justify-content: center;
+  border-radius: 100%;
+  transition: all 0.3s ease;
+}
+
+.styled-btn:hover {
+  background: lab(91.6229% -.159085 -2.26791);
+}
+
+.styled-btn img,
+.styled-btn svg {
+  width: 25px;
+  height: 25px;
+}
+
+
+@media (width >=64rem
+  /* 1024px */
+) {
+  .wrapper {
+    padding-inline: 100px;
+    padding-block: 100px;
+  }
+
+  .wrapper2 {
+    padding-inline: 100px;
+    padding-top: 100px;
+  }
+
+  .common_font {
+    font-size: 16px;
+  }
+}
+
+
+.headermenu {
+  overflow: auto !important;
+}
+
+
+.team_sec .swiper-button-prev:after,
+.team_sec .swiper-button-next:after {
+  display: none;
+}
+
+.yarl__caption {
+  text-align: center !important;
+  /* Center text */
+  font-size: 1rem !important;
+  /* Adjust size */
+  font-weight: 500;
+  /* Make it bolder */
+}
+
+/* media query */
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+  .headermenu .top-nav {
+    padding: 10px 0;
+  }
+
+  .headermenu .top-nav .header_logo {
+    width: 90px;
+  }
+
+  .headermenu .top-nav .close {
+    font-size: 14px;
+  }
+
+  .headermenu .top-nav .close svg {
+    width: 20px;
+  }
+
+  .headermenu .middelnav {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .headermenu .middelnav .navImages img {
+    height: 300px;
+  }
+
+  .headermenu .middelnav .navItems {
+    gap: 20px;
+  }
+
+  .headermenu .middelnav .navItems li a {
+    font-size: 18px;
+  }
+
+  .headermenu .footernav {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .pillers_slider .piller_col {
+    width: 310px !important;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .platter_slider .swiper-slide {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  .carousel-control .swiper-button-prev,
+  .carousel-control .swiper-button-next {
+    background-size: 25px;
+  }
+
+  .homepage-ctrlp-btns {
+    display: flex;
+    justify-content: space-between;
+    left: inherit;
+    right: inherit;
+    width: 100%;
+    top: 58%;
+  }
+
+  .homepage-ctrlp-btns .swiper-button-next {
+    left: 0;
+  }
+
+  .homepage-ctrlp-btns .swiper-button-prev {
+    right: 0;
+    left: unset;
+  }
+
+  .styled-btn {
+    height: 30px;
+    width: 30px;
+  }
+
+  .styled-btn:hover {
+    background: unset;
+  }
+
+  .styled-btn img,
+  .styled-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+}
+
+.swiper-button-disabled {
+  opacity: 0.3;
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+  .township_location_advantage_section svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .township_location_advantage_section .sticky-heading h1 {
+    font-size: 1.5rem;
+    /* Decrease heading size for smaller screens */
+  }
+
+  .scroll-down-text {
+    font-size: 1rem;
+  }
+}
+
+.township_location_advantage_section svg {
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}
+
+.content_sec {
+  background: linear-gradient(2deg, black, transparent);
+}
+
+/* .arrow_container */

@@ -39,7 +39,7 @@ const LeftSidebar = () => {
         <li className="mb-[10px] flex justify-center">
           <Link href="/" className='flex items-center justify-start'>
               <span className="icon min-w-[80px] flex justify-center">
-                <img src="/assets/white-anant.png" alt="logo-icon" className="w-[50px]" />
+                <img src="/assets/logo.png" alt="logo-icon" className="w-[50px]" />
               </span>
                 {/* <span className="title whitespace-nowrap"><img src="/assets/white-anant.png" alt="logo" /></span>  */}
           </Link>

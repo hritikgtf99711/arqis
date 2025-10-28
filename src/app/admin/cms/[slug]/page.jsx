@@ -4,14 +4,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useApi } from "@/admin/hooks/useApi";
 import { BASE_ADMIN } from "@/config";
-import { useCrud } from "@/src/admin/hooks/useCrud";
-import DynamicForm from "@/src/admin/components/form/DynamicForm";
-import Card from "@/src/admin/components/card/Card";
-import CardHeading from "@/src/admin/components/card/CardHeading";
-import TableContainer from "@/src/admin/components/table/TableContainer";
-import { formatFormData } from "@/src/admin/utils/formatFormData";
+import { useCrud } from "@/admin/hooks/useCrud";
+import DynamicForm from "@/admin/components/form/DynamicForm";
+import Card from "@/admin/components/card/Card";
+import CardHeading from "@/admin/components/card/CardHeading";
+import TableContainer from "@/admin/components/table/TableContainer";
+import { formatFormData } from "@/admin/utils/formatFormData";
 import { toast } from "react-toastify";
-import SearchInput from "@/src/admin/components/table/SearchInput";
+import SearchInput from "@/admin/components/table/SearchInput";
 
 const sectionConfigs = {
   platter: {

@@ -1,10 +1,10 @@
 "use client"
 import { BASE_ADMIN } from '../../../../config';
-import Card from '@/src/admin/components/card/Card';
-import CardHeading from '@/src/admin/components/card/CardHeading';
-import TableContainer from '@/src/admin/components/table/TableContainer';
+import Card from '@/admin/components/card/Card';
+import CardHeading from '@/admin/components/card/CardHeading';
+import TableContainer from '@/admin/components/table/TableContainer';
 import { useApi } from '@/admin/hooks/useApi';
-import { useCrud } from '@/src/admin/hooks/useCrud';
+import { useCrud } from '@/admin/hooks/useCrud';
 import React from 'react'
 
 const tableHead = ["Name", "Mobile", "Email", "Message"];

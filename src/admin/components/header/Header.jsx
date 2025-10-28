@@ -16,7 +16,7 @@ const Header = ({ onLogout }) => {
     >
       <div>
         <img
-          src="/assets/white-anant.png"
+          src="/assets/logo.png"
           alt="logo"
           className="w-[100px] block"
         />

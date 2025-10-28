@@ -47,7 +47,6 @@ const RightSidebar = ({projectId,activeSlug}) => {
           </button>
         </li>
 
- {/* Static "Basic" item */}
         <li
         
             data-tooltip-id="right-sidebar-tooltip"

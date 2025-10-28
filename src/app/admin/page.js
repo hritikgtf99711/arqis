@@ -58,11 +58,11 @@ const Dashboard = () => {
   return (
     <section className=" grid grid-cols-12 gap-6 body-detail">
       <div className="col-span-8">
+        
         <div className="grid grid-cols-12 gap-3">
           <div className="col-span-6"><ProjectCard data={totalProject}/></div>
           <div className="col-span-6"><TestimonialCard/></div>
         </div>
-        SAsSAsSAsAS
         <SectionsCard title="Pages" icon={RiPagesFill} data={pages} link="page"/>
         <SectionsCard title="Projects Sections" icon={RiPagesFill} data={ProjectsPages} link="cms"/>
         <SectionsCard title="Platter Sections" icon={RiPagesFill} data={PlatterSections} link="platter"/>
