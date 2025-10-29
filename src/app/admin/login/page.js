@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { API_BASE_URL } from "../../../../config";
+import { BASE_URL } from "../../../../config";
 import { useApi } from "@/admin/hooks/useApi";
 
 const Login = () => {
   const router = useRouter();
-  const { post, loading, error } = useApi(API_BASE_URL);
+  const { post, loading, error } = useApi(BASE_URL);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [localError, setLocalError] = useState("");

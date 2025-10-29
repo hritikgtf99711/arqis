@@ -18,7 +18,7 @@ const page = () => {
   return (
     <section>
       <Card className="!p-[40px]">
-        <CardHeading>Our Projects Table</CardHeading>
+        <CardHeading>Enquiries</CardHeading>
         <TableContainer
           head={tableHead}
           data={tableData}

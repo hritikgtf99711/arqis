@@ -60,8 +60,8 @@ const Dashboard = () => {
       <div className="col-span-8">
         
         <div className="grid grid-cols-12 gap-3">
-          <div className="col-span-6"><ProjectCard data={totalProject}/></div>
-          <div className="col-span-6"><TestimonialCard/></div>
+          <div className="col-span-12"><ProjectCard data={totalProject}/></div>
+          {/* <div className="col-span-6"><TestimonialCard/></div> */}
         </div>
         <SectionsCard title="Pages" icon={RiPagesFill} data={pages} link="page"/>
         <SectionsCard title="Projects Sections" icon={RiPagesFill} data={ProjectsPages} link="cms"/>
