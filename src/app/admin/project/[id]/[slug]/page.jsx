@@ -1,5 +1,4 @@
 "use client";
-import { BASE_ADMIN } from "@/config";
 import Card from "@/admin/components/card/Card";
 import CardHeading from "@/admin/components/card/CardHeading";
 import DynamicForm from "@/admin/components/form/DynamicForm";
@@ -12,7 +11,7 @@ import { useParams } from "next/navigation";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { BASE_ADMIN } from "../../../../../../config";
 // --- Centralized Config ---
 const staticSectionConfigs = {
   banner: {
