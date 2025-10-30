@@ -10,19 +10,19 @@ import ProjectList from "@/admin/components/card/ProjectList";
 
 const pages=[
   {name:"Home",slug:"home"},
-  {name:"About",slug:"about"},
-  {name:"Contact",slug:"contact"},
-  {name:"CSR",slug:"csr"},
-  {name:"Media Center",slug:"media-center"},
+  // {name:"About",slug:"about"},
+  // {name:"Contact",slug:"contact"},
+  // {name:"CSR",slug:"csr"},
+  // {name:"Media Center",slug:"media-center"},
   {name:"Career",slug:"career"},
-  {name:"Awards",slug:"awards"},
-  {name:"Our Blogs",slug:"our-blogs"},
-  {name:"Investor",slug:"investor"},
-  {name:"Township",slug:"township"},
-  {name:"Board of Directors",slug:"team-categories"},
-]
-
-const ProjectsPages=[
+  // {name:"Awards",slug:"awards"},
+  // {name:"Our Blogs",slug:"our-blogs"},
+  // {name:"Investor",slug:"investor"},
+  // {name:"Township",slug:"township"},
+  // {name:"Board of Directors",slug:"team-categories"},
+] 
+  
+const ProjectsPages=[ 
   {name:"Platter",slug:"platter"},
   {name:"Typologies",slug:"typologies"},
   {name:"Sub Typologies",slug:"sub-typologies"},
@@ -33,19 +33,21 @@ const PlatterSections=[
 ];
 const CMSPages=[
   {name:"Pages",slug:"pages",},
-  {name:"Timeline",slug:"timeline"},
-  {name:"Amenities Logo",slug:"amenities-logo"},
-  {name:"Awards",slug:"award"},
+  // {name:"Timeline",slug:"timeline"},
+  // {name:"Amenities Logo",slug:"amenities-logo"},
+  // {name:"Awards",slug:"award"},
   {name:"News",slug:"news"},
+  {name:"New Channels",slug:"news-channel"},
   {name:"Blogs",slug:"blog"},
   {name:"Our Team",slug:"our-team"},
-  {name:"Testimonial",slug:"testimonial"},
-  {name:"Our Story",slug:"our-story"},
-  {name:"Brand Pillars",slug:"pillar"},
-  {name:"Csr List",slug:"csr-list"},
-  {name:"Csr Gallery",slug:"csr-gallery"},
-  {name:"Career Gallery",slug:"career-galleries"},
-  {name:"Event Gallery",slug:"event-galleries"},
+  
+  // {name:"Testimonial",slug:"testimonial"},
+  // {name:"Our Story",slug:"our-story"},
+  // {name:"Brand Pillars",slug:"pillar"},
+  // {name:"Csr List",slug:"csr-list"},
+  // {name:"Csr Gallery",slug:"csr-gallery"},
+  // {name:"Career Gallery",slug:"career-galleries"},
+  // {name:"Event Gallery",slug:"event-galleries"},
   {name:"Jobs",slug:"jobs"},
   {name:"Press Kit",slug:"press-kit"},
   {name:"Press Kit Logos",slug:"press-kit-logos"},
@@ -65,7 +67,7 @@ const Dashboard = () => {
         </div>
         <SectionsCard title="Pages" icon={RiPagesFill} data={pages} link="page"/>
         <SectionsCard title="Projects Sections" icon={RiPagesFill} data={ProjectsPages} link="cms"/>
-        <SectionsCard title="Platter Sections" icon={RiPagesFill} data={PlatterSections} link="platter"/>
+        {/* <SectionsCard title="Platter Sections" icon={RiPagesFill} data={PlatterSections} link="platter"/> */}
         <SectionsCard title="CMS Sections" icon={RiPagesFill} data={CMSPages} link="cms"/>
       </div>
       <div className="col-span-4">
