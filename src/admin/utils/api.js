@@ -63,7 +63,7 @@ export const getTimeline = () => fetchApi("get-timeline?limit=50&order_by=DESC")
 //aboutus
 export const getTestimonials = () => fetchApi("testimonial");
 export const getTeams = () => fetchApi("website/team");
-export const getBrandPillar = () => fetchApi("brand-pillar");
+export const getjobs = () => fetchApi("website/jobs");
 export const getVisionMission = () => fetchApi("section/vison_and_mission");
 export const getOverview = () => fetchApi("/section/about_us_overview");
 export const getStory = (slug) => fetchApi(`/our-story-and-manifastro/${slug}`).then(res => res.data || []);
@@ -74,6 +74,8 @@ export const getPlatterData = (platter) => fetchApi(`get-platterdata/${platter}`
 export const getPlatterProjects = (platter) => fetchApi(`getplatter-projects/${platter}`);
 
 //project
+export const getProjects = () => 
+  fetchApi(`website/page/our-project`);
 export const getProjectBySlug = (slug) => fetchApi(`project/${slug}`);
 export const getProjectSection = (id,slug)=> fetchApi(`/project/${id}/${slug}`)
 export const getProjectMasterPlans = (id) => fetchApi(`/project/${id}/floor-plans?type=masterplan`);
@@ -91,11 +93,11 @@ export const getCsrGallery = () => fetchApi("csr-galleries/2025");
 export const getMediaNews = (news) => fetchApi(news);
 export const getMediaPresskit = () => fetchApi(presskit);
 export const getBlogs = (limit, order, page = 1) => 
-  fetchApi(`blog?order_by=${order}&limit=${limit}&page=${page}`);
+  fetchApi(`website/blog?order_by=${order}&limit=${limit}&page=${page}`);
 export const getBlogDetails = (slug)=>fetchApi(`/blog/${slug}`)
 //career
 export const submitCareerForm = (payload) =>
-  postApi("job-form", payload);
+  postApi("website/job-form", payload);
 //career
 export const submitContactForm = (payload) =>
   postApi("save-enquiry", payload);
@@ -106,3 +108,4 @@ export const getAwardGallery = (year)=> fetchApi(`award-gallery/${year}`)
 export const fetchGallery = (tabId,subtabId)=>fetchApi(`get-gallery-by-platter-and-status/${tabId}/${subtabId}`)
 export const fetchEventYear = ()=> fetchApi(`/get-years/event-galleries`)
 export const fetchEventGalleries = (year)=> fetchApi(`/event-galleries/${year}`)
+

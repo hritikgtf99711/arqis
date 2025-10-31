@@ -20,9 +20,10 @@ const blogData = [
   },
 ];
 
-export default function BlogContainer() {
+export default function BlogContainer({blogsData}) {
   const [hoveredSlide, setHoveredSlide] = useState(null);
 
+  // console.log(blogsData,"blogsData")
   const scrollableRef = useRef(null);
 
   const close = () => setHoveredSlide(null);
@@ -31,11 +32,11 @@ export default function BlogContainer() {
     <div className="container   lg:pb-0 pb-[60px] lg:pt-0 !pt-[40px] parallax">
       <CommonHeading customClass="fade-up" heading="The Arqis Edit" />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 lg:gap-20 mt-[35px] lg:pb-0 pb-[60px]">
-        {blogData.map((blog, index) => (
+        {blogsData.map((blog, index) => (
           <div key={index} className="col-span-1 cursor-pointer">
             <BlogCard
               image={blog.image}
-              heading={blog.heading}
+              heading={blog.title}
               index={index}
               setHoveredSlide={setHoveredSlide}
             />

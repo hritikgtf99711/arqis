@@ -2,15 +2,20 @@
 import CommonHeading from '@/website/utils/CommonHeading'
 import React, { useState } from "react";
 import Image from "next/image";
+import { submitCareerForm } from '@/admin/utils/api';
 
 export default function Form() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    mobile: "",
+    experience: "",
     message: "",
+    file: null,
   });
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -30,11 +35,15 @@ export default function Form() {
       newErrors.email = "Invalid email format";
     }
 
-    const phoneRegex = /^\+?[\d\s-]{10,}$/;
-    if (!formData.phone) {
-      newErrors.email = "Phone number is required";
-    } else if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = "Invalid phone number";
+    const mobileRegex = /^\+?[\d\s-]{10,}$/;
+    if (!formData.mobile) {
+      newErrors.mobile = "mobile number is required"; // Fixed: was newErrors.email
+    } else if (!mobileRegex.test(formData.mobile)) {
+      newErrors.mobile = "Invalid phone number";
+    }
+
+    if (!formData.experience) {
+      newErrors.experience = "Experience level is required";
     }
 
     if (!formData.message) {
@@ -43,21 +52,61 @@ export default function Form() {
       newErrors.message = "Message must be at least 10 characters";
     }
 
+    if (!formData.file) {
+      newErrors.file = "Resume is required";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "file") {
+      setFormData((prev) => ({ ...prev, file: e.target.files[0] || null }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+    // Clear error on change
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log("Form submitted:", formData);
-      setFormData({ name: "", email: "", phone: "", message: "" });
-      setErrors({});
+      setLoading(true);
+      try {
+        // Create FormData to properly handle file upload
+        const submitData = new FormData();
+        submitData.append('name', formData.name);
+        submitData.append('email', formData.email);
+        submitData.append('mobile', formData.mobile);
+        submitData.append('experience', formData.experience);
+        submitData.append('message', formData.message);
+        if (formData.file) {
+          submitData.append('file', formData.file);
+        }
+
+        await submitCareerForm(submitData);
+        console.log("Form submitted:", Object.fromEntries(submitData)); // Log FormData entries for debugging
+        setFormData({ 
+          name: "", 
+          email: "", 
+          mobile: "", 
+          experience: "", 
+          message: "", 
+          file: null 
+        });
+        setErrors({});
+        setSubmitSuccess(true);
+      } catch (error) {
+        console.error("Submission failed:", error);
+        setErrors({ submit: "Failed to submit form. Please try again." });
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -68,9 +117,15 @@ export default function Form() {
         heading={`Step Into Your Future`}
       />
       <form className="mt-[30px]" onSubmit={handleSubmit}>
+        {submitSuccess && (
+          <p className="text-green-500 text-sm mb-4">Form submitted successfully!</p>
+        )}
+        {errors.submit && (
+          <p className="text-red-500 text-sm mb-4">{errors.submit}</p>
+        )}
         <div className="input-container mb-[15px]">
           <input
-            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
+            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] border border-gray-300 ${
               errors.name ? "border-red-500" : ""
             }`}
             placeholder="name"
@@ -85,7 +140,7 @@ export default function Form() {
         </div>
         <div className="input-container mb-[15px]">
           <input
-            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
+            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] border border-gray-300 ${
               errors.email ? "border-red-500" : ""
             }`}
             placeholder="mail id"
@@ -100,82 +155,86 @@ export default function Form() {
         </div>
         <div className="input-container mb-[15px]">
           <input
-            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
-              errors.phone ? "border-red-500" : ""
+            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] border border-gray-300 ${
+              errors.mobile ? "border-red-500" : "" 
             }`}
             placeholder="phone number"
             type="tel"
-            name="phone"
-            value={formData.phone}
+            name="mobile"
+            value={formData.mobile}
             onChange={handleChange}
           />
-          {errors.phone && (
-            <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+          {errors.mobile && (
+            <p className="text-red-500 text-sm mt-1">{errors.mobile}</p>
           )}
         </div>
 
         <div className="input-container mb-[15px]">
           <select
-            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
-              errors.phone ? "border-red-500" : ""
+            className={`bg-[#fff] w-[100%] py-[15px] px-[20px] border border-gray-300 ${
+              errors.experience ? "border-red-500" : ""
             }`}
-            placeholder="phone number"
-            type="tel"
-            name="phone"
-            value={formData.phone}
+            name="experience"
+            value={formData.experience}
             onChange={handleChange}
           >
-            <option value={"1 Year"}>1 Year</option>
-            <option value={"2 Year"}>2 Year</option>
-            <option value={"3 Year"}>3 Year</option>
+            <option value="">Select experience</option>
+            <option value="1 Year">1 Year</option>
+            <option value="2 Year">2 Year</option>
+            <option value="3 Year">3 Year</option>
           </select>
-          {errors.phone && (
-            <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+          {errors.experience && (
+            <p className="text-red-500 text-sm mt-1">{errors.experience}</p>
           )}
         </div>
         <div className="input-container mb-[15px]">
-          <input
-            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
+          <textarea
+            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] border border-gray-300 resize-vertical ${
               errors.message ? "border-red-500" : ""
             }`}
             placeholder="Message"
-            type="text"
             name="message"
             value={formData.message}
             onChange={handleChange}
+            rows={4}
           />
           {errors.message && (
             <p className="text-red-500 text-sm mt-1">{errors.message}</p>
           )}
         </div>
 
-         <div className="input-container mb-[15px]">
+        <div className="input-container mb-[15px]">
           <input
-            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
-              errors.message ? "border-red-500" : ""
+            className={`bg-[#fff] w-[100%] py-[15px] px-[20px] border border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#FFD38F] file:text-gray-700 hover:file:bg-[#FFD38F]/80 ${
+              errors.file ? "border-red-500" : ""
             }`}
-            placeholder="Message"
+            placeholder="Upload Resume"
             type="file"
-            name="message"
-            value={formData.message}
+            name="file"
             onChange={handleChange}
           />
-          {errors.message && (
-            <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+          {errors.file && (
+            <p className="text-red-500 text-sm mt-1">{errors.file}</p>
           )}
         </div>
 
-        <div className="input-container inline-flex pt-[15px]">
-          <button type="submit" className="uppercase  tracking-[1.2] text-white cursor-pointer">
-            Submit Now
+        <div className="input-container inline-flex pt-[15px] items-center">
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="uppercase tracking-[1.2] text-white cursor-pointer rounded disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loading ? "Submitting..." : "Submit Now"}
           </button>
-          <Image
-            src={`/assets/icons/arrow-tilt-white.png`}
-            className="me-10 objrct-contain"
-            alt="arrow title"
-            height={35}
-            width={35}
-          />
+          {!loading && (
+            <Image
+              src={`/assets/icons/arrow-tilt-white.png`}
+              className="ml-2 object-contain" // Fixed: me-10 to ml-2, objrct to object
+              alt="arrow title"
+              height={35}
+              width={35}
+            />
+          )}
         </div>
       </form>
     </div>
