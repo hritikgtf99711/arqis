@@ -1,4 +1,3 @@
-"use client";
 import LogoSection from "@/website/components/home/LogoSection";
 import HorizontalLayout from "./HorizontalLayout";
 import About from "@/website/components/aboutus/About";
@@ -9,7 +8,13 @@ import FooterContainer from "@/website/components/footer/FooterContainer";
 import CareerContainer from "@/website/components/career/CareerContainer";
 import ContactformContainer from "@/website/components/contactform/ContactformContainer"
 import ProjectContainer from "@/website/components/projects/ProjectContainer";
-export default function DesktopLayout() {
+import { getTeams } from "@/admin/utils/api";
+export default async function DesktopLayout() {
+  const [teamsData] = await Promise.all(
+  [ getTeams()]);
+
+  // console.log("teamsData", teamsData);
+
   return (
 
     <HorizontalLayout>
@@ -24,7 +29,7 @@ export default function DesktopLayout() {
           <ProjectContainer />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full flex items-center">
-          <TeamContainer />
+          <TeamContainer teamsData={teamsData.data} />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
           <CareerContainer />

@@ -165,15 +165,15 @@ const sectionConfigs = {
   news: {
     fields: [
       { type: "date", name: "date_at", label: "Date" },
-      { type: "image", name: "logo", label: "Logo" },
+      { type: "text", name: "title", label: "Title" },
       { type: "image", name: "image", label: "Image" },
       { type: "text", name: "alt", label: "Alt Tag" },
       { type: "text", name: "short_description", label: "Short Description" },
       { type: "text", name: "link", label: " Link" },
       {
         type: "dropdown",
-        name: "status",
-        label: "Active Status",
+        name: "channel_id",
+        label: "Channels",
         options: [
           { label: "Active", value: 1 },
           { label: "Inactive", value: 0 },
@@ -359,9 +359,11 @@ const sectionConfigs = {
   },
   "news-channel":{
     fields:[
-       { type: "image", name: "file", label: "Image" },
+       { type: "text", name: "name", label: "Name" },
+       { type: "image", name: "logo", label: "Image" },
+        { type: "text", name: "alt", label: "alt" },
     ],
-    table: { head: ["Year", "Image", "Alt"], header: ["year", "image", "alt"] },
+    table: { head: ["Name", "Image", "Alt"], header: ["name", "image", "alt"] },
     endpoint: "newschannel",
     label: "News Channel",
   },

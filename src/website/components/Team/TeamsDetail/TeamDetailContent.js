@@ -2,8 +2,8 @@ import React from "react";
 import CommonHeading from "@/website/utils/CommonHeading";
 import Paragraph from "@/website/utils/Paragraph";
 import Image from "next/image";
-export default function TeamDetailContent({onClose}) {
-
+export default function TeamDetailContent({onClose,teamsData}) {
+console.log("teamsData in detail",teamsData);
   return (
     <div>
       <div onClick={onClose} className="cross absolute cursor-pointer top-[80px] right-[100px]">
@@ -18,29 +18,15 @@ export default function TeamDetailContent({onClose}) {
       <div className="max-w-[80%]">
         <CommonHeading
           customClass={"pb-[40px] text-[#FFD38F]"}
-          heading="Manish sharma Chairman & MD, Arqis Group"
+          heading={teamsData?.name||'Director Manish sharma'}
         />
       </div>
       <Paragraph
         customClass={`text-white mb-[25px]`}
-        paragraph={`Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of.`}
+        paragraph={teamsData?.description}
       />
-      <Paragraph
-        customClass={`text-white`}
-        paragraph={` Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.`}
-      />
-
       <Image
-        src={`/assets/teams/teams_detail/sign.png`}
+        src={teamsData?.signature||`/assets/teams/sign.png`}
         alt="sign"
         className="mt-[30px]"
         height={141}

@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useRef } from "react";
 import CommonHeading from '@/website/utils/CommonHeading'
 import BlogCard from "./BlogCard";

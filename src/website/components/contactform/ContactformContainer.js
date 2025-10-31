@@ -1,3 +1,5 @@
+
+"use client"
 import React from 'react'
 import ScrollLayout from '@/website/utils/ScrollLayout'
 import Form from './Form'

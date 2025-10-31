@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import ContentSec from "./ContentSec";
 import ExperienceContent from "./ExperienceContent";
