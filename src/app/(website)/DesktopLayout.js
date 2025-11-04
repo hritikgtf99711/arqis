@@ -10,12 +10,10 @@ import ContactformContainer from "@/website/components/contactform/ContactformCo
 import ProjectContainer from "@/website/components/projects/ProjectContainer";
 import { getTeams,getBlogs,getjobs ,getProjects} from "@/admin/utils/api";
 export default async function DesktopLayout() {
-  const [teamsData,blogsData,jobsData,projectsData] = await Promise.all(
-  [ getTeams(),getBlogs("10","DESC"),getjobs(),getProjects()]);
+  const [teamsData,blogsData,jobsData,projectsData] = await Promise.all([getTeams(),getBlogs("10","DESC"),getjobs(),getProjects()]);
 console.log("projectsData",projectsData);
   return (
-
-    <HorizontalLayout>
+     <HorizontalLayout>
       <div className="flex h-[100vh] overflow-x-scroll horizontal-section">
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
           <LogoSection />
@@ -28,7 +26,7 @@ console.log("projectsData",projectsData);
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full flex items-center">
           <TeamContainer teamsData={teamsData.data} />
-        </div>
+        </div> 
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
           <CareerContainer jobsData={jobsData.data.data} />
         </div>
