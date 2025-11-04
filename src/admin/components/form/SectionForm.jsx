@@ -66,7 +66,6 @@ const SectionForm = ({ api, sectionKey, config }) => {
   const { tableData } = useCrud(api, `other-sections/get-bytype/${config.type}`);
   const { handleAddOrUpdate } = useCrud(api, "other-sections", [], false);
 
-  // Prefill with namespaced keys
   const prefixedDefaultValues = normalizeApiResponse(tableData[0] || {}, config.fields);
   const namespacedDefaultValues = Object.fromEntries(
     Object.entries(prefixedDefaultValues).map(([key, val]) => [`${sectionKey}_${key}`, val])

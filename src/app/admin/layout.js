@@ -26,8 +26,7 @@ export default function AdminLayout({ children }) {
     document.body.className = "admin-body";
   }, [isLoginPage, router]);
 
-  // ⚠️ Prevent rendering until login check completes
-  // if (!isLoginPage && isChecking) return null;
+  if (!isLoginPage && isChecking) return null;
 
   return (
     <>
@@ -53,7 +52,6 @@ export default function AdminLayout({ children }) {
             : ""
         }
       >
-        
         {children}
       </main>
     </>

@@ -8,10 +8,9 @@ import FooterContainer from "@/website/components/footer/FooterContainer";
 import CareerContainer from "@/website/components/career/CareerContainer";
 import ContactformContainer from "@/website/components/contactform/ContactformContainer"
 import ProjectContainer from "@/website/components/projects/ProjectContainer";
-import { getTeams,getBlogs,getjobs ,getProjects} from "@/admin/utils/api";
+import { getTeams,getBlogs,getjobs ,getProjects,getMission,getMediaNews,getVission,getExperience,getOverview} from "@/admin/utils/api";
 export default async function DesktopLayout() {
-  const [teamsData,blogsData,jobsData,projectsData] = await Promise.all([getTeams(),getBlogs("10","DESC"),getjobs(),getProjects()]);
-console.log("projectsData",projectsData);
+  const [teamsData,blogsData,jobsData,projectsData,missionData,vissionData,experienceData,overviewData,newsData] = await Promise.all([getTeams(),getBlogs("10","DESC"),getjobs(),getProjects(),getMission(),getVission(),getExperience(),getOverview(),getMediaNews()]);
   return (
      <HorizontalLayout>
       <div className="flex h-[100vh] overflow-x-scroll horizontal-section">
@@ -19,7 +18,7 @@ console.log("projectsData",projectsData);
           <LogoSection />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
-          <About />
+          <About missionData={missionData} vissionData={vissionData} experienceData={experienceData} overviewData={overviewData}  />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
           <ProjectContainer />
@@ -31,7 +30,7 @@ console.log("projectsData",projectsData);
           <CareerContainer jobsData={jobsData.data.data} />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full flex items-center">
-          <MediaContainer />
+          <MediaContainer  newsData={newsData}/>
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full flex items-center">
           <BlogContainer blogsData={blogsData.data.data} />

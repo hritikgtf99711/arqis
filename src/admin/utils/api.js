@@ -64,8 +64,12 @@ export const getTimeline = () => fetchApi("get-timeline?limit=50&order_by=DESC")
 export const getTestimonials = () => fetchApi("testimonial");
 export const getTeams = () => fetchApi("website/team");
 export const getjobs = () => fetchApi("website/jobs");
-export const getVisionMission = () => fetchApi("section/vison_and_mission");
-export const getOverview = () => fetchApi("/section/about_us_overview");
+export const getMission = () => fetchApi("website/section/about_mission");
+export const getExperience = () => fetchApi("website/section/about_experience");
+export const getVission = () => fetchApi("website/section/about_vision");
+
+
+export const getOverview = () => fetchApi("website/section/about_overview");
 export const getStory = (slug) => fetchApi(`/our-story-and-manifastro/${slug}`).then(res => res.data || []);
 
 //platter
@@ -90,8 +94,8 @@ export const getCsrGallery = () => fetchApi("csr-galleries/2025");
 
 
 //Media center
-export const getMediaNews = (news) => fetchApi(news);
-export const getMediaPresskit = () => fetchApi(presskit);
+export const getMediaNews = () => fetchApi('website/news');
+// export const getMediaPresskit = () => fetchApi();
 export const getBlogs = (limit, order, page = 1) => 
   fetchApi(`website/blog?order_by=${order}&limit=${limit}&page=${page}`);
 export const getBlogDetails = (slug)=>fetchApi(`/blog/${slug}`)

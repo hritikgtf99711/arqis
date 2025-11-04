@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { useParams } from "next/navigation";
@@ -25,10 +24,14 @@ export const pageSectionConfigs = {
           type: "array",
           name: "other",
           label: "Overview",
-          col:"md:col-span-12",
+          col: "md:col-span-12",
           multiple: false,
           fields: [
-            { type: "text", name: "short_description", label: "Short Description" },
+            {
+              type: "text",
+              name: "short_description",
+              label: "Short Description",
+            },
             { type: "text", name: "year", label: "Year" },
           ],
         },
@@ -43,7 +46,7 @@ export const pageSectionConfigs = {
           type: "array",
           name: "other",
           label: "Counter Items",
-          col:"md:col-span-12",
+          col: "md:col-span-12",
           fields: [
             { type: "number", name: "number", label: "Number" },
             { type: "text", name: "header", label: "Header" },
@@ -55,39 +58,41 @@ export const pageSectionConfigs = {
   },
   about: {
     overview: {
-      type: "about_us_overview",
+      type: "about_overview",
       fields: [
-        { type: "image", name: "mobile_file", label: "Mobile File" },
-        { type: "image", name: "desktop_file", label: "Desktop File" },
         { type: "text", name: "title", label: "Heading" },
         { type: "text", name: "description", label: "Description" },
-        {
-          type: "array",
-          name: "other",
-          label: "Counter Items",
-          multiple:false,
-          fields: [
-            { type: "text", name: "sub_heading", label: "Sub Heading" },
-            { type: "text", name: "short_description", label: "Short Descriptoin" },
-          ],
-        },
       ],
     },
-    vision_mision: {
-      type: "vison_and_mission",
+    experience: {
+      type: "about_experience",
       fields: [
         { type: "image", name: "desktop_file", label: "Desktop Image" },
         { type: "image", name: "mobile_file", label: "Mobile Image" },
-        {
-          type: "array",
-          name: "other",
-          label: "Counter Items",
-          col:"md:col-span-12",
-          fields: [
-            { type: "text", name: "heading", label: "Heading" },
-            { type: "text", name: "description", label: "Descriptoin" },
-          ],
-        },
+        { type: "text", name: "alt_text", label: "Alt" },
+        { type: "text", name: "title", label: "Heading" },
+        { type: "richtext", name: "description", label: "Description" },
+      ],
+    },
+   
+    about_mission: {
+      type: "about_mission",
+      fields: [
+        { type: "image", name: "desktop_file", label: "Desktop Image" },
+        { type: "image", name: "mobile_file", label: "Mobile Image" },
+        { type: "text", name: "alt_text", label: "Alt" },
+        { type: "text", name: "title", label: "Heading" },
+        { type: "richtext", name: "description", label: "Description" },
+      ],
+    },
+     about_vision: {
+      type: "about_vision",
+      fields: [
+        { type: "image", name: "desktop_file", label: "Desktop Image" },
+        { type: "image", name: "mobile_file", label: "Mobile Image" },
+        { type: "text", name: "alt_text", label: "Alt" },
+        { type: "text", name: "title", label: "Heading" },
+        { type: "richtext", name: "description", label: "Description" },
       ],
     },
   },
@@ -102,12 +107,16 @@ export const pageSectionConfigs = {
           type: "array",
           name: "other",
           label: "Contact Info",
-          col:"md:col-span-12",
+          col: "md:col-span-12",
           fields: [
             { type: "text", name: "title", label: "Heading" },
             { type: "text", name: "mail", label: "Mail" },
             { type: "text", name: "number", label: "Phone Number" },
-            { type: "text", name: "second_number", label: "Second Phone Number" },
+            {
+              type: "text",
+              name: "second_number",
+              label: "Second Phone Number",
+            },
           ],
         },
       ],
@@ -124,7 +133,7 @@ export const pageSectionConfigs = {
       ],
     },
   },
-  "media-center":{
+  "media-center": {
     media_center_overview: {
       type: "media_center_overview",
       fields: [
@@ -134,7 +143,6 @@ export const pageSectionConfigs = {
         { type: "text", name: "description", label: "Description" },
       ],
     },
-    
   },
   career: {
     career_overview: {
@@ -168,7 +176,7 @@ export const pageSectionConfigs = {
       ],
     },
   },
-  "our-blogs":{
+  "our-blogs": {
     blog_overview: {
       type: "blog_overview",
       fields: [
@@ -176,8 +184,9 @@ export const pageSectionConfigs = {
         { type: "image", name: "desktop_file", label: "Desktop File" },
         { type: "text", name: "title", label: "Heading" },
       ],
-    }},
-  township:{
+    },
+  },
+  township: {
     township_overview: {
       type: "township_overview",
       fields: [
@@ -187,15 +196,16 @@ export const pageSectionConfigs = {
           type: "array",
           name: "other",
           label: "Overview",
-          col:"md:col-span-12",
+          col: "md:col-span-12",
           multiple: false,
           fields: [
             { type: "text", name: "short_description", label: "Overview" },
           ],
         },
       ],
-    }},
-    "team-categories":{
+    },
+  },
+  "team-categories": {
     team_categories_overview: {
       type: "team_categories_overview",
       fields: [
@@ -203,7 +213,8 @@ export const pageSectionConfigs = {
         { type: "image", name: "desktop_file", label: "Desktop File" },
         { type: "text", name: "title", label: "Heading" },
       ],
-    }},
+    },
+  },
 };
 
 const Homepage = () => {
@@ -224,6 +235,5 @@ const Homepage = () => {
     </section>
   );
 };
-
 
 export default Homepage;

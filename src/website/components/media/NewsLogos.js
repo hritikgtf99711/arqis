@@ -10,18 +10,14 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import MediaContent from "./mediaContainer/MediaContent";
 import MediaLogo from "./mediaContainer/MediaImage";
+import { API_BASE_URL } from "../../../../config";
 
-export default function NewsLogos() {
+export default function NewsLogos({newsData}) {
   const scrollableRef = useRef(null);
   const [hoveredSlide, setHoveredSlide] = useState(null);
 
-  const logosArr = [
-    "/assets/media-center/news/logo_1.png",
-    "/assets/media-center/news/logo_2.png",
-    "/assets/media-center/news/logo_4.png",
-    "/assets/media-center/news/logo_3.png",
-   
-  ];
+  const logosArr =newsData;
+  console.log(logosArr,"logosArr")
 
   const handleMouseEnter = (index) => {
     setHoveredSlide(index);
@@ -79,7 +75,7 @@ export default function NewsLogos() {
           }}
           className="mySwiper"
         >
-          {logosArr.map((src, index) => (
+          {logosArr.map((item, index) => (
             <SwiperSlide key={index} onClick={() => handleMouseEnter(index)}>
               <div
                 className={`flex justify-center items-center cursor-pointer fade-up py-[30px] relative ${
@@ -87,17 +83,17 @@ export default function NewsLogos() {
                 }`}
               >
                 <Image
-                  src={src}
+                  src={API_BASE_URL+item.logo}
                   alt={`Logo ${index + 1}`}
                   height={120}
                   width={120}
-                  className={
-                    src.includes("logo_1.png")
-                      ? "w-[100px] object-contain z-10"
-                      : src.includes("logo_2.png")
-                      ? "w-[400px] m-[auto] object-contain z-10"
-                      : "w-[50%] object-contain z-10"
-                  }
+                  // className={
+                  //   logosArr.includes("logo_1.png")
+                  //     ? "w-[100px] object-contain z-10"
+                  //     : logosArr.includes("logo_2.png")
+                  //     ? "w-[400px] m-[auto] object-contain z-10"
+                  //     : "w-[50%] object-contain z-10"
+                  // }
                 />
               </div>
             </SwiperSlide>
@@ -107,24 +103,24 @@ export default function NewsLogos() {
 
       {/* Static Images Outside Swiper Loop */}
       <div className="static-logos-container border-t-[1px] border-[#000]  py-[50px] lg:hidden block mt-[50px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[60px] lg:gap-4 fade-up">
-        {logosArr.map((src, index) => (
+        {logosArr.map((item, index) => (
           <div
             key={`static-${index}`}
             className="flex items-center cursor-pointer "
             onClick={() => handleMouseEnter(index)}
           >
             <Image
-              src={src}
+              src={item.logo}
               alt={`Static Logo ${index + 1}`}
               height={100}
               width={100}
-              className={
-                src.includes("logo_1.png")
-                  ? "w-[80px] object-contain"
-                  : src.includes("logo_2.png")
-                  ? "w-[200px] m-[auto] object-contain"
-                  : "w-[80%] object-contain"
-              }
+              // className={
+              //   src.includes("logo_1.png")
+              //     ? "w-[80px] object-contain"
+              //     : src.includes("logo_2.png")
+              //     ? "w-[200px] m-[auto] object-contain"
+              //     : "w-[80%] object-contain"
+              // }
             />
           </div>
         ))}

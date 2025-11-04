@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-:root{
-  --primary-green-color:#113120
+:root {
+  --primary-green-color: #113120;
 }
 
 body {
@@ -54,14 +54,12 @@ body.active .icon {
   }
 }
 @media (min-width: 96rem) {
-    .container {
-        max-width: 88rem;
-    }
+  .container {
+    max-width: 88rem;
+  }
 }
 
-
-custom-container 
-.prog {
+custom-container .prog {
   position: relative;
   display: flex;
   justify-content: end;
@@ -113,103 +111,127 @@ body.active .next_text img {
   width: 80%;
 }
 
-.swiper-button-disabled{opacity: 0.5;}
+.swiper-button-disabled {
+  opacity: 0.5;
+}
 .scrollable-container {
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  overscroll-behavior: contain; /* Prevent parent scrolling */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
-.overlay_gradient{background: linear-gradient(rgb(17 49 32 / 0%) 0%, #113120 100%);}
-
+.overlay_gradient {
+  background: linear-gradient(rgb(17 49 32 / 0%) 0%, #113120 100%);
+}
 
 input[type="file"] {
-    background-color: #f9f9f9;
-    padding: 0;
-    height: 51px;
-    text-transform: uppercase;
-    letter-spacing: 1.2;
-    font-size: 14px;
+  background-color: #f9f9f9;
+  padding: 0;
+  height: 51px;
+  text-transform: uppercase;
+  letter-spacing: 1.2;
+  font-size: 14px;
 }
 
 input[type="file"]::file-selector-button {
-    color:#000;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 20px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
   height: 100%;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s ease;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
 }
 
 input[type="file"]::file-selector-button:hover {
-    background-color: #FFE0AF;
+  background-color: #ffe0af;
 }
 
-/* Browser-specific fallbacks */
 input[type="file"]::-webkit-file-upload-button {
-    background-color: #FFE0AF;
-    color:#000;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 20px;
+  background-color: #ffe0af;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
   height: 100%;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 input[type="file"]::-webkit-file-upload-button:hover {
-    background-color: #FFE0AF;
+  background-color: #ffe0af;
 }
 
 input[type="file"]::-ms-browse {
-    background-color: #FFE0AF;
-    color:#000;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 20px;
+  background-color: #ffe0af;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
   height: 100%;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
-
-
-.swiper-3d .swiper-slide-shadow{box-shadow: none;background-color: transparent!important;}
+.swiper-3d .swiper-slide-shadow {
+  box-shadow: none;
+  background-color: transparent !important;
+}
 .custom-progress .swiper-progressbar-fill {
-  background-color: #22c55e; 
+  background-color: #22c55e;
 }
-.swiper-pagination-progressbar.swiper-pagination-horizontal{position: relative;height:1px}
+.swiper-pagination-progressbar.swiper-pagination-horizontal {
+  position: relative;
+  height: 1px;
+}
 
 @media (max-width: 1580px) {
-.projects_container .project_card{flex:0 0 70%}
-.projects_container .project_card h2{font-size: 30px;}
-.teams_card {padding-top: 50px;}
-.teams_card img{margin-top: 20px;}
-.leaf_icon {width: 15%;}
-.drag_button {margin-top: 50px;}
-.parallax h2{font-size: 34px;}
-.custom-container{max-width: 660px;}
-.py_sm{padding: 30px 0;margin: 30px 0;}
+  .projects_container .project_card {
+    flex: 0 0 70%;
+  }
+  .projects_container .project_card h2 {
+    font-size: 30px;
+  }
+  .teams_card {
+    padding-top: 50px;
+  }
+  .teams_card img {
+    margin-top: 20px;
+  }
+  .leaf_icon {
+    width: 15%;
+  }
+  .drag_button {
+    margin-top: 50px;
+  }
+  .parallax h2 {
+    font-size: 34px;
+  }
+  .custom-container {
+    max-width: 660px;
+  }
+  .py_sm {
+    padding: 30px 0;
+    margin: 30px 0;
+  }
 }
 
-
 @media (max-width: 768px) {
-  .leaf_icon {width: 40%;}
-
+  .leaf_icon {
+    width: 40%;
+  }
 }
 @import "tailwindcss";
 
 html,
 body {
   scroll-behavior: smooth;
-  /* Ensures smooth scrolling in browsers like Firefox */
 }
 
 #smooth-content {
@@ -221,16 +243,16 @@ body {
   --admin-primary: #53c5cf;
   --admin-secondary: #d74e34;
   --admin-yellow: #f7ab5d;
-  --theme1: #263a7f
+  --theme1: #263a7f;
 }
-
 
 body.admin-body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden !important;
-  background-image: linear-gradient(#181a26 1px, transparent 1px), linear-gradient(to right, #181a26 1px, #292b37 1px);
+  background-image: linear-gradient(#181a26 1px, transparent 1px),
+    linear-gradient(to right, #181a26 1px, #292b37 1px);
   background-size: 3px 3px;
 }
 
@@ -327,9 +349,11 @@ select {
   right: 0;
   bottom: 0;
   z-index: 2;
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.72) 1.05%,
-      rgba(148, 147, 147, 0) 35.82%);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.72) 1.05%,
+    rgba(148, 147, 147, 0) 35.82%
+  );
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -354,9 +378,8 @@ select {
 }
 
 .platter_slider .swiper-slide {
-  width: 76% !important
+  width: 76% !important;
 }
-
 
 .carousel-control .swiper-button-next,
 .carousel-control .swiper-button-prev {
@@ -369,14 +392,14 @@ select {
   margin-right: 0;
   width: 50px;
   z-index: 2;
-  background: url('/assets/next.png') no-repeat;
+  background: url("/assets/next.png") no-repeat;
   background-size: 26px;
 }
 
 .carousel-control .swiper-button-prev {
   bottom: 36px;
   right: 50px;
-  background: url('/assets/prev.png') no-repeat;
+  background: url("/assets/prev.png") no-repeat;
   background-size: 26px;
 }
 
@@ -435,8 +458,6 @@ select {
   height: 100%;
 }
 
-
-
 /* button animation 2 */
 
 /* Default state (before hover) */
@@ -493,7 +514,6 @@ select {
   transition: 0.3s ease-out;
 }
 
-
 .popup-scroll {
   overscroll-behavior: contain;
   touch-action: pan-y;
@@ -513,7 +533,7 @@ select {
 }
 
 .styled-btn:hover {
-  background: lab(91.6229% -.159085 -2.26791);
+  background: lab(91.6229% -0.159085 -2.26791);
 }
 
 .styled-btn img,
@@ -522,10 +542,8 @@ select {
   height: 25px;
 }
 
-
 @media (width >=64rem
-  /* 1024px */
-) {
+ /* 1024px */) {
   .wrapper {
     padding-inline: 100px;
     padding-block: 100px;
@@ -541,11 +559,9 @@ select {
   }
 }
 
-
 .headermenu {
   overflow: auto !important;
 }
-
 
 .team_sec .swiper-button-prev:after,
 .team_sec .swiper-button-next:after {
@@ -614,7 +630,6 @@ select {
 }
 
 @media only screen and (max-width: 767px) {
-
   .carousel-control .swiper-button-prev,
   .carousel-control .swiper-button-next {
     background-size: 25px;
@@ -652,14 +667,12 @@ select {
     width: 20px;
     height: 20px;
   }
-
 }
 
 .swiper-button-disabled {
   opacity: 0.3;
 }
 
-/* For smaller screens */
 @media (max-width: 768px) {
   .township_location_advantage_section svg {
     width: 100%;
@@ -668,7 +681,6 @@ select {
 
   .township_location_advantage_section .sticky-heading h1 {
     font-size: 1.5rem;
-    /* Decrease heading size for smaller screens */
   }
 
   .scroll-down-text {
@@ -686,4 +698,6 @@ select {
   background: linear-gradient(2deg, black, transparent);
 }
 
-/* .arrow_container */
+.description p {
+  line-height: 2;
+}
