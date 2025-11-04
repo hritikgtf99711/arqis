@@ -95,7 +95,6 @@ export const getCsrGallery = () => fetchApi("csr-galleries/2025");
 
 //Media center
 export const getMediaNews = () => fetchApi('website/news');
-// export const getMediaPresskit = () => fetchApi();
 export const getBlogs = (limit, order, page = 1) => 
   fetchApi(`website/blog?order_by=${order}&limit=${limit}&page=${page}`);
 export const getBlogDetails = (slug)=>fetchApi(`/blog/${slug}`)
