@@ -22,7 +22,8 @@ export default function OurMission({ mobVia }) {
       <div className="">
         <Paragraph
           customClass={`${mobVia ? "text-[#000]" : "text-[#fff]"}`}
-          paragraph="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+          paragraph="To craft environments that balance ambition with authenticity. We build spaces that speak not through spectacle, but through sensitivity combining innovation, sustainability, and human insight to put people back at the heart of the real estate.
+"
         />
       </div>
     </div>

@@ -33,12 +33,11 @@ export default function initScrollSmoother(router) {
   const outTL = new WeakMap();
 
   const CONFIG = {
-    WHEEL_THRESHOLD: 100,
-    COOLDOWN_MS: 1800,
-    ANIM_DURATION: 2,
-    TOUCH_THRESH: 80,
-    DEBOUNCE_MS: 100,
-    SCROLL_SPEED: 1,
+    COOLDOWN_MS: 100,
+    ANIM_DURATION: 1.1,
+    TOUCH_THRESH: 60,
+    DEBOUNCE_MS: 60,
+    SCROLL_SPEED: 0.4,
   };
 
   const isDarkSection = (section) =>
@@ -243,15 +242,17 @@ export default function initScrollSmoother(router) {
       e.deltaY *
       (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
     const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(
-      ".scrollable-container"
-    );
+    let scrollContainer = activeSection.querySelector(".overflow-y-scroll");
+    // Fallback to .mob_scroll if .overflow-y-scroll not found (for mobile/sections with .mob_scroll)
+    if (!scrollContainer) {
+      scrollContainer = activeSection.querySelector(".mob_scroll");
+    }
     const isHorizontal =
       scrollContainer?.dataset.scroll === "horizontal" || false;
 
     if (
       scrollContainer &&
-      e.target.closest(".scrollable-container") &&
+      e.target.closest(".overflow-y-scroll, .mob_scroll") &&
       !isAtScrollBoundary(scrollContainer, delta, isHorizontal)
     ) {
       return;
@@ -259,8 +260,13 @@ export default function initScrollSmoother(router) {
 
     e.preventDefault();
 
+    // Dynamic threshold based on current scrollable's clientHeight (visible height)
+    // This ensures "scroll complete" requires wheeling ~1 screen height worth of momentum to advance
+    const wheelThreshold = scrollContainer ? scrollContainer.clientHeight : window.innerHeight / 2;
+
     accum += delta;
-    if (Math.abs(accum) >= CONFIG.WHEEL_THRESHOLD) {
+    console.log(Math.abs(accum), wheelThreshold);
+    if (Math.abs(accum) >= wheelThreshold) {
       goToSection(
         currentIndex + (accum > 0 ? 1 : -1),
         accum > 0 ? "forward" : "backward"
@@ -336,7 +342,6 @@ export default function initScrollSmoother(router) {
       return; // Let native scrolling handle it
     }
 
-    // Handle section transitions for vertical swipes
     if (isVerticalSwipe && !hasMoved) {
       e.preventDefault(); // Prevent default only for section transitions
       hasMoved = true;

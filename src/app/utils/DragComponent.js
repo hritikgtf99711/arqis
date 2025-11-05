@@ -68,7 +68,7 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
       <div className="h-[1px]  bg-[#00000069] w-[60%]">
         <div
           ref={progRef}
-          className="prog top-1/2 transform flex justify-end items-center -translate-y-1/2 h-[3px] bg-[#525252] transition-all duration-100"
+          className="prog top-1/2 transform flex justify-end items-center -translate-y-1/2 h-[1px] bg-[#525252] transition-all duration-100"
           style={{ width: '4%' }}
         ></div>
       </div>
