@@ -32,7 +32,7 @@ export default function Form() {
 
     const phoneRegex = /^\+?[\d\s-]{10,}$/;
     if (!formData.phone) {
-      newErrors.email = "Phone number is required";
+      newErrors.phone = "Phone number is required";  
     } else if (!phoneRegex.test(formData.phone)) {
       newErrors.phone = "Invalid phone number";
     }
@@ -114,15 +114,15 @@ export default function Form() {
           )}
         </div>
         <div className="input-container mb-[15px]">
-          <input
-            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
+          <textarea 
+            className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] resize-vertical ${
               errors.message ? "border-red-500" : ""
             }`}
             placeholder="Message"
-            type="text"
             name="message"
             value={formData.message}
             onChange={handleChange}
+            rows={4} 
           />
           {errors.message && (
             <p className="text-red-500 text-sm mt-1">{errors.message}</p>
@@ -132,13 +132,13 @@ export default function Form() {
         <div className="input-container inline-flex pt-[15px]">
           <button
             type="submit"
-            className="uppercase text-white cursor-pointer"
+            className="uppercase text-white cursor-pointer" 
           >
             Submit Now
           </button>
           <Image
             src={`/assets/icons/arrow-tilt-white.png`}
-            className="me-10 objrct-contain"
+            className="me-10 object-contain"  
             alt="arrow title"
             height={35}
             width={35}

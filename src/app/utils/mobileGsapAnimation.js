@@ -257,15 +257,9 @@ export default function initScrollSmoother(router) {
     ) {
       return;
     }
-
     e.preventDefault();
-
-    // Dynamic threshold based on current scrollable's clientHeight (visible height)
-    // This ensures "scroll complete" requires wheeling ~1 screen height worth of momentum to advance
     const wheelThreshold = scrollContainer ? scrollContainer.clientHeight : window.innerHeight / 2;
-
     accum += delta;
-    console.log(Math.abs(accum), wheelThreshold);
     if (Math.abs(accum) >= wheelThreshold) {
       goToSection(
         currentIndex + (accum > 0 ? 1 : -1),

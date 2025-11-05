@@ -117,8 +117,7 @@ export default function Form() {
         <div className="input-container mb-[15px]">
           <select
             className={`bg-[#fff] w-[100%] placeholder:uppercase py-[15px] px-[20px] placeholder:text-[#000] ${
-              errors.phone ? "border-red-500" : ""
-            }`}
+              errors.phone ? "border-red-500" : ""}`}
             placeholder="phone number"
             type="tel"
             name="phone"
