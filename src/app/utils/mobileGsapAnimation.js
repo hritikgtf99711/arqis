@@ -243,7 +243,6 @@ export default function initScrollSmoother(router) {
       (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
     const activeSection = sections[currentIndex];
     let scrollContainer = activeSection.querySelector(".overflow-y-scroll");
-    // Fallback to .mob_scroll if .overflow-y-scroll not found (for mobile/sections with .mob_scroll)
     if (!scrollContainer) {
       scrollContainer = activeSection.querySelector(".mob_scroll");
     }

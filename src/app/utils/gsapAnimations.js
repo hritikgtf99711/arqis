@@ -29,13 +29,10 @@ export default function InitScrollSmoother(router) {
   const sections = gsap.utils.toArray(".horizontal-section .item");
   let currentIndex = 0;
   let isAnimating = false;
-
-  const WHEEL_THRESHOLD = 50;
   const COOLDOWN_MS = 1000;
   const ANIM_DURATION = 1.2;
   const TOUCH_THRESH = 60;
   const DEBOUNCE_MS = 100;
-  const SCROLL_SPEED = 0.5;
   const inTL = new WeakMap();
   const outTL = new WeakMap();
 
