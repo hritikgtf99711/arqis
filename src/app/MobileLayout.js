@@ -13,7 +13,7 @@ import TeamContainer from "./mobcomponents/Teams/Teams";
 import { useEffect } from "react";
 
 export default function MobileLayout() {
-    useEffect(() => {
+  useEffect(() => {
     const preventRefresh = (e) => {
       if (e.touches.length > 1) return;
       if (window.scrollY === 0) e.preventDefault();
@@ -35,38 +35,37 @@ export default function MobileLayout() {
           data-scroll="vertical"
           className="basis-[100%] overflow-y-scroll overflow-x-hidden mob_scroll   item grow-0 shrink-0 h-full"
         >
-          <About  mobVia={1} />
-          <Pagination navVal={'Projects'}/>
+          <About mobVia={1} />
+          <Pagination navVal={"Projects"} />
           <FooterContainer />
         </div>
         <div className="basis-[100%]  item grow-0 mob_scroll  overflow-y-scroll overflow-x-hidden  shrink-0 h-full">
           <ProjectContainer />
-           <Pagination  navVal={'Our Team'}/>
+          <Pagination navVal={"Our Team"} />
           <FooterContainer />
         </div>
         <div className="basis-[100%]  item grow-0  ov erflow-y-scroll overflow-x-hidden  shrink-0 h-full  items-center">
           <TeamContainer />
-          <Pagination  navVal={'Career'}/>
+          <Pagination navVal={"Career"} />
           <FooterContainer />
         </div>
         <div className="basis-[100%]  overflow-y-scroll overflow-x-hidden mob_scroll item grow-0 shrink-0 h-full">
           <CareerContainer />
-                <Pagination  navVal={'Media'}/>
+          <Pagination navVal={"Media"} />
           <FooterContainer />
         </div>
         <div className="basis-[100%]  overflow-y-scroll overflow-x-hidden mob_scroll item grow-0 shrink-0 h-full  items-center">
           <MediaContainer />
-         <Pagination  navVal={'Blogs'}/>
+          <Pagination navVal={"Blogs"} />
           <FooterContainer />
         </div>
         <div className="basis-[100%] item  overflow-y-scroll overflow-x-hidden mob_scroll  grow-0 shrink-0 h-full">
           <BlogContainer />
-        <Pagination  navVal={'Contact'}/>
+          <Pagination navVal={"Contact"} />
           <FooterContainer />
         </div>
         <div className="basis-[100%]  overflow-y-scroll overflow-x-hidden  mob_scroll item grow-0 shrink-0 h-full">
           <ContactformContainer />
-
           <FooterContainer />
         </div>
       </div>

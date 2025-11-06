@@ -1,3 +1,7 @@
+body {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
 @import "tailwindcss";
 
 :root {
