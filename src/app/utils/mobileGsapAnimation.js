@@ -257,7 +257,9 @@ export default function initScrollSmoother(router) {
       return;
     }
     e.preventDefault();
-    const wheelThreshold = scrollContainer ? scrollContainer.clientHeight : window.innerHeight / 2;
+    const wheelThreshold = scrollContainer
+      ? scrollContainer.clientHeight
+      : window.innerHeight / 2;
     accum += delta;
     if (Math.abs(accum) >= wheelThreshold) {
       goToSection(
@@ -332,11 +334,11 @@ export default function initScrollSmoother(router) {
       Math.abs(dy) > 10 &&
       !isAtScrollBoundary(scrollContainer, dy)
     ) {
-      return; // Let native scrolling handle it
+      return; 
     }
 
     if (isVerticalSwipe && !hasMoved) {
-      e.preventDefault(); // Prevent default only for section transitions
+      e.preventDefault(); 
       hasMoved = true;
       goToSection(
         currentIndex + (dy < 0 ? 1 : -1),
@@ -346,7 +348,7 @@ export default function initScrollSmoother(router) {
   };
 
   const onTouchEnd = () => {
-    hasMoved = false; // Reset hasMoved on touch end
+    hasMoved = false; 
   };
 
   window.addEventListener("wheel", onWheel, { passive: false });
@@ -361,12 +363,12 @@ export default function initScrollSmoother(router) {
     window.removeEventListener("touchstart", onTouchStart);
     window.removeEventListener("touchmove", onTouchMove);
     window.removeEventListener("touchend", onTouchEnd);
-    gsap.killTweensOf(sections);
+    gsap.killTweensOf(sections);  
     smoother.kill();
   };
 
   return {
-    goTo: goToSection,  
+    goTo: goToSection,
     next: () => goToSection(currentIndex + 1, "forward"),
     prev: () => goToSection(currentIndex - 1, "backward"),
     getCurrentIndex: () => currentIndex,
