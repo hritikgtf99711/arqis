@@ -17,7 +17,7 @@ export default function FooterContainer() {
           alt=""
           className="m-auto"
           height={80}
-          width={300}
+          width={200}
         />
       </figure>
       <div className="py_sm border-y-[#00000033] border-y-[1px] my-[50px] py-[30px]  lg:py-[60px]">

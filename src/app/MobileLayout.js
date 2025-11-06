@@ -18,8 +18,7 @@ export default function MobileLayout() {
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
           <LogoSection />
         </div>
-        <div
-          data-scroll="vertical"
+        <div data-scroll="vertical"
           className="basis-[100%] overflow-y-scroll overflow-x-hidden mob_scroll   item grow-0 shrink-0 h-full"
         >
           <About mobVia={1} />
