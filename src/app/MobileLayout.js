@@ -10,6 +10,7 @@ import ContactformContainer from "./components/contactform/ContactformContainer"
 import FooterContainer from "./components/footer/FooterContainer";
 import Pagination from "./utils/Pagination";
 import TeamContainer from "./mobcomponents/Teams/Teams";
+import { useEffect } from "react";
 
 export default function MobileLayout() {
     useEffect(() => {
