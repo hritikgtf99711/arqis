@@ -12,6 +12,18 @@ import Pagination from "./utils/Pagination";
 import TeamContainer from "./mobcomponents/Teams/Teams";
 
 export default function MobileLayout() {
+    useEffect(() => {
+    const preventRefresh = (e) => {
+      if (e.touches.length > 1) return;
+      if (window.scrollY === 0) e.preventDefault();
+    };
+
+    document.addEventListener("touchmove", preventRefresh, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchmove", preventRefresh);
+    };
+  }, []);
   return (
     <MobHorizontalLayout>
       <div className="flex h-[100vh] overflow-hidden pt-[100px] horizontal-section">
