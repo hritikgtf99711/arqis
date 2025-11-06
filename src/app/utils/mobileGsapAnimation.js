@@ -35,8 +35,8 @@ export default function initScrollSmoother(router) {
   const CONFIG = {
     COOLDOWN_MS: 100,
     ANIM_DURATION: 1.1,
-    TOUCH_THRESH: 60,
-    DEBOUNCE_MS: 60,
+    TOUCH_THRESH: 500,
+    DEBOUNCE_MS: 90,
     SCROLL_SPEED: 0.4,
   };
 

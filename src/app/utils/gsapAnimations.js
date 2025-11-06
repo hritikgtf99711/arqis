@@ -30,7 +30,7 @@ export default function InitScrollSmoother(router) {
   let currentIndex = 0;
   let isAnimating = false;
   const COOLDOWN_MS = 1000;
-  const ANIM_DURATION = 1.2;
+  const ANIM_DURATION = 2;
   const TOUCH_THRESH = 60;
   const DEBOUNCE_MS = 100;
   const inTL = new WeakMap();
@@ -389,14 +389,6 @@ export default function InitScrollSmoother(router) {
           footerTitle: next?.dataset.footerTitle || "",
           footerCta: next?.dataset.footerCta || "",
         });
-        console.log(router)
-
-        // Navigate to the new route
-        // if ( router) {
-          // console.log(router.push())
-          // router.push("/about");
-        // }
-
         setTimeout(() => {
           isAnimating = false;
           document.documentElement.classList.remove("is-sliding", "sliding-forward", "sliding-backward");
@@ -467,8 +459,6 @@ export default function InitScrollSmoother(router) {
 
     const activeSection = sections[currentIndex];
     const verticalScrollable =window.innerWidth>991? activeSection?.querySelector(".scrollable-container[data-scroll='vertical']") :activeSection?.querySelector(".mob_scroll[data-scroll='vertical']");
-        // const verticalMobScrollable = ;s
-
     const horizontalScrollable = activeSection?.querySelector(".scrollable-container[data-scroll='horizontal']");
     const scrollContainer = verticalScrollable || horizontalScrollable || getScrollableParent(e.targset);
     const delta = normalizeDelta(e);
@@ -507,13 +497,11 @@ export default function InitScrollSmoother(router) {
         }
       }
     }
-
     if (now - lastWheelTime < 50) {
       accum += delta;
     } else {
       accum = delta;
     }
-
     if (!wheelRAF) {
       wheelRAF = requestAnimationFrame(() => {
         if (Math.abs(accum) >= 50) {

@@ -26,7 +26,7 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
         const rect = dragButton.getBoundingClientRect();
-        const dragX = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); // Constrain dragX
+        const dragX = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); 
         const scrollHeight = scrollable.scrollHeight - scrollable.clientHeight;
         const scrollPercentage = (dragX / rect.width) * scrollHeight;
         scrollable.scrollTop = scrollPercentage;
