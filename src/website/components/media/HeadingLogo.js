@@ -6,7 +6,7 @@ export default function HeadingLogo() {
     <div className="grid grid-cols-1 lg:grid-cols-2">
       <div className="col-span-1 my-auto">
         <div className="lg:w-[70%] fade-up lg:pt-0 !pt-[40px] lg:mb-0 mb-[40px]">
-        <CommonHeading heading={`Across Pages and Places. Headlines. Stories. Impacts`} />
+        <CommonHeading heading={`Across Pages and Places. Headlines. Stories. Impacts`} /> 
         </div>
       </div>
       <div className="col-span-1">
@@ -46,11 +46,11 @@ export default function HeadingLogo() {
             <ul className="flex justify-center gap-[10px] mt-[20px]">
               <li>
                 <a href="#">PNG</a>
-              </li>{" "}
+              </li>
               |
               <li>
                 <a href="#">JPG</a>
-              </li>{" "}
+              </li>
               |
               <li>
                 <a href="#">WEBP</a>

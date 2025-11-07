@@ -11,7 +11,7 @@ export default function Pagination({navVal}) {
             <span className='uppercase text-white text-[14px] tracking-[2.5]'>Next Page</span>
             <h4 className='uppercase text-white text-[20px] mt-[24px] mb-[5px] font-[400] tracking-[5]' >{navVal}</h4>
             <Image src={`/assets/icons/arrow-white.svg`} width={34} height={34} className='m-auto' onClick={()=>next()} alt='Arrow White'/>
-        </div>
+        </div> 
     </div>
   )
 }

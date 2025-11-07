@@ -24,8 +24,6 @@ export default function MobHorizontalLayout({ children }) {
           <div id="smooth-content">
             <Header /> 
             {children}
-            {/* <Footer /> */}
-            {/* <FooterContainer/> */}
           </div>
         </div>
       </div>

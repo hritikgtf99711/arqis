@@ -17,7 +17,7 @@ export default function Modals({
 }) {
   const [mounted, setMounted] = useState(false);
   const modalRef = useRef(null);
-  const isClosing = useRef(false);
+  const isClosing = useRef( );
 
   useEffect(() => {
     setMounted(true);

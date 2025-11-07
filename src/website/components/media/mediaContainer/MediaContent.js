@@ -14,7 +14,6 @@ export default function MediaContent() {
      <div className="">
       <figure className="my-[40px]">
           <Image src={`/assets/media-center/mediadetail/new_1.jpg`} alt="media detail"  width={687} height={ 468}/>
-       
       </figure>
    <Link href="#" className="uppercase flex text-[#fff]">Read More <Image src="/assets/icons/right_arrow_white.svg" alt="arrow logo" className="ml-2" height={30} width={25}/></Link>
        <Paragraph
