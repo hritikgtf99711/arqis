@@ -33,7 +33,7 @@ const Login = () => {
     <div className="flex min-h-screen">
       <div className="hidden md:flex w-1/2 bg-gray-200">
         <img
-          src="/assets/admin/login.jpg"
+          src="/assets/admin/backendImage.jpg"
           alt="Login"
           className="w-full h-full object-cover"
         />

@@ -34,7 +34,7 @@ export default function ProjectContainer() {
       });
     }
   };
-
+ 
   return (
     <div className="parallax relative projects_container h-[100%] py-[60px] mx-auto">
       <div
