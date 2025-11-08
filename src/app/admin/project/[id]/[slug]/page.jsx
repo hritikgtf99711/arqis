@@ -12,7 +12,6 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BASE_ADMIN } from "../../../../../../config";
-// --- Centralized Config ---
 const staticSectionConfigs = {
   banner: {
     fields: [
@@ -70,7 +69,6 @@ const ProjectDetails = () => {
   const { tableData: destinationId } = useCrud(api, "projects/project-location-destination-list");
 
 
-  // map to dropdown options
   const amenitiesLogoOptions =
     amenitiesLogo?.map((item) => ({
       label: item.name, // check actual API response
@@ -87,7 +85,6 @@ const ProjectDetails = () => {
       value: item.id,
     })) || [];
 
-  // Merge dynamic stuff into static configs
   const sectionConfigs = {
     ...staticSectionConfigs,
     amenities: {
@@ -98,7 +95,6 @@ const ProjectDetails = () => {
           label: "Amenities Logo",
           end_point:"amenities-logo",
           fetchOptions: amenitiesLogoOptions,
-          // options: amenitiesLogoOptions,
         },
         { type: "text", name: "title", label: "Title" },
         { type: "text", name: "short_description", label: "Description" },
@@ -218,11 +214,11 @@ const ProjectDetails = () => {
 
   const handleAddOrUpdateWithRefresh = async (formData) => {
     await handleAddOrUpdate(formData, true);
-    fetchTableData(currentPage); // 👈 refresh first hook’s table
+    fetchTableData(currentPage);
   };
   const handleDeleteWithRefresh = async (id) => {
     await handleDelete(id);
-    fetchTableData(currentPage); // 👈 refresh
+    fetchTableData(currentPage); 
   };
 
   const normalizeApiResponse = (apiData, fields) => {
@@ -238,7 +234,6 @@ const ProjectDetails = () => {
 
   return (
     <section key={slug}>
-      {/* Project Section always shown except for banner */}
       {slug !== "banner" && (
         <ProjectSection
           title={slug}
@@ -248,7 +243,6 @@ const ProjectDetails = () => {
         />
       )}
 
-      {/* Editable sections (form + table) */}
       {isEditableSection && (
         <div className="grid grid-cols-12 gap-[20px]">
           <div className="col-span-12">

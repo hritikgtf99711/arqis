@@ -17,12 +17,10 @@ export const dynamic = "force-static";
 
 export default function RootLayout({ children }) {
   return (
-       <div>       
-     <div id="header-portal" />
-        <div id="footer-portal" />
-        {children}
-        </div>
-
-    
+    <div>
+      <div id="header-portal" />
+      <div id="footer-portal" />
+      {children}
+    </div>
   );
 }

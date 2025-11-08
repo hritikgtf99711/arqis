@@ -17,8 +17,7 @@ export default function OurMission({ mobVia, missionData }) {
           width={"643"}
           height={468}
         />
-      </div>
-
+      </div> 
       <div className="">
         <div
           className="text-white lg:mt-5 !mb-0 text-[#113120] description  leading-[1.8] !tracking-[0.4px] mb-[20px]"

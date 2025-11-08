@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import CommonHeading from '@/website/utils/CommonHeading'
-import Paragraph from "@/website/utils/Paragraph";
 import OurMission from "./OurMission";
 import OurVission from "./OurVission";
 import Redirect_Link from "@/website/utils/Redirect_txt";

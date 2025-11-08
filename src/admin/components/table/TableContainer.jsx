@@ -8,7 +8,6 @@ import TableData from "./TableData";
 import TableRow from "./TableRow";
 import { MdEdit, MdDelete } from "react-icons/md";
 import Pagination from "./Pagination";
-// import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
 

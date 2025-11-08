@@ -17,7 +17,6 @@ const AmenitiesPage = () => {
 
   const { tableData: amenitiesLogo } = useCrud(api, "amenities-logo");
 
-  // Amenities configuration
   const config = {
     fields: [
       {
@@ -70,7 +69,6 @@ const AmenitiesPage = () => {
     handlePageChange,
   } = useCrud(api, config.endpoint, config.table.header, true);
 
-  // Form submission (always POST to endpoint)
   const handleFormSubmit = async (formData) => {
     const formattedData = formatFormData(formData, dynamicFields);
 

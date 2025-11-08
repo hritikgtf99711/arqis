@@ -11,7 +11,6 @@ const Project = () => {
   const api = useApi(BASE_ADMIN);
   const [mounted, setMounted] = useState(false);
 
-  // ✅ All hooks at top level
   const platterCrud = useCrud(api, "platter");
   const typologyCrud = useCrud(api, "typologies");
   const subTypologyCrud = useCrud(api, "sub-typologies");
@@ -23,7 +22,6 @@ const Project = () => {
     setMounted(true);
   }, []);
 
-  // ✅ Fetch dropdowns and edit data only after mount
   useEffect(() => {
     if (!mounted) return;
 

@@ -1,7 +1,6 @@
 import CommonHeading from '@/website/utils/CommonHeading'
 import React from "react";
 import Image from "next/image";
-import Paragraph from "@/website/utils/Paragraph";
 export default function OurMission({ mobVia,vissionData }) {
   vissionData=vissionData?.data;
   console.log(vissionData)
