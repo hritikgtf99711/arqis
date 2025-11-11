@@ -1,6 +1,6 @@
 import React from "react";
 import HorizontalLayout from "@/app/HorizontalLayout";
-// import
+import HomeBanner from "@/app/components/microsite/HomeBanner";
 export default function page() {
   return (
     <HorizontalLayout>
@@ -9,7 +9,7 @@ export default function page() {
           <HomeBanner />
         </div>
          <div className="basis-[100%] flex items-center justify-center  item grow-0 shrink-0 h-full">
-          <HomeBanner />
+          {/* <HomeBanner /> */}
         </div>
       </div>
     </HorizontalLayout>
