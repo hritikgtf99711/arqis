@@ -701,6 +701,7 @@ select {
 .description p {
   line-height: 2;
 }
+
 .listing_container{display: flex;gap:200px;justify-content: center;}
 .listing_container li{white-space: nowrap;}
 .listing_container li{position: relative;}
