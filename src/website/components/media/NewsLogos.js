@@ -29,7 +29,6 @@ export default function NewsLogos({newsData}) {
 
   return (
     <div className="lg:pb-0 pb-[30px] pt-[30px]">
-      {/* Navigation Arrows */}
       <div className="arrow_container  lg:block hidden flex gap-5 justify-start pb-[30px] fade-up">
         <div className="arrow_prev cursor-pointer">
           <Image
@@ -50,8 +49,6 @@ export default function NewsLogos({newsData}) {
           />
         </div>
       </div>
-
-      {/* Swiper Carousel */}
       <div className="bg-[#fff]  lg:block hidden fade-up news_container">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
@@ -101,7 +98,6 @@ export default function NewsLogos({newsData}) {
         </Swiper>
       </div>
 
-      {/* Static Images Outside Swiper Loop */}
       <div className="static-logos-container border-t-[1px] border-[#000]  py-[50px] lg:hidden block mt-[50px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[60px] lg:gap-4 fade-up">
         {logosArr.map((item, index) => (
           <div
@@ -114,19 +110,10 @@ export default function NewsLogos({newsData}) {
               alt={`Static Logo ${index + 1}`}
               height={100}
               width={100}
-              // className={
-              //   src.includes("logo_1.png")
-              //     ? "w-[80px] object-contain"
-              //     : src.includes("logo_2.png")
-              //     ? "w-[200px] m-[auto] object-contain"
-              //     : "w-[80%] object-contain"
-              // }
             />
           </div>
         ))}
       </div>
-
-      {/* Modal */}
       <Modals
         scrollableRef={scrollableRef}
         SelectedLogo={<MediaLogo selectedImage={logosArr[hoveredSlide]} />}

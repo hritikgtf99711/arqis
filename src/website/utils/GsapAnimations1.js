@@ -118,7 +118,6 @@ export default function initScrollSmoother(router) {
       updateTheme(sec);
     }
   });
-
   const first = sections[0];
   emit("sliderstart", {
     index: 0,
@@ -126,13 +125,11 @@ export default function initScrollSmoother(router) {
     footerTitle: first?.dataset.footerTitle || "Reshaping Real Estate",
     footerCta: first?.dataset.footerCta || "Start Journey",
   });
-
   const scrollToBoundary = (container, direction) => {
     if (!container) return;
     const targetScroll = direction === "forward" ? container.scrollHeight - container.clientHeight : 0;
     gsap.to(container, { scrollTop: targetScroll, duration: CONFIG.SCROLL_SPEED, ease: "power2.out" });
   };
-
   const goToSection = async (index, scrollDirection = null) => {
     if (index < 0 || index >= sections.length || isAnimating) return;
     isAnimating = true;
@@ -147,28 +144,23 @@ export default function initScrollSmoother(router) {
         return;
       }
     }
-
     const next = sections[index];
     const prev = sections[currentIndex];
     const dir = index > currentIndex ? "forward" : "backward";
     const sectionKeys = Object.keys(SLIDE_NAV);
     const nextSectionKey = sectionKeys[index];
     const nextRoute = SLIDE_NAV[nextSectionKey]?.route;
-
     document.documentElement.classList.add(`sliding-${dir}`);
     outTL.get(prev)?.play();
-
     const scrollContainer = document.querySelector(".horizontal-section");
     const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
     const targetScroll = (index / (sections.length - 1)) * maxScroll;
-
     await gsap.to(scrollContainer, {
       scrollTo: { x: targetScroll },
       duration: CONFIG.ANIM_DURATION,
       ease: "power3.inOut",
       onStart: () => {
         document.documentElement.classList.add("is-sliding");
-        // updateTheme(next);
       },
       onUpdate: function () {
         document.documentElement.style.setProperty("--slide-progress", this.progress());
