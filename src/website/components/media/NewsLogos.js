@@ -84,27 +84,15 @@ export default function NewsLogos({newsData}) {
                   alt={`Logo ${index + 1}`}
                   height={120}
                   width={120}
-                  // className={
-                  //   logosArr.includes("logo_1.png")
-                  //     ? "w-[100px] object-contain z-10"
-                  //     : logosArr.includes("logo_2.png")
-                  //     ? "w-[400px] m-[auto] object-contain z-10"
-                  //     : "w-[50%] object-contain z-10"
-                  // }
                 />
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-
       <div className="static-logos-container border-t-[1px] border-[#000]  py-[50px] lg:hidden block mt-[50px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[60px] lg:gap-4 fade-up">
         {logosArr.map((item, index) => (
-          <div
-            key={`static-${index}`}
-            className="flex items-center cursor-pointer "
-            onClick={() => handleMouseEnter(index)}
-          >
+          <div key={`static-${index}`} className="flex items-center cursor-pointer " onClick={() => handleMouseEnter(index)} >
             <Image
               src={item.logo}
               alt={`Static Logo ${index + 1}`}

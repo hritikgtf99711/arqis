@@ -705,13 +705,6 @@ select {
 .listing_container li{white-space: nowrap;}
 .listing_container li{position: relative;}
 .listing_container li:last-child::after{display: none;}
-.listing_container li::after{    content: "";
-    background: rgba(0, 0, 0, .4);
-    width: 50%;
-    height: 1px;
-    display: block;
-    position: absolute;
-    right: -65%;
-    top: 50%;
-    transform: translateY(-50%);}
+.listing_container li::after{content: "";background: rgba(0, 0, 0, .4);width: 50%;height: 1px;display: block;position: absolute;right: -65%;
+top: 50%;transform: translateY(-50%);}
 
