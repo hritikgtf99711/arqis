@@ -22,7 +22,7 @@ export default function About({ mobVia }) {
         <div className="custom-container  !pb-[80px]">
           <OurMission mobVia={mobVia} />
           <OurVission mobVia={mobVia} />
-          <Redirect_Link
+          <Redirect_Link  
             customClass={`mt-[50px]   text-black `}
             text={`explore about us`}
             link={``}

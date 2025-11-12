@@ -191,9 +191,6 @@ input[type="file"]::-ms-browse {
 }
 
 @media (max-width: 1580px) {
-  .projects_container .project_card {
-    flex: 0 0 70%;
-  }
   .projects_container .project_card h2 {
     font-size: 30px;
   }

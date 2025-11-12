@@ -1,20 +1,21 @@
+"use client"
 import React, { useRef, useEffect } from 'react';
 import DragComponent from './DragComponent';
 
 const ScrollLayout = ({ leftContent, rightContent, isShowDrag ,scrollableRef,centerDragVia}) => {
  useEffect(() => {
     const handleScroll = () => {
-      const scrollable = scrollableRef.current;
+      const scrollable = scrollableRef?.current;
       if (scrollable) {
         const scrollPosition = scrollable.scrollTop;
         scrollable.style.backgroundPositionY = `${scrollPosition * 1}px`;
       }
     };
 
-    const scrollable = scrollableRef.current;
-    scrollable.addEventListener('scroll', handleScroll);
+    const scrollable = scrollableRef?.current;
+    scrollable?.addEventListener('scroll', handleScroll);
     return () => {
-      scrollable.removeEventListener('scroll', handleScroll);
+      scrollable?.removeEventListener('scroll', handleScroll);
     };
   }, []);
   return (

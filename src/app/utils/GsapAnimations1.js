@@ -222,7 +222,7 @@ export default function initScrollSmoother(router) {
           footerCta: next?.dataset.footerCta || "",
         });
 
-        if (router && nextRoute) router.push(nextRoute);
+        // if (router && nextRoute) router.push(nextRoute);
 
         setTimeout(() => {
           isAnimating = false;

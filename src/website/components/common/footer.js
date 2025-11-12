@@ -21,7 +21,7 @@ const Footer = () => {
   const cta = isMicrosite ? "Overview" : "Start Journey";
 
   useEffect(() => setIsClient(true), []);
-  if (!isClient) return  null;
+  if (!isClient) return null;
   const portalEl = typeof document !== "undefined" ? document.getElementById("footer-portal") : null;
   if (!portalEl) return null;
   return ReactDOM.createPortal(        
@@ -30,7 +30,11 @@ const Footer = () => {
         ref={footerRef}
         className={`fixed flex-wrap z-[3] lg:max-w-[90%] max-w-[52%] w-[90%] left-1/2 -translate-x-1/2 flex lg:flex-row flex-col gap-5 items-center lg:items-end lg:justify-between bottom-10 ${isMicrosite ? "change_style" : ""}`}
       >
-        <h2  ref={titleRef} onClick={() => prev()} className="uppercase parallax lg:text-start text-center cursor-pointer prev_title lg:basis-[25%] font-[200] text-[30px] lg:text-[40px] lg:leading-[1.1] leading-[1.6] pointer-events-auto">
+        <h2
+          ref={titleRef}
+          onClick={() => prev()}
+          className="uppercase parallax lg:text-start text-center cursor-pointer prev_title lg:basis-[25%] font-[200] text-[30px] lg:text-[40px] lg:leading-[1.1] leading-[1.6] pointer-events-auto"
+        >
           {title}
         </h2>
         <div
