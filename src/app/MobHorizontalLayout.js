@@ -5,8 +5,6 @@ import AbsSec from "./components/common/absSec";
 import Footer from "./components/common/footer";
 import { useLayoutEffect, useState } from "react";
 import ScrollContext from "./context/ScrollContext";
-import CursorAnimation from "./utils/Cursor";
-import FooterContainer from "./components/footer/FooterContainer";
 import initScrollSmoother from "./utils/mobileGsapAnimation";
 export default function MobHorizontalLayout({ children }) {
   const [gotoFn, setgoTofn] = useState(0);
@@ -28,7 +26,7 @@ export default function MobHorizontalLayout({ children }) {
           <div id="smooth-content">
             <Header /> 
             {children}
-            {/* <Footer /> */}
+            <Footer />
             {/* <FooterContainer/> */}
           </div>
         </div>

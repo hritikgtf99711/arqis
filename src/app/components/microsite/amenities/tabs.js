@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function tabs() {
+export default function Tabs() {
   return (
     <div className="container pb-[30px] relative z-[33] pl-[80px]">
     <ul className="flex gap-[40px] justify-start">

@@ -1,6 +1,6 @@
 import React from "react";
-import Tabs from "./tabs";
-import AmenitiesSec from "./amenitiesSec";
+import Tabs from "./Tabs";
+import AmenitiesSec from "./AmenitiesSec";
 export default function amenitiesContainer() {
   return (
     <div className="w-[100%]">

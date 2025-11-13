@@ -33,8 +33,24 @@ const CursorAnimation = () => {
       mousePos.current = { x: e.clientX, y: e.clientY };
 
       const target = e.target;
-      const closestImg = target.closest("img");
 
+      const closest = (selector) => target.closest(selector);
+
+      if (closest(".hover-Effect.cursor-pointer")) {
+        setCursorState({
+          isHovering: true,
+          message: "",
+          type: "scale-white",
+        });
+        return;
+      }
+
+      if (closest("a") || closest(".cursor-pointer")) {
+        setCursorState({ isHovering: true, message: "Click", type: "scale" });
+        return;
+      }
+
+      const closestImg = closest("img");
       if (
         closestImg &&
         !closestImg.classList.contains("logo-section") &&
@@ -43,36 +59,23 @@ const CursorAnimation = () => {
         !closestImg.classList.contains("no-view")
       ) {
         setCursorState({ isHovering: true, message: "View", type: "expand" });
-      } else if (
-        target.classList.contains("hover-Effect") &&
-        target.classList.contains("cursor-pointer")
-      ) {
-        setCursorState({
-          isHovering: true,
-          message: "",
-          type: "scale-white",
-        });
-      } else if (
-        target.closest("a") ||
-        target.classList.contains("cursor-pointer")
-      ) {
-        setCursorState({ isHovering: true, message: "Click", type: "scale" });
-      } else if (
-        target.classList.contains("dark-section") ||
-        target.closest(".dark-section")
-      ) {
+        return;
+      }
+
+      if (closest(".dark-section")) {
         setCursorState({
           isHovering: true,
           message: "Scroll Down",
           type: "white",
         });
-      } else {
-        setCursorState({
-          isHovering: false,
-          message: "Scroll Down",
-          type: "default",
-        });
+        return;
       }
+
+      setCursorState({
+        isHovering: false,
+        message: "Scroll Up", 
+        type: "default",
+      });
     };
 
     window.addEventListener("mousemove", updateCursorPosition);
@@ -115,7 +118,6 @@ const CursorAnimation = () => {
           textColor: "#ffd38f",
           border: "1px solid #ffd38f",
         };
-
       case "white":
         return {
           scale: 1,
@@ -145,11 +147,11 @@ const CursorAnimation = () => {
     <>
       <div
         ref={cursorRef}
-        className="fixed  top-0 left-0 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
+        className="fixed top-0 left-0 pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2"
       >
         <div
           ref={cursorInnerRef}
-          className="flex justify-center items-center  transition-all duration-300 ease-out"
+          className="flex justify-center items-center transition-all duration-300 ease-out"
           style={{
             width: styles.width,
             height: styles.height,

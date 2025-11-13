@@ -45,8 +45,7 @@ export default function AmenitiesSec() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="grid  project_card grid-col-1 lg:grid-cols-4 grow-0 shrink-0 basis-[60%] lg:basis-[60%] pr-[50px] gap-[10px] lg:gap-10"
-          >
+            className="grid  project_card grid-col-1 lg:grid-cols-4 grow-0 shrink-0 basis-[60%] lg:basis-[60%] pr-[50px] gap-[10px] lg:gap-10">
             <div className="col-span lg:col-span-4">
               <Image
                 src={project.image}

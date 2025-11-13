@@ -19,7 +19,7 @@ const ScrollLayout = ({ leftContent, rightContent, isShowDrag ,scrollableRef,cen
     };
   }, []);
   return (
-    <div  className="grid grid-cols-1 lg:pt-0 pt-[40px] md:grid-cols-2 overflow-y-scroll lg:h-screen lg:gap-4 w-[100%]">
+    <div  className="grid grid-cols-1 lg:pt-0 pt-[40px] md:grid-cols-2 overflow-y-scroll  lg:gap-4 w-[100%]">
       <div className="col-span-1 fade-up my-auto">
         <div className='custom-container lg:pb-[15px] !pb-[60px]'>
           {leftContent}
