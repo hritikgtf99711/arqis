@@ -9,10 +9,10 @@ gsap.registerPlugin(ScrollToPlugin);
 const projects = [
   { id: 1, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
   { id: 2, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
-  { id: 1, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
-  { id: 2, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
-  { id: 1, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
-  { id: 2, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
+  { id: 3, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
+  { id: 4, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
+  { id: 5, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
+  { id: 6, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
 ];
 
 export default function AmenitiesSec() {

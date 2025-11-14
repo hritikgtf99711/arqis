@@ -60,7 +60,7 @@ body.active .icon {
   }
 }
 
-custom-container .prog {
+.custom-container .prog {
   position: relative;
   display: flex;
   justify-content: end;
@@ -230,3 +230,5 @@ input[type="file"]::-ms-browse {
 .listing_container li:last-child::after{display: none;}
 .listing_container li::after{content: "";background: rgba(0, 0, 0, .4);width: 50%;height: 1px;display: block;position: absolute;right: -65%;
 top: 50%;transform: translateY(-50%);}
+
+.swiper-pagination{display: none;}
