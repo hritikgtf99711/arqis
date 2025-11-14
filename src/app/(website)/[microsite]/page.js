@@ -7,6 +7,8 @@ import AmenitiesContainer from "@/app/components/microsite/amenities/AmenitiesCo
 import HightlightsContainer from "@/app/components/microsite/highlights/HightlightsContainer";
 import MasterPlanContainer from "@/app/components/microsite/master-plan/MasterPlanContainer";
 import LocationContainer from "@/app/components/microsite/location/LocationContainer";
+import ContactformContainer from "@/app/components/contactform/ContactformContainer";
+import FooterContainer from "@/app/components/footer/FooterContainer";
 import Image from "next/image";
 export default function page() {
   return (
@@ -34,14 +36,19 @@ export default function page() {
           />
           <HightlightsContainer />
         </div>
-          <div className="basis-[100%] overflow-hidden  flex  items-center item grow-0 shrink-0 h-full">
-          <MasterPlanContainer/>
+        <div className="basis-[100%] overflow-hidden flex items-center item grow-0 shrink-0 h-full">
+          <MasterPlanContainer />
         </div>
-          <div className="basis-[100%] overflow-hidden  bg-[var(--primary-green-color)]  flex  item grow-0 shrink-0 h-full">
-          <LocationContainer/>
+        <div className="basis-[100%] overflow-hidden  bg-[var(--primary-green-color)]  flex  item grow-0 shrink-0 h-full">
+          <LocationContainer />
+        </div>
+        <div className="basis-[100%] overflow-hidden   flex  item grow-0 shrink-0 h-full">
+          <ContactformContainer />
+        </div>
+        <div className="basis-[100%] overflow-hidden    flex  items-center   item grow-0 shrink-0 h-full">
+          <FooterContainer />
         </div>
       </div>
-    
     </HorizontalLayout>
   );
 }

@@ -1,3 +1,5 @@
+"use client"
+import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -13,10 +15,14 @@ export default function MetroStationsUI() {
   const nextRef = useRef(null);
 
   const categories = [
-    { icon: '', label: 'METRO STATIONS', active: true },
-    { icon: '', label: 'SCHOOLS', active: false },
-    { icon: '', label: 'MALLS', active: false },
-    { icon: '', label: 'HOSPITALS', active: false }
+    { icon: '/assets/microsite/icons/icon_4.png', label: 'METRO STATIONS', active: true },
+    { icon: '/assets/microsite/icons/icon_3.png', label: 'SCHOOLS', active: false },
+    { icon: '/assets/microsite/icons/icon_2.png', label: 'MALLS', active: false },
+    { icon: '/assets/microsite/icons/icon_1.png', label: 'HOSPITALS', active: false },
+     { icon: '/assets/microsite/icons/icon_4.png', label: 'METRO STATIONS', active: true },
+    { icon: '/assets/microsite/icons/icon_3.png', label: 'SCHOOLS', active: false },
+    { icon: '/assets/microsite/icons/icon_2.png', label: 'MALLS', active: false },
+    { icon: '/assets/microsite/icons/icon_1.png', label: 'HOSPITALS', active: false }
   ];
 
   const stationsData = {
@@ -36,6 +42,26 @@ export default function MetroStationsUI() {
       { name: 'Logix City Centre', time: '20 Minutes' }
     ],
     3: [
+      { name: 'Fortis Hospital', time: '7 Minutes' },
+      { name: 'Max Super Speciality Hospital', time: '12 Minutes' },
+      { name: 'Apollo Hospital', time: '18 Minutes' }
+    ],
+      4: [
+      { name: 'Noida Sector 15 Metro Station', time: '8 Minutes' },
+      { name: 'Mayur Vihar Phase 1 Metro Station', time: '15 Minutes' },
+      { name: 'Akshardham Temple Metro Station', time: '20 Minutes' }
+    ],
+    5: [
+      { name: 'Delhi Public School', time: '5 Minutes' },
+      { name: 'Amity International School', time: '12 Minutes' },
+      { name: 'Modern School', time: '18 Minutes' }
+    ],
+    6: [
+      { name: 'DLF Mall of India', time: '10 Minutes' },
+      { name: 'The Great India Place', time: '15 Minutes' },
+      { name: 'Logix City Centre', time: '20 Minutes' }
+    ],
+    7: [
       { name: 'Fortis Hospital', time: '7 Minutes' },
       { name: 'Max Super Speciality Hospital', time: '12 Minutes' },
       { name: 'Apollo Hospital', time: '18 Minutes' }
@@ -59,12 +85,13 @@ export default function MetroStationsUI() {
           <div className="flex items-center justify-between">
             <button
               ref={prevRef}
-              className="text-amber-200 hover:text-amber-100 transition-colors z-10"
+              className="text-[#fff] transition-colors cursor-pointer z-10"
             >
               ←
             </button>
 
             <div className="flex-1 overflow-hidden mx-4">
+              
               <Swiper
                 ref={swiperRef}
                 modules={[Navigation]}
@@ -87,13 +114,15 @@ export default function MetroStationsUI() {
                     <SwiperSlide key={index}>
                       <button
                         onClick={() => goToSlide(index)}
-                        className={`flex flex-col items-center justify-center gap-3 w-full px-6 py-4 transition-all duration-300 ${
+                        className={`flex  btn_container items-center justify-center ${categories.length-1!=index&&'border-r-[1px]'} border-dashed border-[#fff] gap-3 w-full px-6 py-4 transition-all duration-300 
+                          ${
                           activeCategory === index
                             ? 'text-amber-200'
-                            : 'text-emerald-300 opacity-60 hover:opacity-100'
+                            : 'text-[#fff]'
                         }`}
                       >
-                        <span>
+                        <Image src={Icon} alt='icon' className='mr-2' height={38} width={38}/>
+                        <span className='text=-[#fff]'>
                           {category.label}
                         </span>
                       </button>
@@ -105,14 +134,12 @@ export default function MetroStationsUI() {
 
             <button
               ref={nextRef}
-              className="text-amber-200 hover:text-amber-100 transition-colors z-10"
+              className="text-[#fff] transition-colors cursor-pointer z-10"
             >
               →
             </button>
           </div>
         </div>
-
-        {/* Stations List */}
         <div className="space-y-8">
           {stations.map((station, index) => (
             <div
@@ -128,22 +155,7 @@ export default function MetroStationsUI() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
+   
     </div>
   );
 }

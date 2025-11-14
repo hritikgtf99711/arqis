@@ -1,11 +1,12 @@
-html, body {
+html,
+body {
   overscroll-behavior-y: contain;
 }
 @import "tailwindcss";
 
 :root {
   --primary-green-color: #113120;
-  --secondary-color:#FFE18F;
+  --secondary-color: #ffe18f;
 }
 
 body {
@@ -118,7 +119,7 @@ body.active .next_text img {
 .scrollable-container {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain; 
+  overscroll-behavior: contain;
 }
 .overlay_gradient {
   background: linear-gradient(rgb(17 49 32 / 0%) 0%, #113120 100%);
@@ -224,11 +225,46 @@ input[type="file"]::-ms-browse {
     width: 40%;
   }
 }
-.listing_container{display: flex;gap:200px;justify-content: center;}
-.listing_container li{white-space: nowrap;}
-.listing_container li{position: relative;}
-.listing_container li:last-child::after{display: none;}
-.listing_container li::after{content: "";background: rgba(0, 0, 0, .4);width: 50%;height: 1px;display: block;position: absolute;right: -65%;
-top: 50%;transform: translateY(-50%);}
+.listing_container {
+  display: flex;
+  gap: 200px;
+  justify-content: center;
+}
+.listing_container li {
+  white-space: nowrap;
+}
+.listing_container li {
+  position: relative;
+}
+.listing_container li:last-child::after {
+  display: none;
+}
+.listing_container li::after {
+  content: "";
+  background: rgba(0, 0, 0, 0.4);
+  width: 50%;
+  height: 1px;
+  display: block;
+  position: absolute;
+  right: -65%;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-.swiper-pagination{display: none;}
+.swiper-pagination {
+  display: none;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}

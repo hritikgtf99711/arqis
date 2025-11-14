@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 export default function Partner() {
-  const scrollableRef = useRef(null);
   const [hoveredSlide, setHoveredSlide] = useState(null);
 
   const logosArr = [
