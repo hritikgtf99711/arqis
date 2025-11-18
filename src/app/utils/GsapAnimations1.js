@@ -33,7 +33,7 @@ export default function initScrollSmoother(router) {
   const outTL = new WeakMap();
 
   const CONFIG = {
-    WHEEL_THRESHOLD:20,
+    WHEEL_THRESHOLD: 20,
     COOLDOWN_MS: 50,
     ANIM_DURATION: 2,
     TOUCH_THRESH: 50,
@@ -41,22 +41,29 @@ export default function initScrollSmoother(router) {
     SCROLL_SPEED: 1,
   };
 
-  const isDarkSection = (section) => section?.dataset.theme === "dark" || section?.classList.contains("dark-bg", "bg-dark");
+  // console.log()
+  const microsite = router?.microsite;
+
+  const isDarkSection = (section) =>
+    section?.dataset.theme === "dark" ||
+    section?.classList.contains("dark-bg", "bg-dark");
 
   const updateTheme = (section) => {
     if (!section) return;
     const isDark = isDarkSection(section);
     const elements = {
       icons: section.querySelectorAll(".icon, .nav-icon, svg, img.icon"),
-      nav: document.querySelectorAll(".nav-indicator, .scroll-hint, .progress-bar"),
+      nav: document.querySelectorAll(
+        ".nav-indicator, .scroll-hint, .progress-bar"
+      ),
     };
 
-    elements.icons.forEach(icon => {
+    elements.icons.forEach((icon) => {
       icon.classList.toggle("icon-light", isDark);
       icon.classList.toggle("icon-dark", !isDark);
     });
 
-    elements.nav.forEach(el => {
+    elements.nav.forEach((el) => {
       el.classList.toggle("theme-light", isDark);
       el.classList.toggle("theme-dark", !isDark);
     });
@@ -107,7 +114,8 @@ export default function initScrollSmoother(router) {
     return tl;
   };
 
-  const emit = (name, detail) => window.dispatchEvent(new CustomEvent(name, { detail }));
+  const emit = (name, detail) =>
+    window.dispatchEvent(new CustomEvent(name, { detail }));
 
   sections.forEach((sec, i) => {
     inTL.set(sec, buildInTimeline(sec));
@@ -129,8 +137,15 @@ export default function initScrollSmoother(router) {
 
   const scrollToBoundary = (container, direction) => {
     if (!container) return;
-    const targetScroll = direction === "forward" ? container.scrollHeight - container.clientHeight : 0;
-    gsap.to(container, { scrollTop: targetScroll, duration: CONFIG.SCROLL_SPEED, ease: "power2.out" });
+    const targetScroll =
+      direction === "forward"
+        ? container.scrollHeight - container.clientHeight
+        : 0;
+    gsap.to(container, {
+      scrollTop: targetScroll,
+      duration: CONFIG.SCROLL_SPEED,
+      ease: "power2.out",
+    });
   };
 
   const goToSection = async (index, scrollDirection = null) => {
@@ -138,9 +153,14 @@ export default function initScrollSmoother(router) {
     isAnimating = true;
 
     const activeSection = sections[currentIndex];
-    const verticalScrollable = activeSection.querySelector(".scrollable-container");
+    const verticalScrollable = activeSection.querySelector(
+      ".scrollable-container"
+    );
     if (verticalScrollable && scrollDirection) {
-      const atBoundary = isAtScrollBoundary(verticalScrollable, scrollDirection === "forward" ? 1 : -1);
+      const atBoundary = isAtScrollBoundary(
+        verticalScrollable,
+        scrollDirection === "forward" ? 1 : -1
+      );
       if (!atBoundary) {
         scrollToBoundary(verticalScrollable, scrollDirection);
         setTimeout(() => (isAnimating = false), CONFIG.COOLDOWN_MS);
@@ -171,37 +191,85 @@ export default function initScrollSmoother(router) {
         // updateTheme(next);
       },
       onUpdate: function () {
-        document.documentElement.style.setProperty("--slide-progress", this.progress());
+        document.documentElement.style.setProperty(
+          "--slide-progress",
+          this.progress()
+        );
       },
       onComplete: () => {
         currentIndex = index;
-        sections.forEach((sec, i) => sec.classList.toggle("is-active", i === index));
+        sections.forEach((sec, i) =>
+          sec.classList.toggle("is-active", i === index)
+        );
         inTL.get(next)?.play();
 
-        document.body.classList.toggle("active", [1, 4, 7].includes(index));
-        document.querySelector('header').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
-        document.querySelector('.span_1').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
-        document.querySelector('.span_2').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
-                document.querySelector('.span_3').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        // Fixed class toggles: Always apply based on current index for consistency
+        const activeIndices = microsite ? [1] : [1, 4, 7];
+        const shouldActive = activeIndices.includes(index);
+        document.body.classList.toggle("active", shouldActive);
 
-     document.querySelector('.nextcontent').classList.toggle("hover-Effect", [1, 4, 7].includes(index));
+        if (microsite) {
+          document.body.classList.toggle("full-color", [4,6, 8].includes(index));
+        }
 
-        const navConfig = [
-          { prev: "Reshaping Real Estate", next: "Start Journey", footer: "remove" },
-          { prev: "Philosophy", next: "Projects", footer: "add" },
-          { prev: "Projects", next: "Our Team", footer: "add" },
-          { prev: "Our Team", next: "Careers", footer: "add" },
-          { prev: "Careers", next: "Media", footer: "add" },
-          { prev: "Media", next: "Blogs", footer: "add" },
-          { prev: "Blogs", next: "Contact", footer: "add" },
-          { prev: "Contact", next: "Quick Links", footer: "add" },
-          { prev: "Quick Links", next: "The End", footer: "add" },
-        ];
+        // Make hover-Effect consistent with active indices (adjust if microsite needs different logic for index 7)
+        const shouldHover = activeIndices.includes(index);
+        document
+          .querySelector("header")
+          ?.classList.toggle("hover-Effect", shouldHover);
+        document
+          .querySelector(".span_1")
+          ?.classList.toggle("hover-Effect", shouldHover);
+        document
+          .querySelector(".span_2")
+          ?.classList.toggle("hover-Effect", shouldHover);
+        document
+          .querySelector(".span_3")
+          ?.classList.toggle("hover-Effect", shouldHover);
+        document
+          .querySelector(".nextcontent")
+          ?.classList.toggle("hover-Effect", shouldHover);
+
+        const navConfig = microsite
+          ? [
+              { prev: "Arqis Mall", next: "Overview", footer: "remove" },
+              { prev: "Overview", next: "Amenities", footer: "add" },
+              { prev: "Amenities", next: "Highlights", footer: "add" },
+              { prev: "Highlights", next: "Brand Partners", footer: "add" },
+              { prev: "Brand Partners", next: "Floor Plan", footer: "add" },
+              { prev: "Floor Plan", next: "Location", footer: "add" },
+              { prev: "Location", next: "Gallery", footer: "add" },
+              { prev: "Gallery", next: "Contact us", footer: "add" },
+              { prev: "Contact us", next: "quick links", footer: "add" },
+              { prev: "Quick Links", next: "The End", footer: "add" },
+            ]
+          : [
+              {
+                prev: "Reshaping Real Estate",
+                next: "Start Journey",
+                footer: "remove",
+              },
+              { prev: "Philosophy", next: "Projects", footer: "add" },
+              { prev: "Projects", next: "Our Team", footer: "add" },
+              { prev: "Our Team", next: "Careers", footer: "add" },
+              { prev: "Careers", next: "Media", footer: "add" },
+              { prev: "Media", next: "Blogs", footer: "add" },
+              { prev: "Blogs", next: "Contact", footer: "add" },
+              { prev: "Contact", next: "Quick Links", footer: "add" },
+              { prev: "Quick Links", next: "The End", footer: "add" },
+            ];
 
         if (navConfig[index]) {
-          document.querySelector(".prev_title").textContent = navConfig[index].prev;
-          document.querySelector(".next_title").textContent = navConfig[index].next;
-          document.querySelector("footer")?.classList.toggle("change_style", navConfig[index].footer === "add");
+          document.querySelector(".prev_title").textContent =
+            navConfig[index].prev;
+          document.querySelector(".next_title").textContent =
+            navConfig[index].next;
+          document
+            .querySelector("footer")
+            ?.classList.toggle(
+              "change_style",
+              navConfig[index].footer === "add"
+            );
         }
 
         // gsap.fromTo(".border_line", { width: "0%", opacity: 0 }, { width: "100%", opacity: 1, duration: 2, ease: "power2.inOut", stagger: 0.1 });
@@ -226,7 +294,10 @@ export default function initScrollSmoother(router) {
 
         setTimeout(() => {
           isAnimating = false;
-          document.documentElement.classList.remove("is-sliding", `sliding-${dir}`);
+          document.documentElement.classList.remove(
+            "is-sliding",
+            `sliding-${dir}`
+          );
         }, CONFIG.COOLDOWN_MS);
       },
     });
@@ -237,9 +308,21 @@ export default function initScrollSmoother(router) {
   const isAtScrollBoundary = (el, deltaY, isHorizontal = false) => {
     if (!el) return true;
     const tolerance = 5;
-    const { scrollLeft, scrollTop, scrollWidth, scrollHeight, clientWidth, clientHeight } = el;
-    if (isHorizontal) return deltaY > 0 ? scrollLeft + clientWidth >= scrollWidth - tolerance : scrollLeft <= tolerance;
-    return deltaY > 0 ? scrollTop + clientHeight >= scrollHeight - tolerance : scrollTop <= tolerance;
+    const {
+      scrollLeft,
+      scrollTop,
+      scrollWidth,
+      scrollHeight,
+      clientWidth,
+      clientHeight,
+    } = el;
+    if (isHorizontal)
+      return deltaY > 0
+        ? scrollLeft + clientWidth >= scrollWidth - tolerance
+        : scrollLeft <= tolerance;
+    return deltaY > 0
+      ? scrollTop + clientHeight >= scrollHeight - tolerance
+      : scrollTop <= tolerance;
   };
 
   let accum = 0;
@@ -253,17 +336,28 @@ export default function initScrollSmoother(router) {
     if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
     lastInputTime = now;
 
-    const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
+    const delta =
+      e.deltaY *
+      (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1);
     const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(".scrollable-container") || document.querySelector(".horizontal-section");
+    const scrollContainer =
+      activeSection.querySelector(".scrollable-container") ||
+      document.querySelector(".horizontal-section");
 
     if (scrollContainer) {
       const isHorizontal = scrollContainer.dataset.scroll === "horizontal";
       if (!isAtScrollBoundary(scrollContainer, delta, isHorizontal)) {
         const scrollProp = isHorizontal ? "scrollLeft" : "scrollTop";
-        const maxScroll = isHorizontal ? scrollContainer.scrollWidth - scrollContainer.clientWidth : scrollContainer.scrollHeight - scrollContainer.clientHeight;
-        const scrollAmount = scrollContainer[scrollProp] + (delta > 0 ? 150 : -150);
-        gsap.to(scrollContainer, { [scrollProp]: Math.max(0, Math.min(scrollAmount, maxScroll)), duration: CONFIG.SCROLL_SPEED, ease: "power2.out" });
+        const maxScroll = isHorizontal
+          ? scrollContainer.scrollWidth - scrollContainer.clientWidth
+          : scrollContainer.scrollHeight - scrollContainer.clientHeight;
+        const scrollAmount =
+          scrollContainer[scrollProp] + (delta > 0 ? 150 : -150);
+        gsap.to(scrollContainer, {
+          [scrollProp]: Math.max(0, Math.min(scrollAmount, maxScroll)),
+          duration: CONFIG.SCROLL_SPEED,
+          ease: "power2.out",
+        });
         accum = 0;
         return;
       }
@@ -271,20 +365,36 @@ export default function initScrollSmoother(router) {
 
     accum += delta;
     if (Math.abs(accum) >= CONFIG.WHEEL_THRESHOLD) {
-      goToSection(currentIndex + (accum > 0 ? 1 : -1), accum > 0 ? "forward" : "backward");
+      goToSection(
+        currentIndex + (accum > 0 ? 1 : -1),
+        accum > 0 ? "forward" : "backward"
+      );
       accum = 0;
     }
   };
 
   const onKey = (e) => {
-    if (isAnimating || ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+    if (
+      isAnimating ||
+      ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+    )
+      return;
     const now = Date.now();
     if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
     lastInputTime = now;
 
     const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(".scrollable-container");
-    if (scrollContainer && !isAtScrollBoundary(scrollContainer, e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1)) return;
+    const scrollContainer = activeSection.querySelector(
+      ".scrollable-container"
+    );
+    if (
+      scrollContainer &&
+      !isAtScrollBoundary(
+        scrollContainer,
+        e.key === "ArrowDown" || e.key === "ArrowRight" ? 1 : -1
+      )
+    )
+      return;
 
     if (["ArrowRight", "ArrowDown"].includes(e.key)) {
       e.preventDefault();
@@ -314,13 +424,18 @@ export default function initScrollSmoother(router) {
 
     const dy = e.touches[0].clientY - touchStartY;
     const activeSection = sections[currentIndex];
-    const scrollContainer = activeSection.querySelector(".scrollable-container");
+    const scrollContainer = activeSection.querySelector(
+      ".scrollable-container"
+    );
     if (scrollContainer && !isAtScrollBoundary(scrollContainer, dy)) return;
 
     if (Math.abs(dy) > CONFIG.TOUCH_THRESH && !hasMoved) {
       e.preventDefault();
       hasMoved = true;
-      goToSection(currentIndex + (dy < 0 ? 1 : -1), dy < 0 ? "forward" : "backward");
+      goToSection(
+        currentIndex + (dy < 0 ? 1 : -1),
+        dy < 0 ? "forward" : "backward"
+      );
     }
   };
 

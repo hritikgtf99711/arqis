@@ -2,50 +2,47 @@ import React from "react";
 
 export default function RightStat() {
   return (
-    <>
     <ul className="">
       <li className="border-b-[1px] border-[#fff] py-[40px]">
         <h2 className="font-[200] !text-[50px] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            132,000
+          132,000
         </h2>
         <h6 className="capitalize  font-[200] !text-[24px] tracking-[1.4]  bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            square meters
+          square meters
         </h6>
-        </li>
-        <li className="border-b-[1px] border-[#fff] py-[40px]">
+      </li>
+      <li className="border-b-[1px] border-[#fff] py-[40px]">
         <h2 className="font-[200] !text-[50px] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            450
+          450
         </h2>
         <h6 className="capitalize  font-[200] !text-[24px] tracking-[1.4] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            Retail Shops
+          Retail Shops
         </h6>
-        </li>
-        <li className="border-b-[1px] border-[#fff] py-[40px]">
+      </li>
+      <li className="border-b-[1px] border-[#fff] py-[40px]">
         <h2 className="font-[200] !text-[50px] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            750
+          750
         </h2>
         <h6 className="capitalize  font-[200] !text-[24px] tracking-[1.4] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            Parking Capacity
-        </h6>   
-        </li>
-         <li className="border-b-[1px] border-[#fff] py-[40px]">
+          Parking Capacity
+        </h6>
+      </li>
+      <li className="border-b-[1px] border-[#fff] py-[40px]">
         <h2 className="font-[200] !text-[50px] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            70
+          70
         </h2>
         <h6 className="capitalize  font-[200] !text-[24px] tracking-[1.4] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            Restaurants
+          Restaurants
         </h6>
-        </li>
-         <li className="border-b-[1px] border-[#fff] py-[40px]">
+      </li>
+      <li className="border-b-[1px] border-[#fff] py-[40px]">
         <h2 className="font-[200] !text-[50px] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            5
+          5
         </h2>
         <h6 className="capitalize  font-[200] !text-[24px] tracking-[1.4] bg-[linear-gradient(to_right,#997F56_0%,#FFE18F_12.5%,#997F56_100%)] bg-clip-text text-transparent">
-            Restaurants
+          Restaurants
         </h6>
-        </li>
+      </li>
     </ul>
-     <p className="text-[#fff] pt-[50px]">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-    </>
   );
 }

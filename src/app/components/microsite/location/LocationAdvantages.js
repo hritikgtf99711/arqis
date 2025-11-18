@@ -87,7 +87,7 @@ export default function MetroStationsUI() {
               ref={prevRef}
               className="text-[#fff] transition-colors cursor-pointer z-10"
             >
-              ←
+             <Image src={`/assets/microsite/icons/right_arrow_3.svg`} alt='right' className='rotate-[180deg]' width={28} height={28}/>
             </button>
 
             <div className="flex-1 overflow-hidden mx-4">
@@ -114,7 +114,7 @@ export default function MetroStationsUI() {
                     <SwiperSlide key={index}>
                       <button
                         onClick={() => goToSlide(index)}
-                        className={`flex  btn_container items-center justify-center ${categories.length-1!=index&&'border-r-[1px]'} border-dashed border-[#fff] gap-3 w-full px-6 py-4 transition-all duration-300 
+                        className={`flex  btn_container cursor-pointer items-center justify-center ${categories.length-1!=index&&'border-r-[1px]'} border-dashed border-[#fff] gap-3 w-full px-6 py-4 transition-all duration-300 
                           ${
                           activeCategory === index
                             ? 'text-amber-200'
@@ -136,7 +136,7 @@ export default function MetroStationsUI() {
               ref={nextRef}
               className="text-[#fff] transition-colors cursor-pointer z-10"
             >
-              →
+             <Image src={`/assets/microsite/icons/right_arrow_3.svg`} alt='right' width={28} height={28}/>
             </button>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function MetroStationsUI() {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <h3 className=" font-light tracking-wide">{station.name}</h3>
-              <div className="flex-1 mx-8 border-b border-dashed border-emerald-600" />
+              <div className="flex-1 mx-8 border-b border-dashed border-[#fff]" />
               <span className="font-light">{station.time}</span>
             </div>
           ))}

@@ -1,7 +1,7 @@
 "use client"
 import React, { useRef, useEffect } from 'react';
 
-const DragComponent = ({ scrollableRef, centerDragVia }) => {
+const DragComponent = ({ scrollableRef, centerDragVia, axis = 'y',hideDragtxt }) => {
   const progRef = useRef(null);
   const dragButtonRef = useRef(null);
   const isDraggingRef = useRef(false);
@@ -14,11 +14,25 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
 
     if (!prog || !scrollable || !dragButton) return;
 
+    const getScrollPos = () => axis === 'y' ? scrollable.scrollTop : scrollable.scrollLeft;
+    const getScrollSize = () => {
+      const fullSize = axis === 'y' ? scrollable.scrollHeight : scrollable.scrollWidth;
+      const visibleSize = axis === 'y' ? scrollable.clientHeight : scrollable.clientWidth;
+      return fullSize - visibleSize;
+    };
+    const setScrollPos = (pos) => {
+      if (axis === 'y') {
+        scrollable.scrollTop = pos;
+      } else {
+        scrollable.scrollLeft = pos;
+      }
+    };
+
     const updateProgress = () => {
       if (isDraggingRef.current) return;
-      const scrollTop = scrollable.scrollTop;
-      const scrollHeight = scrollable.scrollHeight - scrollable.clientHeight;
-      const scrollPercentage = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      const scrollPos = getScrollPos();
+      const scrollSize = getScrollSize();
+      const scrollPercentage = scrollSize > 0 ? (scrollPos / scrollSize) * 100 : 0;
       prog.style.width = `${Math.max(4, Math.min(100, scrollPercentage))}%`;
     };
 
@@ -28,10 +42,11 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
       rafRef.current = requestAnimationFrame(() => {
         const rect = dragButton.getBoundingClientRect();
         const dragX = Math.max(0, Math.min(e.clientX - rect.left, rect.width)); 
-        const scrollHeight = scrollable.scrollHeight - scrollable.clientHeight;
-        const scrollPercentage = (dragX / rect.width) * scrollHeight;
-        scrollable.scrollTop = scrollPercentage;
-        prog.style.width = `${Math.max(4, Math.min(100, (scrollPercentage / scrollHeight) * 100))}%`;
+        const scrollSize = getScrollSize();
+        const scrollPercentage = (dragX / rect.width) * scrollSize;
+        setScrollPos(scrollPercentage);
+        const currentPercentage = scrollSize > 0 ? (scrollPercentage / scrollSize) * 100 : 0;
+        prog.style.width = `${Math.max(4, Math.min(100, currentPercentage))}%`;
       });
     };
 
@@ -59,14 +74,14 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
       document.removeEventListener('mouseup', onMouseUp);
       cancelAnimationFrame(rafRef.current);
     };
-  }, [scrollableRef]);
+  }, [scrollableRef, axis]);
 
   return (
     <div
       ref={dragButtonRef}
       className={`drag_button lg:flex hidden cursor-pointer ${centerDragVia ? 'justify-center' : ''} flex mt-[100px] gap-[8px] items-center relative w-[100%] mx-auto`}
     >
-      <div className="h-[1px]  bg-[#00000069] w-[60%]">
+      <div className="h-[1px] bg-[#00000069] w-[60%]">
         <div
           ref={progRef}
           className="prog top-1/2 transform flex justify-end items-center -translate-y-1/2 h-[1px] bg-[#525252] transition-all duration-100"
@@ -74,7 +89,10 @@ const DragComponent = ({ scrollableRef, centerDragVia }) => {
         ></div>
       </div>
       <div>
-        <span className="text-[#434343] tracking-[1.2] uppercase text-sm ml-2">DRAG</span>
+        {
+          !hideDragtxt &&  <span className="text-[#434343] tracking-[1.2] uppercase text-sm ml-2">DRAG</span>
+        }
+       
       </div>
     </div>
   );
