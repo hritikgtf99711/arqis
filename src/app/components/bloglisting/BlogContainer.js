@@ -54,9 +54,7 @@ export default function BlogContainer() {
           <a href="">4 </a>
         </li>
       </ul>
-
       </div>
-     
       <Modals
         scrollableRef={scrollableRef}
         SelectedLogo={

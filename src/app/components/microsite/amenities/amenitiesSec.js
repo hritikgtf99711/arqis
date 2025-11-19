@@ -7,12 +7,12 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollToPlugin);
 
 const projects = [
-  { id: 1, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
-  { id: 2, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
-  { id: 3, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
-  { id: 4, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
-  { id: 5, image: "/assets/microsite/amenities/amenities_1.webp", content: "" },
-  { id: 6, image: "/assets/microsite/amenities/amenities_2.webp", content: "" },
+  { id: 1, image: "/assets/microsite/amenities/amenities_1.webp", content: "Food & Dining" },
+  { id: 2, image: "/assets/microsite/amenities/amenities_2.webp", content: "Entertainment Zone" },
+  { id: 3, image: "/assets/microsite/amenities/amenities_1.webp", content: "Food & Dining " },
+  { id: 4, image: "/assets/microsite/amenities/amenities_2.webp", content: "Entertainment Zone" },
+  { id: 5, image: "/assets/microsite/amenities/amenities_1.webp", content: "Food & Dining " },
+  { id: 6, image: "/assets/microsite/amenities/amenities_2.webp", content: "Entertainment Zone" },
 ];
 
 export default function AmenitiesSec() {
@@ -45,8 +45,9 @@ export default function AmenitiesSec() {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="  project_card grow-0 shrink-0 basis-[60%] lg:basis-[50%] pr-[50px] gap-[10px] lg:gap-10">
-            <div className="">
+            className="  project_card  grow-0 shrink-0 basis-[60%] lg:basis-[50%] pr-[50px] gap-[10px] lg:gap-10"
+          >
+            <div className="relative">
               <Image
                 src={project.image}
                 alt=""
@@ -54,7 +55,16 @@ export default function AmenitiesSec() {
                 height={500}
                 width={500}
               />
-              <div className="absolute">{project.content}</div>
+              <div className="absolute w-[100%] z-[5] px-[25px] py-[20px] bottom-0">
+                <a href="#" className="flex items-center justify-between">
+                  <span className="inline-block me-2 text-[#fff] tracking-[3] text-[32px] font-[200] tracking-[1.1]">
+                    {project.content}
+                  </span>
+                  <span className="h-[20px] w-[20px] border-[1px] bo  rder-[#fff] text-[#fff] rounded-[50%] inline-flex justify-center items-center">
+                    +
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         ))}

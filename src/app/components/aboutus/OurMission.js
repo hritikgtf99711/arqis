@@ -22,9 +22,7 @@ export default function OurMission({ mobVia }) {
       <div className="">
         <Paragraph
           customClass={`${mobVia ? "text-[#000]" : "text-[#fff]"}`}
-          paragraph="To craft environments that balance ambition with authenticity. We build spaces that speak not through spectacle, but through sensitivity combining innovation, sustainability, and human insight to put people back at the heart of the real estate.
-"
-        />
+          paragraph="To craft environments that balance ambition with authenticity. We build spaces that speak not through spectacle, but through sensitivity combining innovation, sustainability, and human insight to put people back at the heart of the real estate."/>
       </div>
     </div>
   );
