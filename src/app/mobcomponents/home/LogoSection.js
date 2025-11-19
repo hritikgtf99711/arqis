@@ -17,7 +17,7 @@ export default function LogoSection() {
         />
       </figure>
 
-      <div className="flex-wrap z-[3] lg:max-w-[90%] m-[auto] max-w-[52%] w-[90%] flex lg:flex-row flex-col gap-5 items-center lg:items-end lg:justify-between bottom-10">
+      <div className="flex-wrap z-[3]  lg:max-w-[90%] m-[auto] max-w-[52%] w-[90%] flex lg:flex-row flex-col gap-5 items-center lg:items-end lg:justify-between bottom-10">
         <h2 className="uppercase  parallax   lg:text-start text-center cursor-pointer prev_title lg:basis-[25%] font-[200] text-[30px] lg:text-[40px] lg:leading-[1.1] leading-[1.6] pointer-events-auto">
           Reshaping Real Estate
         </h2>

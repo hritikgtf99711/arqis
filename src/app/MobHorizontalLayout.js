@@ -26,7 +26,7 @@ export default function MobHorizontalLayout({ children }) {
           <div id="smooth-content">
             <Header /> 
             {children}
-            <Footer />
+            {/* <Footer /> */}
             {/* <FooterContainer/> */}
           </div>
         </div>
@@ -34,3 +34,4 @@ export default function MobHorizontalLayout({ children }) {
     </ScrollContext.Provider>
   );
 }
+   
