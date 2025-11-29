@@ -25,7 +25,7 @@ export default function ExperienceContent({mobVia,missionData,vissionData,experi
       <div className="mt-5">
         <div
           className="text-white description"
-          dangerouslySetInnerHTML={{ __html: experienceData.description }}
+          dangerouslySetInnerHTML={{ __html: experienceData?.description }}
         />
       </div>
     </div>
