@@ -1,0 +1,115 @@
+"use client";
+
+import React, { useState, useRef } from "react";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import Modals from "@/website/utils/Modals";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import MediaContent from "./mediaContainer/MediaContent";
+import MediaLogo from "./mediaContainer/MediaImage";
+import { API_BASE_URL } from "../../../../config";
+
+export default function NewsLogos({newsData}) {
+  const scrollableRef = useRef(null);
+  const [hoveredSlide, setHoveredSlide] = useState(null);
+
+  const logosArr =newsData;
+  console.log(logosArr,"logosArr")
+
+  const handleMouseEnter = (index) => {
+    setHoveredSlide(index);
+  };
+
+  const handleClose = () => {
+    setHoveredSlide(null);
+  };
+
+  return (
+    <div className="lg:pb-0 pb-[30px] pt-[30px]">
+      <div className="arrow_container  lg:block hidden flex gap-5 justify-start pb-[30px] fade-up">
+        <div className="arrow_prev cursor-pointer">
+          <Image
+            src="/assets/icons/arrow_right.png"
+            alt="Previous"
+            width={25}
+            height={25}
+            className="arrow"
+          />
+        </div>
+        <div className="arrow_next cursor-pointer">
+          <Image
+            src="/assets/icons/arrow_left.png"
+            alt="Next"
+            width={25}
+            height={25}
+            className="arrow"
+          />
+        </div>
+      </div>
+      <div className="bg-[#fff]  lg:block hidden fade-up news_container">
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          spaceBetween={30}
+          slidesPerView="auto"
+          breakpoints={{
+            320: { slidesPerView: 1, spaceBetween: 10 },
+            640: { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
+            1280: { slidesPerView: 4, spaceBetween: 30 },
+          }}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          loop={true}
+          navigation={{
+            prevEl: ".arrow_prev",
+            nextEl: ".arrow_next",
+          }}
+          className="mySwiper"
+        >
+          {logosArr.map((item, index) => (
+            <SwiperSlide key={index} onClick={() => handleMouseEnter(index)}>
+              <div
+                className={`flex justify-center items-center cursor-pointer fade-up py-[30px] relative ${
+                  hoveredSlide === index ? "z-[99999]" : ""
+                }`}
+              >
+                <Image
+                  src={API_BASE_URL+item.logo}
+                  alt={`Logo ${index + 1}`}
+                  height={120}
+                  width={120}
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <div className="static-logos-container border-t-[1px] border-[#000]  py-[50px] lg:hidden block mt-[50px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[60px] lg:gap-4 fade-up">
+        {logosArr.map((item, index) => (
+          <div key={`static-${index}`} className="flex items-center cursor-pointer " onClick={() => handleMouseEnter(index)} >
+            <Image
+              src={item.logo}
+              alt={`Static Logo ${index + 1}`}
+              height={100}
+              width={100}
+            />
+          </div>
+        ))}
+      </div>
+      <Modals
+        scrollableRef={scrollableRef}
+        SelectedLogo={<MediaLogo selectedImage={logosArr[hoveredSlide]} />}
+        MediaContent={<MediaContent />}
+        hoveredSlide={hoveredSlide}
+        animation="opacity"
+        onClose={handleClose}
+      />
+    </div>
+  );
+}
