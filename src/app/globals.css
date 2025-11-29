@@ -6,7 +6,6 @@ body {
 
 :root {
   --primary-green-color: #113120;
-  --secondary-color: #ffe18f;
 }
 
 body {
@@ -61,7 +60,7 @@ body.active .icon {
   }
 }
 
-.custom-container .prog {
+custom-container .prog {
   position: relative;
   display: flex;
   justify-content: end;
@@ -180,6 +179,7 @@ input[type="file"]::-ms-browse {
   cursor: pointer;
   margin-right: 10px;
 }
+
 .swiper-3d .swiper-slide-shadow {
   box-shadow: none;
   background-color: transparent !important;
