@@ -3,13 +3,13 @@ import HorizontalLayout from "@/app/HorizontalLayout";
 import HomeBanner from "@/app/components/microsite/HomeBanner";
 import About from "@/app/components/microsite/About";
 import BrandContainer from "@/app/components/microsite/brands/BrandContainer";
-import AmenitiesContainer from "@/app/components/microsite/amenities/AmenitiesContainer";
 import HightlightsContainer from "@/app/components/microsite/highlights/HightlightsContainer";
 import MasterPlanContainer from "@/app/components/microsite/master-plan/MasterPlanContainer";
 import LocationContainer from "@/app/components/microsite/location/LocationContainer";
 import ContactformContainer from "@/app/components/contactform/ContactformContainer";
 import FooterContainer from "@/app/components/footer/FooterContainer";
 import ProjectGalleryContainer from "@/app/components/microsite/projectgallery/ProjectGalleryContainer";
+import AmenitiesContainer from "@/app/components/microsite/amenities/amenitiesContainer";
 import Image from "next/image";
 export default function page() {
   return (
