@@ -1,16 +1,17 @@
 import React from "react";
-import HorizontalLayout from "@/app/HorizontalLayout";
-import HomeBanner from "@/app/components/microsite/HomeBanner";
-import About from "@/app/components/microsite/About";
+
+import Image from "next/image";
+import HomeBanner from "@/website/components/microsite/HomeBanner";
 import BrandContainer from "@/app/components/microsite/brands/BrandContainer";
 import HightlightsContainer from "@/app/components/microsite/highlights/HightlightsContainer";
 import MasterPlanContainer from "@/app/components/microsite/master-plan/MasterPlanContainer";
 import LocationContainer from "@/app/components/microsite/location/LocationContainer";
-import ContactformContainer from "@/app/components/contactform/ContactformContainer";
-import FooterContainer from "@/app/components/footer/FooterContainer";
 import ProjectGalleryContainer from "@/app/components/microsite/projectgallery/ProjectGalleryContainer";
-import AmenitiesContainer from "@/app/components/microsite/amenities/amenitiesContainer";
-import Image from "next/image";
+import ContactformContainer from "@/website/components/contactform/ContactformContainer";
+import FooterContainer from "@/website/components/footer/FooterContainer";
+import HorizontalLayout from "../HorizontalLayout";
+import About from "@/app/components/microsite/About";
+import AmenitiesContainer from "@/app/components/microsite/amenities/AmenitiesContainer";
 export default function page() {
   return (
     <HorizontalLayout>
@@ -48,7 +49,7 @@ export default function page() {
         </div>
 
         <div className="basis-[100%] overflow-hidden   flex  item grow-0 shrink-0 h-full">
-          <ContactformContainer />
+          <ContactformContainer/>
         </div>
 
         <div className="basis-[100%] overflow-hidden  flex  items-center   item grow-0 shrink-0 h-full">

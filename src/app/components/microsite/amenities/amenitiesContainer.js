@@ -1,7 +1,7 @@
 import React from "react";
-import AmenitiesSec from "./amenitiesSec";
-import Tabs from "./tabs";
-export default function amenitiesContainer() {
+import AmenitiesSec from "./AmenitiesSec";
+import Tabs from "./Tabs";
+export default function AmenitiesContainer() {
   return (
     <div className="w-[100%]">
       <Tabs />

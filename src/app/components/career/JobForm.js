@@ -1,7 +1,7 @@
 "use client";
-import CommonHeading from "@/app/utils/CommonHeading";
 import React, { useState } from "react";
 import Image from "next/image";
+import CommonHeading from "@/website/utils/CommonHeading";
 
 export default function Form() {
   const [formData, setFormData] = useState({

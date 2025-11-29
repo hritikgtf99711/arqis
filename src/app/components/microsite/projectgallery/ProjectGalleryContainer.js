@@ -1,6 +1,6 @@
 import React from 'react'
-import CommonHeading from '@/app/utils/CommonHeading'
 import ProjectImage from './ProjectImage'
+import CommonHeading from '@/website/utils/CommonHeading'
 
 export default function ProjectGalleryContainer() {
   return (

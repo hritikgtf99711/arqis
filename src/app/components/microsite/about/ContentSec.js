@@ -1,6 +1,6 @@
 import React from "react";
-import CommonHeading from "@/app/utils/CommonHeading";
-import Paragraph from "@/app/utils/Paragraph";
+import CommonHeading from "@/website/utils/CommonHeading";
+import Paragraph from "@/website/utils/Paragraph";
 
 export default function ContentSec() {
   return (

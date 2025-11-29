@@ -1,7 +1,7 @@
 import React from "react";
-import CommonHeading from "@/app/utils/CommonHeading";
 import FloorPlanTable from "./FloorPlanTable";
 import Btn from "./Btn";
+import CommonHeading from "@/website/utils/CommonHeading";
 export default function MasterPlanContainer() {
   return (
     <div className="container ">

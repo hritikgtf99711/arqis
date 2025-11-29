@@ -1,5 +1,5 @@
+import Paragraph from "@/website/utils/Paragraph";
 import React from "react";
-import Paragraph from "@/app/utils/Paragraph";
 export default function Heading() {
   return (
     <div className="text-center max-w-[38%] m-auto">

@@ -1,6 +1,6 @@
 import React from "react";
-import CommonHeading from '@/website/utils/CommonHeading'
 import Image from "next/image";
+import CommonHeading from "@/website/utils/CommonHeading";
 export default function ContentSec() {
   return (
     <div className="m-auto h-[100%] flex flex-col justify-center">

@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Image from "next/image";
-import DragComponent from "@/app/utils/DragComponent";
+import DragComponent from "@/website/utils/DragComponent";
 gsap.registerPlugin(ScrollToPlugin);
 
 const projects = [
