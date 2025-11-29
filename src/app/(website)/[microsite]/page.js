@@ -43,14 +43,14 @@ export default function page() {
         <div className="basis-[100%] overflow-hidden  bg-[var(--primary-green-color)]  flex  item grow-0 shrink-0 h-full">
           <LocationContainer />
         </div>
-           <div className="basis-[100%] overflow-hidden items-center flex item grow-0 shrink-0 h-full">
+        <div className="basis-[100%] overflow-hidden items-center flex item grow-0 shrink-0 h-full">
           <ProjectGalleryContainer />
         </div>
 
         <div className="basis-[100%] overflow-hidden   flex  item grow-0 shrink-0 h-full">
           <ContactformContainer />
         </div>
-     
+
         <div className="basis-[100%] overflow-hidden  flex  items-center   item grow-0 shrink-0 h-full">
           <FooterContainer />
         </div>

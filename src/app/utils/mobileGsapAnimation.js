@@ -262,10 +262,10 @@ export default function initScrollSmoother(router) {
       : window.innerHeight / 2;
     accum += delta;
     if (Math.abs(accum) >= wheelThreshold) {
-      goToSection(
-        currentIndex + (accum > 0 ? 1 : -1),
-        accum > 0 ? "forward" : "backward"
-      );
+      // goToSection(
+      //   currentIndex + (accum > 0 ? 1 : -1),
+      //   accum > 0 ? "forward" : "backward"
+      // );
       accum = 0;
     }
   };
@@ -340,10 +340,10 @@ export default function initScrollSmoother(router) {
     if (isVerticalSwipe && !hasMoved) {
       e.preventDefault(); 
       hasMoved = true;
-      goToSection(
-        currentIndex + (dy < 0 ? 1 : -1),
-        dy < 0 ? "forward" : "backward"
-      );
+      // goToSection(
+      //   currentIndex + (dy < 0 ? 1 : -1),
+      //   dy < 0 ? "forward" : "backward"
+      // );
     }
   };
 
