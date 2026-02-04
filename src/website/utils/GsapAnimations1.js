@@ -24,6 +24,27 @@ export default function initScrollSmoother(router) {
     smoothTouch: 0.1,
   });
 
+  const updateHeaderLogo = (index) => {
+    const logo = document.querySelector("#header-logo");
+    if (!logo) return;
+
+    if (index === 0) {
+      // Immediately hide on first section without animation
+      gsap.set(logo, {
+        autoAlpha: 0,
+        pointerEvents: "none",
+      });
+    } else {
+      // Animate in for other sections
+      gsap.to(logo, {
+        autoAlpha: 1,
+        duration: 0.4,
+        ease: "power2.out",
+        pointerEvents: "auto",
+      });
+    }
+  };
+
   const sections = gsap.utils.toArray(".horizontal-section .item");
   if (!sections.length) return { cleanup: () => {} };
 
@@ -41,7 +62,6 @@ export default function initScrollSmoother(router) {
     SCROLL_SPEED: 1,
   };
 
-  // console.log()
   const microsite = router?.microsite;
 
   const isDarkSection = (section) =>
@@ -71,46 +91,11 @@ export default function initScrollSmoother(router) {
 
   const buildInTimeline = (section) => {
     const tl = gsap.timeline({ paused: true });
-    // const elements = {
-    //   fadeUps: section.querySelectorAll(".fade-up"),
-    //   scales: section.querySelectorAll(".scale-in"),
-    //   staggers: section.querySelectorAll(".stagger > *"),
-    //   parallax: section.querySelectorAll(".parallax"),
-    //   slideIns: section.querySelectorAll(".slide-in"),
-    //   rotateIns: section.querySelectorAll(".rotate-in"),
-    //   blurIns: section.querySelectorAll(".blur-in"),
-    // };
-
-    // if (elements.fadeUps.length) {
-    //   tl.from(elements.fadeUps, { y: 60, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.1, clearProps: "all" }, 0);
-    // }
-    // if (elements.scales.length) {
-    //   tl.from(elements.scales, { scale: 0.85, opacity: 0, duration: 1.2, ease: "elastic.out(1, 0.6)", stagger: 0.08 }, 0.1);
-    // }
-    // if (elements.staggers.length) {
-    //   tl.from(elements.staggers, { opacity: 0, y: 30, duration: 0.9, ease: "power3.out", stagger: 0.08 }, 0.15);
-    // }
-    // if (elements.parallax.length) {
-    //   tl.from(elements.parallax, { x: 100, opacity: 0, duration: 1.2, ease: "power3.out", stagger: 0.1 }, 0.2);
-    // }
-    // if (elements.slideIns.length) {
-    //   tl.from(elements.slideIns, { x: -80, opacity: 0, duration: 1.1, ease: "power3.out", stagger: 0.07 }, 0.15);
-    // }
-    // if (elements.rotateIns.length) {
-    //   tl.from(elements.rotateIns, { rotation: -180, scale: 0.5, opacity: 0, duration: 1.2, ease: "back.out(1.5)", stagger: 0.1 }, 0.2);
-    // }
-    // if (elements.blurIns.length) {
-    //   tl.from(elements.blurIns, { opacity: 0, filter: "blur(20px)", duration: 1, ease: "power2.out", stagger: 0.08, clearProps: "filter" }, 0.15);
-    // }
     return tl;
   };
 
   const buildOutTimeline = (section) => {
     const tl = gsap.timeline({ paused: true });
-    // const elements = section.querySelectorAll(".fade-up, .scale-in, .parallax, .slide-in, .rotate-in, .blur-in");
-    // if (elements.length) {
-    //   tl.to(elements, { opacity: 0, duration: 0.6, ease: "power2.in", stagger: 0.02, clearProps: "all" }, 0);
-    // }
     return tl;
   };
 
@@ -124,8 +109,11 @@ export default function initScrollSmoother(router) {
     if (i === 0) {
       inTL.get(sec)?.play();
       updateTheme(sec);
+      // Initialize logo as hidden on first section
+      updateHeaderLogo(0);
     }
   });
+
   const first = sections[0];
   emit("sliderstart", {
     index: 0,
@@ -133,6 +121,7 @@ export default function initScrollSmoother(router) {
     footerTitle: first?.dataset.footerTitle || "Reshaping Real Estate",
     footerCta: first?.dataset.footerCta || "Start Journey",
   });
+
   const scrollToBoundary = (container, direction) => {
     if (!container) return;
     const targetScroll =
@@ -145,6 +134,7 @@ export default function initScrollSmoother(router) {
       ease: "power2.out",
     });
   };
+
   const goToSection = async (index, scrollDirection = null) => {
     if (index < 0 || index >= sections.length || isAnimating) return;
     isAnimating = true;
@@ -164,17 +154,21 @@ export default function initScrollSmoother(router) {
         return;
       }
     }
+
     const next = sections[index];
     const prev = sections[currentIndex];
     const dir = index > currentIndex ? "forward" : "backward";
     const sectionKeys = Object.keys(SLIDE_NAV);
     const nextSectionKey = sectionKeys[index];
     const nextRoute = SLIDE_NAV[nextSectionKey]?.route;
+
     document.documentElement.classList.add(`sliding-${dir}`);
     outTL.get(prev)?.play();
+
     const scrollContainer = document.querySelector(".horizontal-section");
     const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
     const targetScroll = (index / (sections.length - 1)) * maxScroll;
+
     await gsap.to(scrollContainer, {
       scrollTo: { x: targetScroll },
       duration: CONFIG.ANIM_DURATION,
@@ -190,12 +184,15 @@ export default function initScrollSmoother(router) {
       },
       onComplete: () => {
         currentIndex = index;
+        
+        // Update logo visibility based on section
+        updateHeaderLogo(index);
+        
         sections.forEach((sec, i) =>
           sec.classList.toggle("is-active", i === index)
         );
         inTL.get(next)?.play();
 
-        // Fixed class toggles: Always apply based on current index for consistency
         const activeIndices = microsite ? [1] : [1, 4, 7];
         const shouldActive = activeIndices.includes(index);
         document.body.classList.toggle("active", shouldActive);
@@ -204,7 +201,6 @@ export default function initScrollSmoother(router) {
           document.body.classList.toggle("full-color", [4,6, 8].includes(index));
         }
 
-        // Make hover-Effect consistent with active indices (adjust if microsite needs different logic for index 7)
         const shouldHover = activeIndices.includes(index);
         document
           .querySelector("header")
@@ -264,25 +260,12 @@ export default function initScrollSmoother(router) {
             );
         }
 
-        // gsap.fromTo(".border_line", { width: "0%", opacity: 0 }, { width: "100%", opacity: 1, duration: 2, ease: "power2.inOut", stagger: 0.1 });
-        // gsap.fromTo(".border_button", { width: "0%", opacity: 0 }, { width: "100%", opacity: 1, duration: 2, ease: "power3.inOut", stagger: 0.15, delay: 0.8 });
-        // gsap.fromTo(".prev_title, .next_title", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out", stagger: 0.1, clearProps: "all" });
-        // gsap.fromTo(next.querySelectorAll(".footer-content"), { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out", stagger: 0.15, clearProps: "all" });
-        // gsap.fromTo(next.querySelectorAll(".section-content"), { scale: 0.98, opacity: 0.9, y: 15 }, { scale: 1, opacity: 1, y: 0, duration: 0.8, ease: "power2.out", stagger: 0.07, clearProps: "all" });
-        // gsap.fromTo(".nav-indicator, .progress-bar", { scaleX: 0.8, opacity: 0.6 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "elastic.out(1, 0.6)", clearProps: "all" });
-
-        // const [prevArrow, nextArrow] = [document.querySelector(".prev_arrow"), document.querySelector(".next_arrow")];
-        // if (prevArrow) gsap.fromTo(prevArrow, { x: dir === "forward" ? -20 : 20, opacity: 0, scale: 0.9 }, { x: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.5)", clearProps: "all" });
-        // if (nextArrow) gsap.fromTo(nextArrow, { x: dir === "forward" ? 20 : -20, opacity: 0, scale: 0.9 }, { x: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.5)", clearProps: "all" });
-
         emit("slidechange", {
           index,
           direction: dir,
           footerTitle: next?.dataset.footerTitle || "",
           footerCta: next?.dataset.footerCta || "",
         });
-
-        // if (router && nextRoute) router.push(nextRoute);
 
         setTimeout(() => {
           isAnimating = false;
@@ -293,8 +276,6 @@ export default function initScrollSmoother(router) {
         }, CONFIG.COOLDOWN_MS);
       },
     });
-
-    // gsap.fromTo(next, { scale: 1.05 }, { scale: 1, duration: CONFIG.ANIM_DURATION, ease: "power3.out" });
   };
 
   const isAtScrollBoundary = (el, deltaY, isHorizontal = false) => {
@@ -436,11 +417,20 @@ export default function initScrollSmoother(router) {
   window.addEventListener("touchstart", onTouchStart, { passive: true });
   window.addEventListener("touchmove", onTouchMove, { passive: false });
 
+  // Listen for logo click event to navigate to first section
+  const handleLogoClick = () => {
+    if (currentIndex !== 0) {
+      goToSection(0, "backward");
+    }
+  };
+  window.addEventListener("navigateToFirstSection", handleLogoClick);
+
   const cleanup = () => {
     window.removeEventListener("wheel", onWheel);
     window.removeEventListener("keydown", onKey);
     window.removeEventListener("touchstart", onTouchStart);
     window.removeEventListener("touchmove", onTouchMove);
+    window.removeEventListener("navigateToFirstSection", handleLogoClick);
     gsap.killTweensOf(sections);
     smoother.kill();
   };
