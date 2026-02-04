@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function IconItem({ items = [],selectedTab}) {
   return (
     <div className='overflow-y-scroll  scrollable-container h-[calc(100%)]'>
-    <div className='grid grid-cols-3 gap-[30px] relative  gap-y-[80px] pt-[90px]'>
+    <div className='grid grid-cols-3 gap-[30px] relative  gap-y-[80px] pt-[90px] pb-[200px]'>
       {items.map((item, index) => (
         <div key={index} className='col-span-1'>
           <figure className='text-center'>

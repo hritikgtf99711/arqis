@@ -34,6 +34,7 @@ export default function HightlightsContainer() {
           src: `/assets/microsite/hightlight/h_icon_6.png`,
           caption: "Rain Water Harvesting System",
         },
+        
       ],
     },
     2: {
