@@ -16,6 +16,17 @@ const SLIDE_NAV = {
 };
 
 export default function initScrollSmoother(router) {
+  // Track menu state - CRITICAL FOR PREVENTING SCROLL WHEN MENU IS OPEN
+  let isMenuOpen = false;
+  
+  const handleMenuStateChange = (e) => {
+    isMenuOpen = e.detail.isOpen;
+    // When menu state changes, update logo visibility
+    updateHeaderLogo(currentIndex);
+  };
+  
+  window.addEventListener('menuStateChange', handleMenuStateChange);
+
   const smoother = ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
@@ -28,14 +39,25 @@ export default function initScrollSmoother(router) {
     const logo = document.querySelector("#header-logo");
     if (!logo) return;
 
+    // If menu is open, always show logo
+    if (isMenuOpen) {
+      gsap.to(logo, {
+        autoAlpha: 1,
+        duration: 0.4,
+        ease: "power2.out",
+        pointerEvents: "auto",
+      });
+      return;
+    }
+
+    // If menu is closed, hide logo only on first section (index 0)
     if (index === 0) {
-      // Immediately hide on first section without animation
       gsap.set(logo, {
         autoAlpha: 0,
         pointerEvents: "none",
       });
     } else {
-      // Animate in for other sections
+      // Show logo on all other sections
       gsap.to(logo, {
         autoAlpha: 1,
         duration: 0.4,
@@ -303,7 +325,9 @@ export default function initScrollSmoother(router) {
 
   const onWheel = (e) => {
     e.preventDefault();
-    if (isAnimating) return;
+    
+    // CRITICAL: Block scroll when menu is open
+    if (isAnimating || isMenuOpen) return;
 
     const now = Date.now();
     if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
@@ -347,11 +371,13 @@ export default function initScrollSmoother(router) {
   };
 
   const onKey = (e) => {
+    // CRITICAL: Block keyboard navigation when menu is open
     if (
       isAnimating ||
+      isMenuOpen ||
       ["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
-    )
-      return;
+    ) return;
+    
     const now = Date.now();
     if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
     lastInputTime = now;
@@ -387,10 +413,12 @@ export default function initScrollSmoother(router) {
   };
 
   const onTouchMove = (e) => {
-    if (isAnimating) {
+    // CRITICAL: Block touch navigation when menu is open
+    if (isAnimating || isMenuOpen) {
       e.preventDefault();
       return;
     }
+    
     const now = Date.now();
     if (now - lastInputTime < CONFIG.DEBOUNCE_MS) return;
     lastInputTime = now;
@@ -431,6 +459,7 @@ export default function initScrollSmoother(router) {
     window.removeEventListener("touchstart", onTouchStart);
     window.removeEventListener("touchmove", onTouchMove);
     window.removeEventListener("navigateToFirstSection", handleLogoClick);
+    window.removeEventListener('menuStateChange', handleMenuStateChange);
     gsap.killTweensOf(sections);
     smoother.kill();
   };
