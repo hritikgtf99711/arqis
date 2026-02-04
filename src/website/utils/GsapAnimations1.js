@@ -417,12 +417,12 @@ export default function initScrollSmoother(router) {
   window.addEventListener("touchstart", onTouchStart, { passive: true });
   window.addEventListener("touchmove", onTouchMove, { passive: false });
 
-  // Listen for logo click event to navigate to first section
   const handleLogoClick = () => {
     if (currentIndex !== 0) {
       goToSection(0, "backward");
     }
   };
+  
   window.addEventListener("navigateToFirstSection", handleLogoClick);
 
   const cleanup = () => {
