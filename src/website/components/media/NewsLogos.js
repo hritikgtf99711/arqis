@@ -10,14 +10,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import MediaContent from "./mediaContainer/MediaContent";
 import MediaLogo from "./mediaContainer/MediaImage";
-import { API_BASE_URL } from "../../../../config";
+import { API_BASE_URL, ADMIN_BASE_PATH1 } from "../../../../config";
 
 export default function NewsLogos({newsData}) {
   const scrollableRef = useRef(null);
   const [hoveredSlide, setHoveredSlide] = useState(null);
 
   const logosArr =newsData;
-  console.log(logosArr,"logosArr")
 
   const handleMouseEnter = (index) => {
     setHoveredSlide(index);
@@ -49,6 +48,7 @@ export default function NewsLogos({newsData}) {
           />
         </div>
       </div>
+
       <div className="bg-[#fff]  lg:block hidden fade-up news_container">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
@@ -72,15 +72,16 @@ export default function NewsLogos({newsData}) {
           }}
           className="mySwiper"
         >
-          {logosArr.map((item, index) => (
+          {logosArr?.map((item, index) => (
             <SwiperSlide key={index} onClick={() => handleMouseEnter(index)}>
               <div
                 className={`flex justify-center items-center cursor-pointer fade-up py-[30px] relative ${
                   hoveredSlide === index ? "z-[99999]" : ""
                 }`}
               >
+                {/* {API_BASE_URL+item.logo} */}
                 <Image
-                  src={API_BASE_URL+item.logo}
+                  src={ADMIN_BASE_PATH1+item.logo}
                   alt={`Logo ${index + 1}`}
                   height={120}
                   width={120}
@@ -90,11 +91,13 @@ export default function NewsLogos({newsData}) {
           ))}
         </Swiper>
       </div>
+
       <div className="static-logos-container border-t-[1px] border-[#000]  py-[50px] lg:hidden block mt-[50px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-[60px] lg:gap-4 fade-up">
         {logosArr.map((item, index) => (
           <div key={`static-${index}`} className="flex items-center cursor-pointer " onClick={() => handleMouseEnter(index)} >
+            
             <Image
-              src={item.logo}
+              src={API_BASE_URL+item.logo}
               alt={`Static Logo ${index + 1}`}
               height={100}
               width={100}
@@ -102,6 +105,7 @@ export default function NewsLogos({newsData}) {
           </div>
         ))}
       </div>
+      
       <Modals
         scrollableRef={scrollableRef}
         SelectedLogo={<MediaLogo selectedImage={logosArr[hoveredSlide]} />}

@@ -11,6 +11,7 @@ import HorizontalLayout from "./HorizontalLayout";
 import { getTeams,getBlogs,getjobs ,getProjects,getMission,getMediaNews,getVission,getExperience,getOverview} from "@/admin/utils/api";
 export default async function DesktopLayout() {
   const [teamsData,blogsData,jobsData,projectsData,missionData,vissionData,experienceData,overviewData,newsData] = await Promise.all([getTeams(),getBlogs("10","DESC"),getjobs(),getProjects(),getMission(),getVission(),getExperience(),getOverview(),getMediaNews()]);
+
   return (
      <HorizontalLayout>
       <div className="flex h-[100vh] overflow-x-scroll horizontal-section">
