@@ -11,7 +11,7 @@ import ContactformContainer from "@/website/components/contactform/ContactformCo
 import FooterContainer from "@/website/components/footer/FooterContainer";
 import HorizontalLayout from "../HorizontalLayout";
 import About from "@/app/components/microsite/About";
-import AmenitiesContainer from "@/app/components/microsite/amenities/AmenitiesContainer";
+import AmenitiesContainer from "@/app/components/microsite/amenities/amenitiesContainer";
 export default function page() {
   return (
     <HorizontalLayout>
