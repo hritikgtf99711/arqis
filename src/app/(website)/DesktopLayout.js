@@ -8,9 +8,8 @@ import CareerContainer from "@/website/components/career/CareerContainer";
 import ContactformContainer from "@/website/components/contactform/ContactformContainer"
 import ProjectContainer from "@/website/components/projects/ProjectContainer";
 import HorizontalLayout from "./HorizontalLayout";
-import { getTeams,getBlogs,getjobs ,getProjects,getMission,getMediaNews,getVission,getExperience,getOverview} from "@/admin/utils/api";
+import { blogsData1, experienceData1, jobsData1, missionData1, newsData1, overviewData1, teamsData1, visionData1 } from "@/admin/utils/apiData";
 export default async function DesktopLayout() {
-  const [teamsData,blogsData,jobsData,projectsData,missionData,vissionData,experienceData,overviewData,newsData] = await Promise.all([getTeams(),getBlogs("10","DESC"),getjobs(),getProjects(),getMission(),getVission(),getExperience(),getOverview(),getMediaNews()]);
 
   return (
      <HorizontalLayout>
@@ -19,22 +18,22 @@ export default async function DesktopLayout() {
           <LogoSection />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
-          <About missionData={missionData} vissionData={vissionData} experienceData={experienceData} overviewData={overviewData}  />
+          <About missionData={missionData1} vissionData={visionData1} experienceData={experienceData1} overviewData={overviewData1}  />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
           <ProjectContainer />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full flex items-center">
-          <TeamContainer teamsData={teamsData?.data} />
+          <TeamContainer teamsData={teamsData1?.data} />
         </div> 
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
-          <CareerContainer jobsData={jobsData?.data.data} />
+          <CareerContainer jobsData={jobsData1?.data} />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full flex items-center">
-          <MediaContainer  newsData={newsData}/>
+          <MediaContainer  newsData={newsData1}/>
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full flex items-center">
-          <BlogContainer blogsData={blogsData?.data.data} />
+          <BlogContainer blogsData={blogsData1?.data.data} />
         </div>
         <div className="basis-[100%] item grow-0 shrink-0 h-full">
           <ContactformContainer />

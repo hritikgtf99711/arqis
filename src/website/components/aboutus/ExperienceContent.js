@@ -6,6 +6,8 @@ import OurVission from "./OurVission";
 import Redirect_Link from "@/website/utils/Redirect_txt";
 export default function ExperienceContent({mobVia,missionData,vissionData,experienceData}) {
   experienceData=experienceData?.data
+
+  console.log('experienceData?.description',experienceData?.description);
   return (
     <div className=" parallax">
       <CommonHeading

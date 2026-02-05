@@ -72,6 +72,7 @@ export default function TeamContainer({ teamsData }) {
           </div>
         </div>
       </div>
+      
       {shouldRender && (
         <div ref={modalRef} className="w-[100%]">
           <TeamDetailContainer
