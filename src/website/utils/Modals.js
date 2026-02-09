@@ -13,11 +13,12 @@ export default function Modals({
   SelectedLogo,
   hoveredSlide,
   centerDragVia,
-  animation
+  animation,
+  showCloseButton = false // Add this prop to control close button visibility
 }) {
   const [mounted, setMounted] = useState(false);
   const modalRef = useRef(null);
-  const isClosing = useRef( );
+  const isClosing = useRef();
 
   useEffect(() => {
     setMounted(true);
@@ -87,20 +88,22 @@ export default function Modals({
   return createPortal(
     <div
       ref={modalRef}
-      className="fixed bg-[#f7efe1f5] top-0 left-0 h-full w-full z-[999]"
+      className="fixed bg-[#f7efe1f5] top-0 left-0 h-full w-full z-[99999]"
     >
-      <div
-        onClick={handleClose}
-        className="cross absolute cursor-pointer top-[80px] right-[100px]"
-      >
-        <Image
-          src={`/assets/icons/cross.svg`}
-          alt="cross"
-          className="cross"
-          height={40}
-          width={40}
-        />
-      </div>
+      {showCloseButton && (
+        <div
+          onClick={handleClose}
+          className="cross absolute cursor-pointer top-[80px] right-[100px] z-[99999]"
+        >
+          <Image
+            src={`/assets/icons/cross.svg`}
+            alt="cross"
+            className="cross"
+            height={40}
+            width={40}
+          />
+        </div>
+      )}
       <ScrollLayout
         leftContent={SelectedLogo}
         rightContent={MediaContent}

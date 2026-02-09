@@ -295,11 +295,11 @@ const Header = () => {
                 <li
                   key={item.label}
                   ref={(el) => (menuItemsRef.current[index] = el)}
-                  className="text-center mb-[44px] last:mb-0 opacity-0"
+                  className="text-center 2xl:mb-[44px] mb-[25px] last:mb-0 opacity-0"
                 >
                   <button
                     onClick={() => handleNavigation(item.index)}
-                    className="text-black text-4xl lg:text-[38px] font-extralight tracking-wider transition-all duration-300 no-underline inline-block bg-transparent border-none cursor-pointer"
+                    className="text-black md:text-[28px] 2xl:text-[38px] text-[20px] font-extralight tracking-wider transition-all duration-300 no-underline inline-block bg-transparent border-none cursor-pointer"
                   >
                     {item.label}
                   </button>
