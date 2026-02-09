@@ -16,11 +16,13 @@ export default function AbsSec({ abs_footer, isMicrosite }) {
       </video>
       <Image
         src="/assets/green-leaf.png"
+        id="green-leaf-icon"
         className={`${
           isMicrosite 
             ? 'w-[60%] lg:w-[25%]'  // Larger size for microsite
             : 'w-[250px]'  // Normal size for main site
-        } absolute leaf_icon z-[999] left-0 lg:top-[50px] top-[0px]`}
+        } absolute leaf_icon z-[999] left-0`}
+        style={{ top: '30px' }}
         alt="logo"
         width={288} 
         height={208}

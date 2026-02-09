@@ -79,7 +79,7 @@ const DragComponent = ({ scrollableRef, centerDragVia, axis = 'y',hideDragtxt })
   return (
     <div
       ref={dragButtonRef}
-      className={`drag_button lg:flex hidden cursor-pointer ${centerDragVia ? 'justify-center' : ''} flex mt-[100px] gap-[8px] items-center relative w-[100%] mx-auto`}
+      className={`drag_button lg:flex hidden cursor-pointer ${centerDragVia ? 'justify-center' : ''} flex 2xl:!mt-[50px] xl:!mt-[30px] gap-[8px] items-center relative w-[100%] mx-auto`}
     >
       <div className="h-[1px] bg-[#00000069] w-[60%]">
         <div

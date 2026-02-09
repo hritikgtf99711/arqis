@@ -10,7 +10,7 @@ export default function ContentSec() {
       <figure className="mt-[30px]">
         <Image
           src={`/assets/career/career.jpg`}
-          className="lg:h-[auto] h-[318px]"
+          className="2xl:h-[auto] xl:h-[200px]"
           alt="career"
           width={450}
           height={340}

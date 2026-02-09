@@ -8,7 +8,7 @@ import AbsSec from "../common/absSec";
 export default function FooterContainer() {
   const {gotoFn}=useContext(ScrollContext)
   return (
-    <div className="container relative lg:h-[auto] h-screen lg:block flex justify-center flex-col  parallax">
+    <div className="2xl:max-w-[1520px] xl:max-w-[1280px] mx-[auto] w-full relative lg:h-[auto] h-screen lg:block flex justify-center flex-col  parallax">
       <div className="lg:hidden block">
       <AbsSec abs_footer="abs_footer"/>
       </div>

@@ -20,6 +20,7 @@ export default function HeadingLogo() {
                 alt="ARQIS Group"
                 height={200}
                 width={400}
+                className="xl:w-[200px] 2xl:w-auto mx-auto"
               />
             </div>
             <ul className="flex justify-center gap-[10px] mt-[20px]">
@@ -43,6 +44,7 @@ export default function HeadingLogo() {
                 alt="ARQIS Group"
                 height={200}
                 width={400}
+                className="xl:w-[200px] 2xl:w-auto mx-auto"
               />
             </div>
             <ul className="flex justify-center gap-[10px] mt-[20px]">

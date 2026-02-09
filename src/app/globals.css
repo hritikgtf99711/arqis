@@ -197,13 +197,11 @@ input[type="file"]::-ms-browse {
     font-size: 30px;
   }
   .teams_card {
-    padding-top: 50px;
-  }
-  .teams_card img {
-    margin-top: 20px;
+    padding-top: 30px;
   }
   .leaf_icon {
-    width: 15%;
+    /* width: 15%; */
+    width: 13%;
   }
   .drag_button {
     margin-top: 50px;

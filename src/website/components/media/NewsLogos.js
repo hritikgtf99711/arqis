@@ -87,6 +87,7 @@ export default function NewsLogos({newsData}) {
                   alt={`Logo ${index + 1}`}
                   height={120}
                   width={120}
+                  className="xl:w-[100px] xl:h-[80px] object-contain 2xl:w-auto 2xl:h-auto"
                 />
               </div>
             </SwiperSlide>

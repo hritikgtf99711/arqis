@@ -36,11 +36,11 @@ export default function ProjectContainer() {
   };
  
   return (
-    <div className="parallax relative projects_container h-[100%] py-[60px] mx-auto">
+    <div className="parallax relative 2xl:max-w-[1520px] xl:max-w-[1280px] mx-[auto] h-[100%] py-[60px] mx-auto">
       <div
         ref={scrollRef}
         data-scroll="horizontal"
-        className="flex pl-[15px] lg:pl-[80px]   items-center scrollable-container overflow-x-scroll h-full snap-x snap-mandatory"
+        className="flex items-center scrollable-container overflow-x-scroll h-full snap-x snap-mandatory"
       >
         {projects.map((project) => (
           <div

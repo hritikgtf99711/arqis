@@ -50,12 +50,12 @@ export default function TeamContainer({ teamsData }) {
   return (
     <>
       <div
-        className="container flex items-center  transition-all"
+        className="2xl:max-w-[1520px] xl:max-w-[1280px] mx-[auto] flex items-center  transition-all"
         style={{ display: shouldRender ? "none" : "block" }}
       >
         <div className="grid gap-10 lg:grid-cols-4">
           <div className="col-span-3">
-            <div className="grid gap-15 lg:grid-cols-3">
+            <div className="grid gap-15 lg:grid-cols-3 xl:pt-[50px] 2xl:pt-0">
               {teamsData.map((team, index) => (
                 <div key={index} className="col-span-1">
                   <TeamCard

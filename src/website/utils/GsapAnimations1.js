@@ -21,7 +21,7 @@ export default function initScrollSmoother(router) {
   
   const handleMenuStateChange = (e) => {
     isMenuOpen = e.detail.isOpen;
-    // When menu state changes, update logo visibility
+    // When menu state changes, update logo and green leaf visibility
     updateHeaderLogo(currentIndex);
   };
   
@@ -37,33 +37,56 @@ export default function initScrollSmoother(router) {
 
   const updateHeaderLogo = (index) => {
     const logo = document.querySelector("#header-logo");
-    if (!logo) return;
+    const greenLeaf = document.querySelector("#green-leaf-icon");
 
-    // If menu is open, always show logo
+    // If menu is open, always show logo and move green leaf to bottom
     if (isMenuOpen) {
-      gsap.to(logo, {
-        autoAlpha: 1,
-        duration: 0.4,
-        ease: "power2.out",
-        pointerEvents: "auto",
-      });
+      if (logo) {
+        gsap.to(logo, {
+          autoAlpha: 1,
+          duration: 0.4,
+          ease: "power2.out",
+          pointerEvents: "auto",
+        });
+      }
       return;
     }
 
-    // If menu is closed, hide logo only on first section (index 0)
+    // If menu is closed, control position based on section index
     if (index === 0) {
-      gsap.set(logo, {
-        autoAlpha: 0,
-        pointerEvents: "none",
-      });
+      // On LogoSection: hide header logo, green leaf at top
+      if (logo) {
+        gsap.set(logo, {
+          autoAlpha: 0,
+          pointerEvents: "none",
+        });
+      }
+      if (greenLeaf) {
+        gsap.to(greenLeaf, {
+          top: "30px",
+          bottom: "auto",
+          duration: 0.4,
+          ease: "power2.inOut",
+        });
+      }
     } else {
-      // Show logo on all other sections
-      gsap.to(logo, {
-        autoAlpha: 1,
-        duration: 0.4,
-        ease: "power2.out",
-        pointerEvents: "auto",
-      });
+      // On other sections: show header logo, green leaf at bottom
+      if (logo) {
+        gsap.to(logo, {
+          autoAlpha: 1,
+          duration: 0.4,
+          ease: "power2.out",
+          pointerEvents: "auto",
+        });
+      }
+      if (greenLeaf) {
+        gsap.to(greenLeaf, {
+           top: "70vh",
+          bottom: "auto",
+          duration: 0.4,
+          ease: "power2.inOut",
+        });
+      }
     }
   };
 
@@ -131,7 +154,7 @@ export default function initScrollSmoother(router) {
     if (i === 0) {
       inTL.get(sec)?.play();
       updateTheme(sec);
-      // Initialize logo as hidden on first section
+      // Initialize logo as hidden and green leaf as visible on first section
       updateHeaderLogo(0);
     }
   });
@@ -207,7 +230,7 @@ export default function initScrollSmoother(router) {
       onComplete: () => {
         currentIndex = index;
         
-        // Update logo visibility based on section
+        // Update logo and green leaf visibility based on section
         updateHeaderLogo(index);
         
         sections.forEach((sec, i) =>

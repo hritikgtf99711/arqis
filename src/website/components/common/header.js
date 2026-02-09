@@ -245,9 +245,10 @@ const Header = () => {
 
   return ReactDOM.createPortal(
     <div>
-      <header className="lg:py-[60px] py-[30px] z-[99991] fixed left-0 top-0 w-[100%]">
-        <div className="container mx-[auto]">
-          <div className="flex cursor-pointer justify-between items-start gap-10">
+      <header className="2xl:py-[60px] py-[30px] z-[99991] fixed left-0 top-0 w-[100%]">
+        <div className="2xl:max-w-[1520px] xl:max-w-[1280px] mx-[auto]">
+          {/* <div className="flex cursor-pointer justify-between items-start gap-10"> */}
+          <div className="flex cursor-pointer justify-between items-center gap-10">
             <Image
               src="/assets/logo.png"
               id="header-logo"
